@@ -20948,7 +20948,7 @@ paths:
           "$ref": "#/components/responses/ScimError"
         "500":
           "$ref": "#/components/responses/ScimError"
-  "/api/v1/realms/{realm}/scim/v2[LOCAL_PATH]":
+  "/api/v1/realms/{realm}/scim/v2/Users/{id}":
     get:
       operationId: scimGetUser
       tags:

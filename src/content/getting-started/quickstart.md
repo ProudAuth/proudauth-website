@@ -37,7 +37,8 @@ docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1
 docker compose config --quiet
 docker compose pull
 docker compose up -d --wait
-curl --fail http://localhost:8080/health/ready
+PA_ORIGIN=$(python3 -c 'import json; print(json.load(open("config.yaml"))["server"]["public_origin"])')
+curl --fail "$PA_ORIGIN/health/ready"
 ```
 
 The initializer creates `.env`, private file-backed secrets and the configuration.
@@ -56,21 +57,32 @@ Published release digests are the authority for immutable deployment pins.
 docker compose exec server /usr/local/bin/identity-cli realm-create -name main
 docker compose exec server /usr/local/bin/identity-cli bootstrap \
   -realm main -email admin@example.test -username root-admin
+```
+
+The following setup and login commands assume the default host port **8080**.
+For another host port, use the checksum-verified released CLI on your host as
+shown in [nondefault local ports](../../../docs/operations/docker-compose.md#nondefault-local-ports).
+Keep its URL equal to the canonical origin; the server's internal container
+port remains 8080.
+
+```sh
 docker compose exec server /usr/local/bin/identity-cli setup-account \
-  --url http://localhost:8080 --realm main
+  --url "$PA_ORIGIN" --realm main
 docker compose exec server /usr/local/bin/identity-cli login \
-  --url http://localhost:8080 --realm main
+  --url "$PA_ORIGIN" --realm main
 ```
 
 Create the realm once. Keep bootstrap's one-time setup token private; there is
 no default administrator password. Setup prompts for the token and a password.
-First sign-in requires TOTP enrollment and email verification. The demo mailbox
+Use `root-admin` at the first login-name prompt; the bootstrap email becomes a
+sign-in identifier after verification. First sign-in requires TOTP enrollment
+and email verification. The demo mailbox
 is available only on your host's private operator listener; see the complete
 [Compose guide](../../../docs/operations/docker-compose.md#local-evaluation).
 
 ```sh
-curl --fail http://localhost:8080/realms/main/.well-known/openid-configuration
-curl --fail http://localhost:8080/realms/main/jwks
+curl --fail "$PA_ORIGIN/realms/main/.well-known/openid-configuration"
+curl --fail "$PA_ORIGIN/realms/main/jwks"
 ```
 
 Configure clients with discovery's exact issuer. A process-origin change does

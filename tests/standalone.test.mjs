@@ -124,6 +124,11 @@ test('Pages publication contains the complete static site and operator deploymen
   assert(compose.includes('proudauth-v0.2.0-alpha.1-compose.tar.gz'));
   assert(compose.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1'));
   const environment=read('docs/operations/environment/index.html');
+  assert(read('docs/integrations/scim-provisioning/index.html').includes('<code>/Users/{id}</code>'));
+  assert(read('docs/integrations/outbound-provisioning/index.html').includes('<code>PUT /Users/{id}</code>'));
+  const evidence=JSON.parse(read('docs/downloads/docs/integrations/sdk-repositories.json'));
+  assert.equal(evidence.schema_version,1);
+  assert.equal(evidence.repositories.length,5);
   const settings=['COMPOSE_PROJECT_NAME','PROUDAUTH_IMAGE','POSTGRES_IMAGE','DEPLOYMENT_PROFILE',
     'PROUDAUTH_PUBLIC_ORIGIN','PROUDAUTH_REALM','PROUDAUTH_TRUSTED_PROXIES','PUBLIC_BIND',
     'PUBLIC_PORT','OPERATOR_PORT','POSTGRES_MAX_CONNECTIONS','POSTGRES_SHARED_BUFFERS',

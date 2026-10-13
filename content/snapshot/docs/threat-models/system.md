@@ -224,7 +224,7 @@ Summarized; full analysis in [impersonation.md](impersonation.md).
 
 ### 9. SDK verifiers
 
-| Threat | Mitigation (`sdk/go/verifier`) | Tests | Residual |
+| Threat | Mitigation (`proudauth-sdk-go/verifier`) | Tests | Residual |
 | --- | --- | --- | --- |
 | S: untrusted issuer | Exact issuer check before any key fetch | TEST-003 | — |
 | S: algorithm confusion, `none`, HMAC | Asymmetric allowlist enforced in configuration and parsing; key `alg` must match | TEST-004, `FuzzVerify` | — |
@@ -232,7 +232,7 @@ Summarized; full analysis in [impersonation.md](impersonation.md).
 | T: ambiguous JSON | Duplicate-member rejection; duplicate `kid`s in JWKS dropped | TEST-004, `FuzzRejectDuplicateKeys` (server) | — |
 | E: support token treated as ordinary token | Offline verifier refuses `impersonation_access`; introspector rejects it unless via `SupportGuard` | TEST-045 | — |
 | S: stolen sender-bound token treated as bearer authority | Every SDK token-only path refuses `cnf`; Go `SenderVerifier` checks DPoP method/URL/hash/key, atomic single-use replay state, or the TLS leaf-certificate digest | TEST-067, `TestResourceSenderVerifier`, `TestSenderProofs`, `TestSenderReplayConcurrencyAndFailure`, shared access-token fixtures | Multi-instance APIs need a shared atomic proof store; proxy callbacks must authenticate the proxy and its TLS evidence; no resource nonces; Node.js, Dart and PHP have no request-level sender verifier |
-| I: credentials or sensitive bodies forwarded by an HTTP redirect | Go SDK requests use `sdk/go/internal/httpclient`, which returns the redirect response without following it, preserving caller settings | `TestRequestsDoNotFollowRedirects` | Applications must configure trusted endpoint URLs and protect the transport; application-owned browser redirects use a separate flow |
+| I: credentials or sensitive bodies forwarded by an HTTP redirect | Go SDK requests use `proudauth-sdk-go/internal/httpclient`, which returns the redirect response without following it, preserving caller settings | `TestRequestsDoNotFollowRedirects` | Applications must configure trusted endpoint URLs and protect the transport; application-owned browser redirects use a separate flow |
 | S: stale revocation | Documented exposure; strict-online mode available; bounded-state mode (`BoundedState`, `BoundedVerifier`; Node.js `bounded-state`) verifies locally, applies session, subject, organization and membership revocations replayed from the session-event stream, and fails closed (`ErrStateStale`) when its state is older than `MaxStaleness` | TEST-034, TEST-035, `TestBoundedStateVerification` | Offline exposure until expiry; bounded-state exposure up to `MaxStaleness`, and revocations before `Start` are not replayed |
 
 ### 10. Operator channel and deployment

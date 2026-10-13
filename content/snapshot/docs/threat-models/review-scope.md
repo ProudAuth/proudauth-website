@@ -18,8 +18,8 @@ review, and its absence no longer blocks that delivery's completion.
 | Authentication: headless transactions, passwords, factors, passkeys, certificates, federation | `internal/authentication`, `internal/credential`, `internal/passkey`, `internal/certauth`, `internal/federation`, `internal/saml` | [system.md](system.md), [saml.md](saml.md), [attack-suites.md](attack-suites.md#federation-suite) | `TestMultiFactorAndProofs`, `TestPasswordlessAndAbuseBudgets`, `TestIdentifierProbeResponses`, `TestCertificateSignIn`, the federation attack suite |
 | Recovery: password reset, recovery codes, assisted recovery, lost contact, deletion cancellation | `internal/authentication/recovery.go`, `assisted.go`, `recovery_contact.go`, `deletion.go` | [account-recovery.md](../operations/account-recovery.md) | `TestRegistrationAndRecovery`, `TestScheduledAssistedRecovery`, `TestLostContactAndFactorRecovery`, `TestAdminIdentifierChangeGuards`, `TestDeletionCancelAtSignIn` |
 | Authorization: roles, delegation ceilings, project scope, relationships, decision API, support guard | `internal/authorization`, `internal/httpapi/decision.go` | [ADR 0013](../architecture-decisions/0013-authorization-model.md) | `TestDelegationCeilings`, `TestProjectScopedRoles`, `TestTenantCrossingMatrix`, `TestAuthenticatedRoutesCheckPermissions` |
-| Cryptographic usage: key hierarchy, token signing, AEAD bindings, peppering, OTP verifiers, SDK verifiers (the Dart SDK implements RS256, PS256, ES256 and EdDSA verification itself) | `internal/keys`, `internal/token`, `internal/platform/secret`, `sdk/*/` | [ADR 0015](../architecture-decisions/0015-key-hierarchy.md), [keys.md](../operations/keys.md) | `TestEncryptRoundTripAndBinding`, `TestSigningKeyRotation`, `TestSharedRevocationAcrossNodes`, the SDK signature vectors (`sdk/dart/test/vectors`, `sdk/php/tests/vectors`) |
-| Support impersonation | `internal/impersonation`, `sdk/*` `SupportGuard` | [impersonation.md](impersonation.md) | `TestSupportImpersonation`, `TestSupportSessionSeparation`, `TestSupportGrantEndings`, `sdk/fixtures/support-operations` |
+| Cryptographic usage: key hierarchy, token signing, AEAD bindings, peppering, OTP verifiers, SDK verifiers (the Dart SDK implements RS256, PS256, ES256 and EdDSA verification itself) | `internal/keys`, `internal/token`, `internal/platform/secret`, `standalone SDK repositories` | [ADR 0015](../architecture-decisions/0015-key-hierarchy.md), [keys.md](../operations/keys.md) | `TestEncryptRoundTripAndBinding`, `TestSigningKeyRotation`, `TestSharedRevocationAcrossNodes`, the SDK signature vectors (`proudauth-sdk-dart/test/vectors`, `proudauth-sdk-php/tests/vectors`) |
+| Support impersonation | `internal/impersonation`, `standalone SDK repositories` `SupportGuard` | [impersonation.md](impersonation.md) | `TestSupportImpersonation`, `TestSupportSessionSeparation`, `TestSupportGrantEndings`, `tests/fixtures/sdk-contracts/support-operations` |
 
 Also in scope as trust boundaries: the egress policy (`internal/egress`),
 plugins and hooks (`internal/plugin`, `internal/hooks`), restore
@@ -27,12 +27,12 @@ reconciliation (`internal/restore`) and the configuration validator
 (`internal/configuration`).
 
 The 2026-10-11 changes add a resource-server sender boundary in
-`sdk/go/verifier/sender.go` and reject `cnf` through ordinary methods in all
+`proudauth-sdk-go/verifier/sender.go` and reject `cnf` through ordinary methods in all
 four SDKs. Review proof parsing, public-origin/path binding, the shared atomic
 replay-store contract, TLS proxy/certificate callbacks and fail-closed mode
 selection against `TestResourceSenderVerifier`, `TestSenderProofs` and
 `TestSenderReplayConcurrencyAndFailure`. Also review the Go SDK's redirect
-boundary (`sdk/go/internal/httpclient`) and the server's exact DPoP method and
+boundary (`proudauth-sdk-go/internal/httpclient`) and the server's exact DPoP method and
 single-header checks (`TestDPoPBoundTokens`). These are internal correctness
 tests and have not received independent review.
 

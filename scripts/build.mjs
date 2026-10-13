@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+import {publicText} from './publication.mjs';
 
 const require = createRequire(import.meta.url);
 const { marked } = require('../vendor/marked.cjs');
@@ -76,6 +77,7 @@ function publishFile(relative) {
   const safe = /^api\/(events|hooks|schemas|plugins|workflows)\/[^/]+\.json$/.test(relative)
     || /^docs\/operations\/bench-results\/[\w./-]+\.(json|txt|tsv|yaml)$/.test(relative)
       && !/(?:seed|credentials|secrets|support-bundle|initial-attempt)/i.test(relative)
+    || relative === 'docs/integrations/sdk-repositories.json'
     || /^(LICENSE|NOTICE)$/.test(relative);
   if (!safe || !fs.existsSync(sourcePath(relative))) return null;
   const target = `/downloads/${relative}`;
@@ -83,7 +85,7 @@ function publishFile(relative) {
     const data = fs.readFileSync(sourcePath(relative),'utf8');
     // Keep local usernames, absolute source paths and network identifiers out of
     // public downloads. The private checkout preserves the original evidence.
-    const publicData = data.replace(/\/Users\/[^\s"'<>]+/g,'[LOCAL_PATH]').replace(/\/tmp\/[^\s"'<>]+/g,'[TEMP_PATH]');
+    const publicData = publicText(data,{temporaryPaths:relative.startsWith('docs/operations/bench-results/')});
     write(target.slice(1), publicData);
     copied.add(relative);
   }

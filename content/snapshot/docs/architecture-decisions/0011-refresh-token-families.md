@@ -35,7 +35,7 @@ recorded atomically (SES-006..SES-009, DB-006, §24.3).
   logout; remember-me sessions use `sessions.remember_me_*`.
 - Client-credentials grants never receive refresh tokens. There is no retry grace
   period: a client that loses a rotation response must re-authenticate.
-- The first-party OIDC client (`sdk/go/oidcclient`) serializes refreshes per
+- The first-party OIDC client (`proudauth-sdk-go/oidcclient`) serializes refreshes per
   session so concurrent requests do not trigger reuse detection.
 
 ## Alternatives considered

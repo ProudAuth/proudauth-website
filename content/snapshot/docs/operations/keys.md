@@ -205,7 +205,7 @@ Limits:
   this bypasses ProudAuth's audit trail, so record it in your incident log.
 - Removing a key from JWKS does not purge verifier caches. Offline verifiers keep
   accepting tokens signed with the old key until they refresh their key set. The Go
-  SDK verifier (`sdk/go/verifier`) only re-fetches JWKS when it sees an unknown
+  SDK verifier (`proudauth-sdk-go/verifier`) only re-fetches JWKS when it sees an unknown
   `kid` (at most once per `MinRefreshInterval`, default 30 s), and a re-fetch
   replaces its whole key set. Restart or reconfigure offline verifiers after an
   emergency rotation; subscribe them to the `signing_key.rotated` webhook.

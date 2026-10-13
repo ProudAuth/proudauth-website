@@ -22,8 +22,18 @@ ProudAuth and keep their original source provenance.
   with the complete 19-variable environment and secret-file reference.
 - Exact published commit snapshots for all five SDK guides and an explicit
   offline import command with per-file upstream provenance.
+- Commit-pinned service guides and the public cross-repository SDK evidence
+  manifest as a downloadable artifact.
 
 ### Changed
 
 - The project website describes a self-hosted product; identity, login and
   monitoring belong to each operator's instance.
+
+### Fixed
+
+- Preserve SCIM `/Users/{id}` protocol routes and Markdown code delimiters when
+  redacting local filesystem provenance, with sanitizer and rendered-guide
+  regression checks.
+- Use the configured canonical origin in the quickstart and direct nondefault
+  local ports to the released host CLI setup procedure.

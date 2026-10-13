@@ -51,7 +51,7 @@ Everything here is **internal testing**: the server runs in-process
 use the checksum-pinned public Go SDK; the other SDKs execute their controlled
 counterparts in their independently pinned repositories. The source API versions
 remain the Go SDK's `admin.Version`, Node.js `SDK_VERSION`, Dart `sdkVersion` and
-PHP SDK `Version::SDK_VERSION` and .NET SDK `AdminClient.SdkVersion`, all 0.2.0).
+PHP SDK `Version::SDK_VERSION` and .NET SDK `AdminClient.SdkVersion`, all 0.2.0.
 
 | Counterpart (pinned source or service checkout) | Protocol surface exercised | Tests |
 | --- | --- | --- |

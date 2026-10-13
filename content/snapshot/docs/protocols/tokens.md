@@ -177,7 +177,7 @@ No `nonce`.
 
 ## Verification rules for resource servers
 
-Implemented by `sdk/go/verifier` (`Verifier.Verify`) and required of any other
+Implemented by `proudauth-sdk-go/verifier` (`Verifier.Verify`) and required of any other
 implementation (§14.4):
 
 1. Configure the issuer and your audience. Never fetch keys from URLs found in a

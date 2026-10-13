@@ -53,11 +53,17 @@ builds and are not guarantees for this release.
 
 ## [Unreleased]
 
-No version has been tagged. Everything below is the development state since the
-start of the project; **Changed**, **Fixed** and **Security fixes** record changes
-to behavior that earlier development commits (and earlier versions of these
-documents) had. It has not been independently security-reviewed (SEC-018) or
-certified (QA-006).
+No changes recorded after 0.2.0-alpha.1.
+
+## Historical development before 0.2.0-alpha.1
+
+The entries below preserve evidence from development before repository
+separation and the first public release. References to the private monorepo,
+unpublished artifacts, local tunnels and embedded SDK paths describe that
+historical setup; they are not current deployment instructions or release
+claims. **Changed**, **Fixed** and **Security fixes** describe earlier development
+behavior. No external security review (SEC-018) or certification (QA-006) was
+completed for that work.
 
 ### Added
 

@@ -175,7 +175,10 @@ known revocations across `Start`, rewinds to the oldest retained event on
 | Events and the session-event stream | `event_type` + `event_version` (every type is at version 1) | Bounded-state verification reads `GET /session-events` ([api/events](../../api/events/README.md)) |
 | Configuration documents | `format: proudauth.realm-config.v1` | `identity-cli config-*` ([below](#administrative-automation-sdk-012)) |
 
-The SDKs are tested against the server of the **same commit**; no
+The service tests the Go SDK revision pinned in `go.mod` against its own
+server. Other SDKs run their controlled HTTP counterparts in independent CI;
+the [source-pinned SDK evidence](sdk-repositories.json) records exact versions.
+No
 combination of an older SDK with a newer server (or the reverse) is tested.
 Changes to these contracts follow
 [compatibility.md](../protocols/compatibility.md): additive within a

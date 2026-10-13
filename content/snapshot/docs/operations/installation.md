@@ -18,8 +18,17 @@ and creates the first administrator through the local operator channel
 
 All three binaries are in the container image (`/usr/local/bin/`), built by the
 `Dockerfile` as static binaries on a distroless, non-root (UID 65532) base. The
-image works with a read-only root filesystem. No release has been published yet;
-build the image with `make image` or the binaries with `go build ./cmd/...`.
+image works with a read-only root filesystem. The
+[v0.2.0-alpha.1 pre-release](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1)
+provides Linux/macOS binaries, checksums and source-free installation assets.
+For a single-machine installation, follow the
+[Docker Compose guide](docker-compose.md) and [complete `.env` reference](environment.md).
+Pull `ghcr.io/proudbase/proudauth:0.2.0-alpha.1` or the maintainer's Docker Hub
+mirror `mohamadalialghanem/proudauth:0.2.0-alpha.1`. The published registry image
+supports Linux amd64 and arm64; the offline release image archive is amd64,
+with binaries supplied for both Linux architectures. This is pre-release
+software with no completed external security review or certification.
+To build locally, use `make image VERSION=0.2.0-alpha.1` or `go build ./cmd/...`.
 
 ### Verifying a release
 
@@ -27,21 +36,24 @@ Releases are built only by `.github/workflows/release.yml` from a tag, after
 the full CI suite passed on that commit (DEP-003, SEC-016). Each release has
 `SHA256SUMS` over every file, build-provenance attestations for the files and
 the image, an SBOM attestation for the image, and a keyless cosign signature
-of the image digest (`IMAGE_DIGEST`). Before installing, with `<owner>/<repo>`
-the repository the release was published from:
+of the multi-platform image digest (`IMAGE_DIGEST`). Per-platform image SBOMs
+are `image-sbom.spdx.json` (amd64) and `image-sbom-linux-arm64.spdx.json`.
+Before installing:
 
 ```sh
 sha256sum -c SHA256SUMS
-gh attestation verify identity-server_linux_amd64 --repo <owner>/<repo>
-gh attestation verify "oci://$(cat IMAGE_DIGEST)" --repo <owner>/<repo>
+gh attestation verify identity-server_linux_amd64 --repo proudbase/proudauth
+gh attestation verify "oci://$(cat IMAGE_DIGEST)" --repo proudbase/proudauth
 cosign verify "$(cat IMAGE_DIGEST)" \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  --certificate-identity-regexp '^https://github.com/<owner>/<repo>/\.github/workflows/release\.yml@refs/tags/v'
+  --certificate-identity-regexp '^https://github.com/proudbase/proudauth/\.github/workflows/release\.yml@refs/tags/v'
 ```
 
-Deploy the image by digest (the content of `IMAGE_DIGEST`), not by tag. What
-is not covered: base images and GitHub Actions are pinned by tag, and no second
-builder reproduces the artifacts
+Deploy the image by its verified immutable digest (the content of `IMAGE_DIGEST`).
+Base images and the builder use immutable digests; external GitHub Actions use
+full commit references. Provenance establishes workflow identity and artifact
+integrity. Independent-machine reproduction of this release and external
+security review are not claimed
 ([security-checks.md](security-checks.md#open-items)).
 
 ## 2. Prepare secrets

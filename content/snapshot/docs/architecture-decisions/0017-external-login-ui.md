@@ -26,7 +26,7 @@ redirects, CSRF defenses and session cookies remain backend responsibilities. A
 - Completion yields an authorization code in `redirect_to`; tokens are only
   obtainable by the client with its PKCE verifier at the token endpoint.
 - Browser applications are encouraged to use a backend-for-frontend that keeps
-  tokens server-side (`examples/backend-for-frontend`, `sdk/go/oidcclient`).
+  tokens server-side (`examples/backend-for-frontend`, `proudauth-sdk-go/oidcclient`).
 - IdP session cookie `pa_sid` (HttpOnly, `Secure` unless
   `sessions.cookie_insecure_dev`, SameSite from `sessions.cookie_same_site`,
   default `lax`) is scoped to `/realms/{realm}/` and enables SSO at the

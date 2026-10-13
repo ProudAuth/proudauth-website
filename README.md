@@ -69,10 +69,11 @@ GitHub Pages serves static files and has no custom Nginx/header configuration.
 - `vendor/`: licensed parsers and already-cached Swagger assets.
 - `deploy/`: hardened static container configuration; never mounts credentials.
 
-The initial service input was a workspace snapshot at baseline `5ff6ddb…`.
-Service imports remain explicitly unpinned until a published service commit is
-selected. All five SDK READMEs are imported byte-for-byte from their published
-commits, including .NET's portable strict signature/key-validation corrections.
+Service inputs now come from the exact public commit recorded in
+`content.lock.json`. The manifest also preserves the initial workspace input
+hashes. All five SDK READMEs are imported byte-for-byte from their published
+commits, including .NET's portable strict signature/key-validation corrections
+and PHP's tested public VCS installation example.
 Exact upstreams and byte hashes are in the manifest. Builds never fetch a moving
 branch or require adjacent repositories.
 
@@ -95,8 +96,10 @@ service repository. SDK documentation remains owned by each SDK repository.
 Website updates import approved snapshots in a reviewable change; content is not
 silently rewritten by a network fetch during a build.
 
-Absolute user and temporary paths are redacted in snapshots. Public benchmark
-copies therefore may differ from original evidence bytes. Their original hashes
+Absolute user paths and temporary paths in benchmark evidence are redacted in
+snapshots. Protocol routes such as `/Users/{id}` and operator command examples
+are preserved. Public benchmark copies therefore may differ from original
+evidence bytes. Their original hashes
 and measurement versions are preserved; the manifest pins the sanitized copies.
 Numbers remain observations from one laptop, not guarantees or sizing advice.
 
@@ -131,7 +134,7 @@ operator response. Only approved contracts and previously published measurement
 artifacts become downloads. Embedded Markdown HTML is escaped; the Swagger
 explorer disables request execution and credential persistence.
 
-Six established content/status checks and additional standalone/base-path checks
-are automated. See [validation](VALIDATION.md), [contributing](CONTRIBUTING.md)
+Twelve publication, content and status checks are automated. See
+[validation](VALIDATION.md), [contributing](CONTRIBUTING.md)
 and [security reporting](SECURITY.md). Source is Apache-2.0; retain the component
 licenses and [notices](NOTICE) when redistributing.

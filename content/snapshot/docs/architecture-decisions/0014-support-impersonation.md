@@ -49,7 +49,7 @@ list non-negotiable controls.
   `allowlisted_write` mode, and writes an audit record before access.
 - **One classification rule** (IMP-011, IMP-013; 2026-10 update): the SDKs'
   `SupportGuard` and the decision API classify operations the same way,
-  pinned by the shared table `sdk/fixtures/support-operations/cases.json`
+  pinned by the shared table `tests/fixtures/sdk-contracts/support-operations/cases.json`
   that the SDKs and the server's tests run. An operation is protected when
   the segments of a protected entry occur as a contiguous run in its name
   (split on `.`, `:` and `/`, simple plurals tolerated), and it is a write

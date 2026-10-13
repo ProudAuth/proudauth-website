@@ -43,7 +43,7 @@ provide that (IMP-010, SES-023, §13.2 strict-online mode).
 - `bounded_online` is accepted as a resource `verification_mode` value. The IdP
   does not enforce it, but since the 2026-10 update the SDKs provide a
   bounded-state mode fed by the session-event stream that fails closed beyond a
-  staleness bound (`sdk/go/verifier/boundedstate.go`,
+  staleness bound (`proudauth-sdk-go/verifier/boundedstate.go`,
   `TestBoundedStateVerification`). Support tokens still require strict-online
   validation.
 

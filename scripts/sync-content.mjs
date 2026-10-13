@@ -4,6 +4,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {publicText} from './publication.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=new Map(process.argv.slice(2).map(arg=>{
@@ -21,22 +22,23 @@ const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
 const lock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
 const prefix='content/snapshot/';
 const imported=new Map(lock.files.map(item=>[item.path,item]));
-const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
+const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
 const serviceFiles=lock.files.filter(item=>item.path.startsWith(prefix)&&!item.path.startsWith(prefix+'sdk/')).map(item=>item.path.slice(prefix.length));
-serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md');
+serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json');
 for(const relative of new Set(serviceFiles)){
   if(!approved.test(relative)||relative.split('/').includes('..')||/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i.test(relative))throw new Error(`Disallowed source: ${relative}`);
   const bytes=serviceCommit?git(service,'show',`${serviceCommit}:${relative}`):fs.readFileSync(path.join(service,relative));
-  const sanitized=Buffer.from(bytes.toString('utf8').replace(/\/Users\/[^\s"'<>]+/g,'[LOCAL_PATH]').replace(/\/tmp\/[^\s"'<>]+/g,'[TEMP_PATH]'));
+  const sanitized=Buffer.from(publicText(bytes.toString('utf8'),{temporaryPaths:relative.startsWith('docs/operations/bench-results/')}));
   const target=prefix+relative;
   const previous=imported.get(target);
   fs.mkdirSync(path.dirname(path.join(root,target)),{recursive:true});
   fs.writeFileSync(path.join(root,target),sanitized);
   imported.set(target,{
     path:target,source:relative,sourceSha256:hash(bytes),sha256:hash(sanitized),
-    matchesHead:!!serviceCommit,redacted:!bytes.equals(sanitized),
+    matchesHead:!!serviceCommit&&bytes.equals(sanitized),redacted:!bytes.equals(sanitized),
+    initialSourceSha256:previous?.initialSourceSha256||previous?.previousSourceSha256||previous?.sourceSha256||hash(bytes),
     upstream:{repository:'https://github.com/proudbase/proudauth',commit:serviceCommit||null,path:relative,commitPinned:!!serviceCommit},
-    ...(previous?.sourceSha256&&previous.sourceSha256!==hash(bytes)?{previousSourceSha256:previous.sourceSha256}:{})
+    ...(previous?.sourceSha256&&previous.sourceSha256!==hash(bytes)?{previousSourceSha256:previous.sourceSha256}:previous?.previousSourceSha256?{previousSourceSha256:previous.previousSourceSha256}:{})
   });
 }
 lock.sdkSources={};
