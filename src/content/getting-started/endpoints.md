@@ -1,46 +1,46 @@
-# Service endpoints
+# Your instance endpoints
 
-These are the intended canonical destinations for the repository split. This
-standalone staging build does not change DNS, tunnel routes or persisted issuers.
+`https://proudauth.com/` is the project website, hosted as static files on GitHub
+Pages. `https://proudauth.com/docs/` contains guides, SDKs, the API reference and
+downloadable contracts. Neither address hosts an identity API or stores your
+users, credentials or sessions.
 
+You deploy the service on your own infrastructure and choose its canonical
+origin before creating a realm. The examples below use
+`https://identity.example.com`; replace it with your HTTPS identity origin.
 
-Each hostname has one job. Applications use the identity origin; developers use
-the documentation site; the status page reports a small public health summary.
+## Main realm example
 
-| Hostname | Purpose |
+| Endpoint | Your instance address |
 | --- | --- |
-| `proudauth.com` | Service overview and links to documentation |
-| `proudauth.com/docs` | Guides, SDKs, API reference and downloadable contracts |
-| `api.proudauth.com` | Identity API and OAuth/OIDC endpoints |
-| `status.proudauth.com` | Live public readiness and documentation checks |
+| Issuer | `https://identity.example.com/realms/main` |
+| OIDC discovery | `https://identity.example.com/realms/main/.well-known/openid-configuration` |
+| JWKS | `https://identity.example.com/realms/main/jwks` |
+| Token endpoint | `https://identity.example.com/realms/main/oauth/token` |
+| Introspection | `https://identity.example.com/realms/main/oauth/introspect` |
+| Admin API base | `https://identity.example.com/api/v1/realms/main` |
+| Readiness | `https://identity.example.com/health/ready` |
 
-## Main realm
+Always discover protocol metadata and validate its exact issuer. Do not infer
+endpoints from an untrusted token. Register OAuth clients and API audiences in
+your own realm; use your application domain for callbacks and sign-in UI.
 
-| Endpoint | Address |
-| --- | --- |
-| Issuer | `https://api.proudauth.com/realms/main` |
-| OIDC discovery | `https://api.proudauth.com/realms/main/.well-known/openid-configuration` |
-| JWKS | `https://api.proudauth.com/realms/main/jwks` |
-| Token endpoint | `https://api.proudauth.com/realms/main/oauth/token` |
-| Introspection | `https://api.proudauth.com/realms/main/oauth/introspect` |
-| Admin API base | `https://api.proudauth.com/api/v1/realms/main` |
-| Readiness | `https://api.proudauth.com/health/ready` |
-
-Always discover protocol metadata and validate its issuer. Do not infer endpoints
-from an untrusted token. The API explorer is on the documentation site at
-[/api/explorer/](/api/explorer/); the OpenAPI file is at
-[/api/openapi.yaml](/api/openapi.yaml).
+The documentation [API explorer](/api/explorer/) is read-only and uses a reserved
+example domain. Its [OpenAPI download](/api/openapi.yaml) is an integration
+contract, not a connection to a ProudAuth-operated service. Execute API requests
+from your trusted backend or CLI against your own instance.
 
 ## Operator-only endpoints
 
-Metrics, detailed operator status and the development email inbox remain on the
-private operator listener. They have no public subdomains. Webhooks are outbound
-deliveries to registered consumers; a generic public `hook` hostname is not needed.
-SMTP delivery uses a configured relay, not a public email-inbox website.
+Metrics, detailed operator status and the development email inbox belong to your
+private operator listener. The release installer binds it to `127.0.0.1` and does
+not publish PostgreSQL. Keep these endpoints out of public DNS and tunnels.
+Webhooks are outbound deliveries to registered consumers; SMTP uses your relay.
 
-## Availability
+## Operating your deployment
 
-This is a demonstration deployment on one Mac behind Cloudflare Tunnel. The
-computer, Docker and the connector must stay running. The status page is a live
-point-in-time check; it does not claim historical uptime, an SLA or independent
-monitoring. It shares the deployment's failure domain.
+Availability and monitoring belong to your deployment. The project website has
+no status API, hosted login or account administration endpoint. Configure your
+own health checks, backups and incident procedures from the
+[monitoring](../../../docs/operations/monitoring.md) and
+[Compose installation](../../../docs/operations/docker-compose.md) guides.

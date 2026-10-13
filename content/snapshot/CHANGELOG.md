@@ -9,6 +9,48 @@ they are listed under **Changed** or **Removed** with migration notes.
 Security fixes name the affected versions and link the advisory (QA-008,
 GOV-003). Requirement IDs refer to [docs/plan.md](docs/plan.md).
 
+## [0.2.0-alpha.1] - 2026-10-13
+
+### Added
+
+- First public pre-release under `proudbase/proudauth`: versioned Linux/macOS
+  binaries, a multi-architecture Linux amd64/arm64 container image, source and
+  per-platform image SBOMs, release checksums, keyless image signatures and
+  GitHub build-provenance attestations (DEP-003, SEC-016, GOV-005).
+- Source-free Docker Compose installer with complete adjacent `.env`
+  documentation, production HTTPS/SMTP and loopback-only demo profiles,
+  stable file-backed keys, PostgreSQL 18.6, separated migration/runtime roles
+  and one-time administrator bootstrap (DEP-002, DEP-004, DEP-006, OPS-013).
+- Independent public Go, Node/TypeScript, Dart, PHP and .NET SDK repositories,
+  with standalone CI and a pinned Go SDK dependency. Project information and
+  documentation are maintained separately in `proudauth-website`.
+- Measured laptop capacity/adversarial/soak and restore evidence carried into
+  the public service repository with explicit build provenance and sizing
+  caveats (NFR-003..NFR-008, DEP-019, OPS-007).
+
+### Changed
+
+- Go module path is now `github.com/proudbase/proudauth`; applications import
+  Go SDK packages from `github.com/proudbase/proudauth-sdk-go`. SDK source no
+  longer ships inside the service tree; package/registry publication remains
+  distinct from repository publication.
+- Release publication reuses successful main CI only for the exact tagged
+  commit, otherwise running the full reusable CI before publishing.
+- GitHub Container Registry is the automated organization-owned registry;
+  the Docker Hub mirror is published separately by the maintainer.
+
+### Fixed
+
+- Deployment initialization rejects accidental public demo bindings, mismatched
+  demo issuer ports, globally trusted proxy ranges and invalid pool capacity.
+  Repeated initialization preserves credentials and mounted secret inodes.
+- Offline and Compose release archives exclude generated environment files,
+  secret directories, installed configuration and initializer locks.
+
+This is a pre-release, with no completed external security review or conformance
+certification. Existing benchmark numbers describe their recorded development
+builds and are not guarantees for this release.
+
 ## [Unreleased]
 
 No version has been tagged. Everything below is the development state since the

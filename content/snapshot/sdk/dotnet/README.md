@@ -1,5 +1,11 @@
 # ProudAuth SDK for .NET
 
+> **Repository status:** public standalone source; package version 0.2.0 remains unpublished.
+> No package-registry release or stable-support window is promised yet.
+> [Documentation](https://proudauth.com/docs/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+[![CI](https://github.com/proudbase/proudauth-sdk-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-sdk-dotnet/actions/workflows/ci.yml)
+
 First-party backend SDK for **.NET 8 or later**, version **0.2.0**, unpublished.
 Apache-2.0. The solution contains two NuGet packages:
 
@@ -9,9 +15,11 @@ Apache-2.0. The solution contains two NuGet packages:
 | `ProudAuth.Sdk.AspNetCore` | ASP.NET Core authentication scheme and bearer middleware; depends on `ProudAuth.Sdk` |
 
 RS256, PS256, ES256 and EdDSA (Ed25519) are supported. The SDK uses .NET
-cryptography for RS256 and ES256, and
+cryptography for ES256 and public-key import, and
 [BouncyCastle.Cryptography 2.7.0](https://www.nuget.org/packages/BouncyCastle.Cryptography/2.7.0)
-for Ed25519 and RSA-PSS (including non-byte-aligned RSA keys).
+for Ed25519 and RSA verification (including non-byte-aligned RSA-PSS keys).
+RS256 requires the canonical SHA-256 DigestInfo encoding on every platform.
+Invalid EC keys are skipped without disrupting valid keys in the same JWKS.
 `none`, HMAC, private keys and RSA keys below 2048 bits are refused.
 
 ## Build and install
@@ -19,26 +27,26 @@ for Ed25519 and RSA-PSS (including non-byte-aligned RSA keys).
 The packages have not been published to NuGet. Reference the projects directly:
 
 ```sh
-dotnet add /path/to/your-app reference /path/to/ProudAuth/sdk/dotnet/src/ProudAuth.Sdk/ProudAuth.Sdk.csproj
-dotnet add /path/to/your-api reference /path/to/ProudAuth/sdk/dotnet/src/ProudAuth.Sdk.AspNetCore/ProudAuth.Sdk.AspNetCore.csproj
+dotnet add /path/to/your-app reference /path/to/proudauth-sdk-dotnet/src/ProudAuth.Sdk/ProudAuth.Sdk.csproj
+dotnet add /path/to/your-api reference /path/to/proudauth-sdk-dotnet/src/ProudAuth.Sdk.AspNetCore/ProudAuth.Sdk.AspNetCore.csproj
 ```
 
 Or build local NuGet packages, then install from the output directory:
 
 ```sh
-dotnet restore sdk/dotnet/ProudAuth.Sdk.sln --locked-mode
-dotnet pack sdk/dotnet/ProudAuth.Sdk.sln -c Release -o sdk/dotnet/artifacts --no-restore
+dotnet restore ProudAuth.Sdk.sln --locked-mode
+dotnet pack ProudAuth.Sdk.sln -c Release -o artifacts --no-restore
 dotnet add /path/to/your-api package ProudAuth.Sdk.AspNetCore --version 0.2.0 --no-restore
-dotnet restore /path/to/your-api --source /path/to/ProudAuth/sdk/dotnet/artifacts --source https://api.nuget.org/v3/index.json
+dotnet restore /path/to/your-api --source /path/to/proudauth-sdk-dotnet/artifacts --source https://api.nuget.org/v3/index.json
 ```
 
 The second source supplies Bouncy Castle.
-Build/test locally with `make test-dotnet`, or:
+Build/test locally with `dotnet run --project tests/ProudAuth.Sdk.Tests -c Release`, or:
 
 ```sh
-dotnet restore sdk/dotnet/ProudAuth.Sdk.sln --locked-mode
-dotnet build sdk/dotnet/ProudAuth.Sdk.sln -c Release --no-restore
-dotnet run --project sdk/dotnet/tests/ProudAuth.Sdk.Tests -c Release --no-build --no-restore
+dotnet restore ProudAuth.Sdk.sln --locked-mode
+dotnet build ProudAuth.Sdk.sln -c Release --no-restore
+dotnet run --project tests/ProudAuth.Sdk.Tests -c Release --no-build --no-restore
 ```
 
 The test executable exits nonzero on failure. It runs all shared access-token
@@ -49,7 +57,7 @@ Local validation: **342 passed, zero failures/skips**, using .NET runtime
 8.0.27 on macOS with SDK 8.0.421. Build, format verification, packaging and
 installation into an ASP.NET Core consumer also pass. A separate local check
 passed 15 assertions against the running ProudAuth image, including OIDC,
-refresh rotation and revocation; see the [validation record](../../docker-deploy/validation.md).
+refresh rotation and revocation; see the historical monorepo validation record.
 The live check is manual and is not part of the CI test executable.
 
 ## Pick a validation profile
@@ -279,7 +287,7 @@ strings. Deadlines cover both token acquisition and response body reads.
 One-time secret members are recursively wrapped in `Secret`, including arrays
 and objects under those members. `Reveal()` explicitly returns the value;
 string conversion, debugger display and JSON serialization emit `[REDACTED]`.
-See the shared [compatibility policy](../../docs/integrations/sdk-compatibility.md).
+See the shared [compatibility policy](https://proudauth.com/docs/integrations/sdk-compatibility/).
 
 ## HTTP transport and ownership
 

@@ -18,8 +18,11 @@ const read=relative=>fs.readFileSync(path.join(output,relative),'utf8');
 test('landing, canonical guide URLs and every search result use the merged website',()=>{
   const home=read('index.html');
   assert(home.includes('href="/docs"'));
-  assert(home.includes('href="/docs/api/"'));
-  assert(home.includes('https://api.proudauth.com/realms/main/.well-known/openid-configuration'));
+  assert(home.includes('href="/docs/sdks/overview/"'));
+  assert(home.includes('href="https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1"'));
+  assert(home.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1'));
+  assert(!home.includes('api.proudauth.com'));
+  assert(!home.includes('status.proudauth.com'));
   const overview=read('docs/getting-started/overview/index.html');
   assert(overview.includes('href="https://proudauth.com/docs/getting-started/overview/"'));
   assert(overview.includes('src="/docs/assets/site.js"'));
@@ -55,7 +58,7 @@ test('Swagger, source provenance and downloads remain local and credentials-free
   const inputLock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
   assert.deepEqual(info.source,inputLock.source);
   if(info.source.dirty)assert.equal(info.source.commitPinned,false);
-  assert.equal(info.guides,101);
+  assert.equal(info.guides,104);
   assert.equal(info.apiOperations,603);
   const lock=JSON.parse(read('docs/content.lock.json'));
   assert.equal(lock.source.head,info.source.head);
@@ -104,4 +107,34 @@ test('snapshot verifier rejects a changed imported document',t=>{
   result=spawnSync(process.execPath,['scripts/verify-content.mjs'],{cwd:temp,encoding:'utf8'});
   assert.notEqual(result.status,0);
   assert(result.stderr.includes('Snapshot hash mismatch: content/snapshot/sdk/node/README.md'));
+});
+
+test('Pages publication contains the complete static site and operator deployment guides',()=>{
+  assert.equal(read('CNAME').trim(),'proudauth.com');
+  assert.equal(read('.nojekyll'),'');
+  assert(read('404.html').includes('Page not found'));
+  assert(read('404.html').includes('href="/docs/"'));
+  assert(!fs.existsSync(path.join(output,'status')));
+  assert(!fs.existsSync(path.join(output,'status.json')));
+  const endpoints=read('docs/getting-started/endpoints/index.html');
+  assert(endpoints.includes('https://identity.example.com/realms/main'));
+  assert(!endpoints.includes('api.proudauth.com'));
+  assert(!endpoints.includes('status.proudauth.com'));
+  const compose=read('docs/operations/docker-compose/index.html');
+  assert(compose.includes('proudauth-v0.2.0-alpha.1-compose.tar.gz'));
+  assert(compose.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1'));
+  const environment=read('docs/operations/environment/index.html');
+  const settings=['COMPOSE_PROJECT_NAME','PROUDAUTH_IMAGE','POSTGRES_IMAGE','DEPLOYMENT_PROFILE',
+    'PROUDAUTH_PUBLIC_ORIGIN','PROUDAUTH_REALM','PROUDAUTH_TRUSTED_PROXIES','PUBLIC_BIND',
+    'PUBLIC_PORT','OPERATOR_PORT','POSTGRES_MAX_CONNECTIONS','POSTGRES_SHARED_BUFFERS',
+    'POOL_MAX_CONNECTIONS','SMTP_HOST','SMTP_PORT','SMTP_TLS','SMTP_USERNAME','EMAIL_FROM','LOG_LEVEL'];
+  for(const name of settings)assert(environment.includes(`<code>${name}</code>`),`Missing environment setting: ${name}`);
+  assert(read('docs/sitemap.xml').includes('<loc>https://proudauth.com/</loc>'));
+  const lock=JSON.parse(read('docs/content.lock.json'));
+  for(const language of ['go','node','dart','php','dotnet']){
+    const input=lock.files.find(item=>item.path===`content/snapshot/sdk/${language}/README.md`);
+    assert.equal(input.upstream.commitPinned,true);
+    assert.match(input.upstream.commit,/^[a-f0-9]{40}$/);
+    assert.equal(input.sha256,input.sourceSha256);
+  }
 });

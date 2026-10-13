@@ -9,10 +9,21 @@ ProudAuth and keep their original source provenance.
 ### Added
 
 - Independent landing page and developer documentation build, with canonical
-  documentation under `/docs/` and the planned `api.proudauth.com` API origin.
+  documentation under `/docs/` and operator-owned identity examples.
 - Reviewed service/API/SDK documentation snapshots with per-file SHA-256,
   redaction records and explicit dirty-workspace provenance.
 - Offline Node build, loopback preview, standalone publication/redirect/status
   checks and CI with pinned GitHub Actions.
 - Cached Swagger assets with license notices, source-independent container
   configuration and clear publication/deployment gates.
+- Free GitHub Pages publication with pinned Actions, a custom domain, root 404,
+  `.nojekyll`, local assets and verified static artifacts.
+- Versioned alpha release downloads and source-free Docker Compose quickstart,
+  with the complete 19-variable environment and secret-file reference.
+- Exact published commit snapshots for all five SDK guides and an explicit
+  offline import command with per-file upstream provenance.
+
+### Changed
+
+- The project website describes a self-hosted product; identity, login and
+  monitoring belong to each operator's instance.

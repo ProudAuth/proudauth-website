@@ -1,28 +1,45 @@
 # SDK compatibility, adapters and automation
 
 Requirements: SDK-010 (dependency and compatibility policy), SDK-011
-(framework adapters), SDK-012 (administrative automation). Code: `sdk/go`
-(`verifier`, `oidcclient`, `admin`), `sdk/node` (`@proudauth/sdk`),
-`sdk/dart` (`proudauth_sdk`), `sdk/php` (`proudauth/sdk`),
-`sdk/dotnet` (`ProudAuth.Sdk`, `ProudAuth.Sdk.AspNetCore`),
+(framework adapters), SDK-012 (administrative automation). Code: `proudauth-sdk-go`
+(`verifier`, `oidcclient`, `admin`), `proudauth-sdk-node` (`@proudauth/sdk`),
+`proudauth-sdk-dart` (`proudauth_sdk`), `proudauth-sdk-php` (`proudauth/sdk`),
+`proudauth-sdk-dotnet` (`ProudAuth.Sdk`, `ProudAuth.Sdk.AspNetCore`),
 `cmd/identity-cli/config_cmds.go`.
 
-All five SDKs are at **0.2.0** and unreleased: no version has been tagged, and
-the Node.js, Dart, PHP and .NET packages are not published to a registry (the Dart
-package declares `publish_to: none`). The PHP `composer.json` is in `sdk/php`,
-not at the repository root, so installing it from this repository with a
-Composer `vcs` repository needs a subtree split; a `path` repository works
-for local use.
+All five SDKs have independently buildable public repositories and their own CI:
+
+| Language | Source repository | Package identity |
+| --- | --- | --- |
+| Go | [proudauth-sdk-go](https://github.com/proudbase/proudauth-sdk-go) | `github.com/proudbase/proudauth-sdk-go` |
+| Node.js/TypeScript | [proudauth-sdk-node](https://github.com/proudbase/proudauth-sdk-node) | `@proudauth/sdk` |
+| Dart | [proudauth-sdk-dart](https://github.com/proudbase/proudauth-sdk-dart) | `proudauth_sdk` |
+| PHP | [proudauth-sdk-php](https://github.com/proudbase/proudauth-sdk-php) | `proudauth/sdk` |
+| .NET | [proudauth-sdk-dotnet](https://github.com/proudbase/proudauth-sdk-dotnet) | `ProudAuth.Sdk`, `ProudAuth.Sdk.AspNetCore` |
+
+The source API version is **0.2.0**. npm, pub.dev, Packagist and NuGet packages
+have not been published; public source availability does not establish registry
+publication. PHP's Composer manifest now lives at its repository root, so a VCS
+repository can consume it without a subtree split. The service pins the Go SDK
+as a normal checksum-verified module dependency, without a local replacement.
+
+[Pinned SDK evidence](sdk-repositories.json) records immutable source revisions,
+successful independent CI runs, workflow bytes and shared-contract hashes. The
+service contract checks that these fixtures match `tests/fixtures/sdk-contracts`;
+its Go end-to-end tests exercise the published Go SDK against the service.
+The latest .NET pipeline runs 344 tests on Linux, macOS and Windows, including
+strict RS256 encoding and invalid EC-key rejection regressions. Historical
+local-check tables below retain their original snapshot scope and counts.
 
 ## Supported runtimes
 
 | SDK | Requirement | Tested with |
 | --- | --- | --- |
-| Go: `sdk/go/verifier`, `sdk/go/oidcclient`, `sdk/go/admin` | Part of the module `github.com/proudauth` (there is no separate SDK module), so the module's `go 1.27.1` directive is the minimum Go version | Go 1.27.1 in the [earlier frozen full check](../operations/consistency-results/2026-10-12-otp-budgets.json), and Go 1.27.2 in the [final full check](../operations/consistency-results/2026-10-13-full-final.json). CI is configured for the latest 1.27 patch (`go-version: "1.27.x"`) |
-| Node.js: `@proudauth/sdk` (`sdk/node`) | `engines: {"node": ">=20.10"}`; ESM only; no runtime dependencies (`node:crypto`, `node:http` and the global `fetch`) | Node.js 25.9.0 locally, with npm 11.12.1 and TypeScript 5.9.3 ([results below](#local-sdk-checks--2026-10-13)). CI is configured for Node.js 22; 20.10 is declared, not tested |
-| Dart: `proudauth_sdk` (`sdk/dart`) | `sdk: ^3.4.0`; runtime dependencies `crypto` and `http`; no Flutter dependency. Signature verification (RS256, PS256, ES256, EdDSA) is implemented in the package on `BigInt` (verification only, not constant-time: every input is public). Only `package:proudauth_sdk/io.dart` imports `dart:io` | Dart 3.13.3 locally ([results below](#local-sdk-checks--2026-10-13)) and configured in CI (job `dart-sdk`); 3.4 is declared, not tested. The development dependencies (`lints` 6.1, `test` 1.31) need Dart 3.8 or later to run the tests |
-| PHP: `proudauth/sdk` (`sdk/php`) | `php: >=8.2` with `ext-curl`, `ext-json`, `ext-openssl` and `ext-sodium`; no Composer dependencies (`ext-mbstring` is suggested for non-ASCII operation names) | PHP 8.5.8 locally ([results below](#local-sdk-checks--2026-10-13)). CI is configured for PHP 8.2 and 8.5 (job `php-sdk`); this local check does not exercise 8.2, 8.3 or 8.4 |
-| .NET: `ProudAuth.Sdk`, `ProudAuth.Sdk.AspNetCore` (`sdk/dotnet`) | `net8.0`; BouncyCastle.Cryptography 2.7.0 for Ed25519 and RSA-PSS. The ASP.NET package requires the ASP.NET Core shared framework; the core package does not | 342 tests on .NET runtime 8.0.27 with SDK 8.0.421 on macOS, plus 15 manual live-server checks ([validation](../../docker-deploy/validation.md)). CI is configured for .NET 8 on Linux, macOS and Windows (`dotnet-sdk`) |
+| Go: `verifier`, `oidcclient`, `admin` in `github.com/proudbase/proudauth-sdk-go` | Separate module; `go 1.27.1` is its minimum Go version | Independent SDK CI runs tests with the race detector and both verifier fuzz targets; [exact source and run](sdk-repositories.json). Earlier monorepo checks below retain their historical versions |
+| Node.js: `@proudauth/sdk` (`proudauth-sdk-node`) | `engines: {"node": ">=20.10"}`; ESM only; no runtime dependencies (`node:crypto`, `node:http` and the global `fetch`) | Independent CI passes on Node.js 20.10, 22 and 24 ([pinned snapshot](sdk-repositories.json)); earlier local Node.js 25.9.0/npm 11.12.1/TypeScript 5.9.3 results below retain their scope |
+| Dart: `proudauth_sdk` (`proudauth-sdk-dart`) | `sdk: ^3.4.0`; runtime dependencies `crypto` and `http`; no Flutter dependency. Signature verification (RS256, PS256, ES256, EdDSA) is implemented in the package on `BigInt` (verification only, not constant-time: every input is public). Only `package:proudauth_sdk/io.dart` imports `dart:io` | Dart 3.13.3 locally ([results below](#local-sdk-checks--2026-10-13)) and configured in CI (job `dart-sdk`); 3.4 is declared, not tested. The development dependencies (`lints` 6.1, `test` 1.31) need Dart 3.8 or later to run the tests |
+| PHP: `proudauth/sdk` (`proudauth-sdk-php`) | `php: >=8.2` with `ext-curl`, `ext-json`, `ext-openssl` and `ext-sodium`; no Composer dependencies (`ext-mbstring` is suggested for non-ASCII operation names) | PHP 8.5.8 locally ([results below](#local-sdk-checks--2026-10-13)). CI is configured for PHP 8.2 and 8.5 (job `php-sdk`); this local check does not exercise 8.2, 8.3 or 8.4 |
+| .NET: `ProudAuth.Sdk`, `ProudAuth.Sdk.AspNetCore` (`proudauth-sdk-dotnet`) | `net8.0`; BouncyCastle.Cryptography 2.7.0 for Ed25519 and RSA-PSS. The ASP.NET package requires the ASP.NET Core shared framework; the core package does not | 344 tests pass in independent CI on Linux, macOS and Windows; [published validation](https://github.com/proudbase/proudauth-sdk-dotnet/blob/main/VALIDATION.md) |
 
 Other runtime versions may work but are not tested
 ([interoperability.md](interoperability.md#tested-profiles)).
@@ -78,7 +95,7 @@ and test workspaces are removed after publication.
   [tokens.md](../protocols/tokens.md), RFC 7662 introspection, the session
   event stream and the OpenAPI document. A verifier built on any JWT library
   can prove it matches the SDKs with the shared fixtures
-  ([sdk/fixtures/README.md](../../sdk/fixtures/README.md)); the server never
+  ([tests/fixtures/sdk-contracts/README.md](../../tests/fixtures/sdk-contracts/README.md)); the server never
   treats an SDK client differently (the `ProudAuth-SDK` header is not acted
   on).
 
@@ -90,8 +107,8 @@ and test workspaces are removed after publication.
 - **From 1.0:** semantic versioning: breaking changes only in a new major
   version, with the deprecation window of
   [compatibility.md](../protocols/compatibility.md#deprecation-process).
-- **Which version is which.** The Go SDK carries the version of the
-  repository it is part of; `admin.Version` names it at run time. The Node.js
+- **Which version is which.** Each SDK has its own release lifecycle; the Go
+  SDK's `admin.Version` names its source API version at run time. The Node.js
   SDK exports `SDK_VERSION` from `@proudauth/sdk/admin`, the Dart SDK
   `sdkVersion`, the PHP SDK `ProudAuth\Sdk\Version::SDK_VERSION`, and .NET
   `AdminClient.SdkVersion`. Every
@@ -154,7 +171,7 @@ known revocations across `Start`, rewinds to the oldest retained event on
 | --- | --- | --- |
 | Custom APIs | Path `/api/v1/` | Administration client routes, RFC 9457 problems (`code`, `request_id`), cursor pagination, `Idempotency-Key`, `If-Match` |
 | OAuth 2.0 / OpenID Connect | Standards and discovery | Authorization code with PKCE, refresh rotation, introspection (RFC 7662), revocation (RFC 7009), RP-initiated logout ([oauth-oidc-profile.md](../protocols/oauth-oidc-profile.md)) |
-| Access tokens | `typ: at+jwt`, `token_kind` | The verification algorithm of [tokens.md](../protocols/tokens.md), pinned by the shared fixtures `sdk/fixtures/access-tokens/cases.json` ([sdk/fixtures/README.md](../../sdk/fixtures/README.md)) |
+| Access tokens | `typ: at+jwt`, `token_kind` | The verification algorithm of [tokens.md](../protocols/tokens.md), pinned by the shared fixtures `tests/fixtures/sdk-contracts/access-tokens/cases.json` ([tests/fixtures/sdk-contracts/README.md](../../tests/fixtures/sdk-contracts/README.md)) |
 | Events and the session-event stream | `event_type` + `event_version` (every type is at version 1) | Bounded-state verification reads `GET /session-events` ([api/events](../../api/events/README.md)) |
 | Configuration documents | `format: proudauth.realm-config.v1` | `identity-cli config-*` ([below](#administrative-automation-sdk-012)) |
 
@@ -205,17 +222,17 @@ fixture added with it (QA-008).
 
 | What | Where |
 | --- | --- |
-| All five SDKs accept and reject the same 22 access tokens | `sdk/fixtures/access-tokens/cases.json`, run by `sdk/go/verifier/fixtures_test.go`, `sdk/node/test/fixtures.test.ts`, `sdk/dart/test/fixtures_test.dart`, `sdk/php/tests/FixturesTest.php` and `sdk/dotnet/tests/ProudAuth.Sdk.Tests/Program.cs` (the Go test regenerates them with `PROUDAUTH_REGENERATE_FIXTURES=1`) |
-| All five SDKs classify support-token operations the same way | `sdk/fixtures/support-operations/cases.json`, run by `sdk/go/verifier/support_test.go`, `sdk/node/test/support-operations.test.ts`, `sdk/dart/test/support_operations_test.dart`, `sdk/php/tests/SupportOperationsTest.php` and `sdk/dotnet/tests/ProudAuth.Sdk.Tests/Program.cs` |
-| Dart, PHP and .NET signature verification agrees with Go | Vectors signed by Go's standard library (valid and tampered signatures, malformed keys, Go-signed tokens): `sdk/dart/test/vectors/` (`crypto_vectors_test.dart`, `verifier_test.dart`) and `sdk/php/tests/vectors/signatures.json` (`CryptoVectorsTest.php`). The .NET tests consume the Dart vector files as independent Go oracles. All keys are test-only |
+| All five SDKs accept and reject the same 22 access tokens | `tests/fixtures/sdk-contracts/access-tokens/cases.json`, run by `proudauth-sdk-go/verifier/fixtures_test.go`, `proudauth-sdk-node/test/fixtures.test.ts`, `proudauth-sdk-dart/test/fixtures_test.dart`, `proudauth-sdk-php/tests/FixturesTest.php` and `proudauth-sdk-dotnet/tests/ProudAuth.Sdk.Tests/Program.cs` (the Go test regenerates them with `PROUDAUTH_REGENERATE_FIXTURES=1`) |
+| All five SDKs classify support-token operations the same way | `tests/fixtures/sdk-contracts/support-operations/cases.json`, run by `proudauth-sdk-go/verifier/support_test.go`, `proudauth-sdk-node/test/support-operations.test.ts`, `proudauth-sdk-dart/test/support_operations_test.dart`, `proudauth-sdk-php/tests/SupportOperationsTest.php` and `proudauth-sdk-dotnet/tests/ProudAuth.Sdk.Tests/Program.cs` |
+| Dart, PHP and .NET signature verification agrees with Go | Vectors signed by Go's standard library (valid and tampered signatures, malformed keys, Go-signed tokens): `proudauth-sdk-dart/test/vectors/` (`crypto_vectors_test.dart`, `verifier_test.dart`) and `proudauth-sdk-php/tests/vectors/signatures.json` (`CryptoVectorsTest.php`). The .NET tests consume the Dart vector files as independent Go oracles. All keys are test-only |
 | Go administration client against the server | `TestAdminSDKInterop` (`tests/e2e/sdk_admin_test.go`): pagination, problem details, idempotent retries, `admin.Secret` for a new client secret, `If-Match` |
 | Go verifier against the server | `TestTokenVerificationNegatives`, `TestSigningKeyRotation`, `TestBoundedStateVerification`, and the example APIs in `TestTenantIsolationAcrossServices` and `TestRevocationConsistencyModes` (middleware, introspector, `SupportGuard`) |
 | Go OIDC client against the server | `TestBackendForFrontendExample`, `TestOIDCClientValidationFixtures` (`tests/e2e/bff_test.go`) |
-| Node.js SDK | Unit tests against local mock servers only (`sdk/node/test`, CI job `node-sdk`); **no test runs it against a ProudAuth server** |
-| Dart SDK | Unit tests against local mock servers and mock HTTP clients only (`sdk/dart/test`, CI job `dart-sdk`); **no test runs it against a ProudAuth server** |
-| PHP SDK | Unit tests with a fake transport, plus one suite against a `php -S` server on loopback (`sdk/php/tests`, CI job `php-sdk`); **no test runs it against a ProudAuth server** |
+| Node.js SDK | Unit tests against local mock servers only (`proudauth-sdk-node/test`, CI job `node-sdk`); **no test runs it against a ProudAuth server** |
+| Dart SDK | Unit tests against local mock servers and mock HTTP clients only (`proudauth-sdk-dart/test`, CI job `dart-sdk`); **no test runs it against a ProudAuth server** |
+| PHP SDK | Unit tests with a fake transport, plus one suite against a `php -S` server on loopback (`proudauth-sdk-php/tests`, CI job `php-sdk`); **no test runs it against a ProudAuth server** |
 
-| .NET SDK | Shared fixtures and Go signature vectors, controlled HTTP clients, ASP.NET adapter tests and a loopback Kestrel redirect test (`sdk/dotnet/tests`, CI job `dotnet-sdk`). A separate [manual live-server check](../../docker-deploy/validation.md) passed 15 assertions; it is not part of CI |
+| .NET SDK | Shared fixtures and Go signature vectors, controlled HTTP clients, ASP.NET adapter tests and a loopback Kestrel redirect test; independent SDK CI on three operating systems ([published validation](https://github.com/proudbase/proudauth-sdk-dotnet/blob/main/VALIDATION.md)). This CI does not run against a ProudAuth server |
 
 ## Framework adapters (SDK-011)
 
@@ -236,7 +253,7 @@ apart in what they accept.
 | `guard.middleware({operation, read})` | Node.js `./introspection` | Express and Connect for routes that also serve support sessions (`SupportGuard`) |
 | `authorizeBearer(authenticator, authorization:, requestUri:, requiredScopes:)` | Dart | Any framework (shelf, gRPC interceptors, WebSockets): returns `AuthAccepted(claims)` or `AuthRejected(challenge)`, where the challenge carries the status and headers to send |
 | `protect(authenticator, handler)`, `protectOperation(guard, handler, operation:, read:)` | Dart `package:proudauth_sdk/io.dart` | `dart:io` `HttpServer`; claims via `claimsOf(request)`; `requiredScopes:` answers `403 insufficient_scope` |
-| `RequestAuthenticator::authenticate($authorization, $uri)` | PHP | Any framework (a PSR-15 wrapper is shown in `sdk/php/README.md`); returns `Claims` or throws `VerifierException`, which `Challenge::fromThrowable()` turns into the response |
+| `RequestAuthenticator::authenticate($authorization, $uri)` | PHP | Any framework (a PSR-15 wrapper is shown in `proudauth-sdk-php/README.md`); returns `Claims` or throws `VerifierException`, which `Challenge::fromThrowable()` turns into the response |
 | `RequestAuthenticator::protect($handler)`, `authenticateGlobals()` | PHP | Plain PHP (PHP-FPM, `php -S`) reading the request superglobals; a `VerifierException` thrown in the handler (for example by `requireScope`) is answered with its challenge |
 | `SupportGuard::route($operation, $read)` | PHP | Routes that also serve support sessions |
 | `AddProudAuth` / `UseProudAuth` | .NET `ProudAuth.Sdk.AspNetCore` | ASP.NET Core authentication scheme and middleware; verified claims via `HttpContext.GetProudAuthClaims()`; support routes use `SupportGuard.Route` |

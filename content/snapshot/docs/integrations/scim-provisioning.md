@@ -109,7 +109,7 @@ Base URL: `/api/v1/realms/{realm}/scim/v2`, authenticated with
 | --- | --- |
 | `/ServiceProviderConfig`, `/ResourceTypes`, `/Schemas` | `GET` |
 | `/Users`, `/Groups` | `GET` (list), `POST` |
-| `[LOCAL_PATH]`, `/Groups/{id}` | `GET`, `PUT`, `PATCH`, `DELETE` |
+| `[LOCAL_PATH] `/Groups/{id}` | `GET`, `PUT`, `PATCH`, `DELETE` |
 
 - Request bodies must be `application/scim+json` or `application/json`;
   duplicate JSON members are refused (`400`, `scimType` `invalidSyntax`). The
@@ -272,7 +272,7 @@ membership is visible outside it. General role assignment still requires
 an active membership. Reactivation preserves that one default grant
 (`TestSCIMInitiallyInactiveUserWithDefaultRole`, PROV-004, PROV-005, QA-008).
 
-**`PUT` and `PATCH [LOCAL_PATH]`**:
+**`PUT` and `PATCH [LOCAL_PATH]
 
 - `active` sets the membership in the connector's organization to `active` or
   `suspended` (`organization.membership.suspended` / `.reactivated`);
@@ -296,7 +296,7 @@ an active membership. Reactivation preserves that one default grant
 - `PUT` without `externalId` keeps the stored one.
 - Audit: `scim.user.updated` (`identity_changed`, `active`).
 
-**`DELETE [LOCAL_PATH]`** removes the account's membership in the connector's
+**`DELETE [LOCAL_PATH] removes the account's membership in the connector's
 organization (reason `scim_deprovisioned`, `organization.membership.removed`)
 and the connector's mapping, and records `scim.user.deprovisioned`. The
 account, its credentials and its other memberships are not touched; afterwards

@@ -1,101 +1,105 @@
-# Local quickstart
+# Docker quickstart
 
-Build and run ProudAuth from the service source checkout. The repository split
-is being prepared; a public source repository does not imply a published image
-or SDK package. This guide keeps the development inbox and operator endpoints
-private.
+Run your own ProudAuth server, worker and PostgreSQL database from the versioned
+release installer. No Go compiler or source checkout is required. This project
+website hosts documentation; your applications connect to the instance you deploy.
 
 ## Requirements
 
-- Docker with Compose v2.
-- Go at the version declared by the service's `go.mod` for the host CLI.
-- The ProudAuth service source checkout.
-- Your own application sign-in interface for browser login.
+Docker Engine/Desktop, Docker Compose v2 with `--wait`, POSIX `sh`, Python 3.9+
+and free local ports. Your application supplies its browser sign-in interface.
+The `0.2.0-alpha.1` release is a pre-release.
 
-## Build the image and start development
+## Download the release bundle
 
-From the service checkout:
+Download `proudauth-v0.2.0-alpha.1-compose.tar.gz` and `SHA256SUMS` from
+[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1).
+Follow the [checksum verification example](../../../docs/operations/docker-compose.md#download-and-verify)
+before extracting. With the GitHub CLI installed:
 
 ```sh
-make image                      # build the identity container from source
-make dev                        # initialize private secrets and start Compose
+gh release download v0.2.0-alpha.1 --repo proudbase/proudauth \
+  --pattern 'proudauth-v0.2.0-alpha.1-compose.tar.gz' --pattern SHA256SUMS
+# Verify the downloaded archive against SHA256SUMS before extracting.
+tar -xzf proudauth-v0.2.0-alpha.1-compose.tar.gz
+cd proudauth-v0.2.0-alpha.1-compose
 ```
 
-The development stack runs PostgreSQL 18, schema migrations, the identity server
-and worker. It listens only on loopback: public API `http://localhost:8080`,
-private operator listener `http://localhost:9090`. Development email uses a
-private sink. Its database volume survives an ordinary shutdown.
+The bundle supplies `docker-compose.yaml`, environment examples and initialization
+scripts. Keep the files together. Put your `.env` beside `docker-compose.yaml`;
+[all 19 settings and secret files](../../../docs/operations/environment.md) are documented.
 
-Development uses plain HTTP and insecure development cookies. Keep this profile
-local. Public HTTPS deployments need the production runbook or a deliberately
-configured HTTPS demonstration profile; publishing a DNS route is not enough.
-
-## Create the realm and first administrator
-
-In another terminal, use the trusted local operator channel:
+## Pull and start a local evaluation
 
 ```sh
-docker compose -f deploy/compose/compose.yaml exec server \
-  /usr/local/bin/identity-cli realm-create \
-  -config /etc/proudauth/config.yaml -name main
-
-docker compose -f deploy/compose/compose.yaml exec server \
-  /usr/local/bin/identity-cli bootstrap \
-  -config /etc/proudauth/config.yaml \
-  -realm main -email admin@example.test -username root-admin
-```
-
-Create the realm once. Treat bootstrap's one-time setup output as a credential;
-it is not appropriate for a public issue or screenshot. Build the host CLI,
-complete account setup and sign in:
-
-```sh
-go build -o bin/identity-cli ./cmd/identity-cli
-./bin/identity-cli setup-account --url http://localhost:8080 --realm main
-./bin/identity-cli login --url http://localhost:8080 --realm main
-```
-
-Setup prompts for the one-time token and password. First administrator sign-in
-requires TOTP enrollment and email verification. Follow the complete
-[bootstrap runbook](../../../docs/operations/installation.md#7-bootstrap-the-first-administrator)
-and [headless authentication guide](../../../docs/protocols/headless-authentication.md).
-Administrator API calls need a valid MFA-backed session.
-
-## Check your instance
-
-```sh
+docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1
+./init.sh demo
+docker compose config --quiet
+docker compose pull
+docker compose up -d --wait
 curl --fail http://localhost:8080/health/ready
+```
+
+The initializer creates `.env`, private file-backed secrets and the configuration.
+The demo profile binds the API and operator listener to loopback, with a private
+development email sink. Its database has no host port. Choose other ports in
+`.env` if needed, update the matching origin, then rerun `./init.sh demo`.
+
+The Docker Hub mirror is
+`docker.io/mohamadalialghanem/proudauth:0.2.0-alpha.1`.
+Set `PROUDAUTH_IMAGE` in `.env` to that reference before initialization if desired.
+Published release digests are the authority for immutable deployment pins.
+
+## Create your realm and administrator
+
+```sh
+docker compose exec server /usr/local/bin/identity-cli realm-create -name main
+docker compose exec server /usr/local/bin/identity-cli bootstrap \
+  -realm main -email admin@example.test -username root-admin
+docker compose exec server /usr/local/bin/identity-cli setup-account \
+  --url http://localhost:8080 --realm main
+docker compose exec server /usr/local/bin/identity-cli login \
+  --url http://localhost:8080 --realm main
+```
+
+Create the realm once. Keep bootstrap's one-time setup token private; there is
+no default administrator password. Setup prompts for the token and a password.
+First sign-in requires TOTP enrollment and email verification. The demo mailbox
+is available only on your host's private operator listener; see the complete
+[Compose guide](../../../docs/operations/docker-compose.md#local-evaluation).
+
+```sh
 curl --fail http://localhost:8080/realms/main/.well-known/openid-configuration
 curl --fail http://localhost:8080/realms/main/jwks
 ```
 
-Configure clients from discovery's exact `issuer`. Changing process configuration
-or moving from `auth` to `api` does not migrate an existing realm's stored issuer,
-audiences or application settings. The [endpoint guide](endpoints.md) describes
-the intended website/API topology separately from this local quickstart.
+Configure clients with discovery's exact issuer. A process-origin change does
+not rewrite stored realm issuers or application configuration.
 
-## Connect an application
+## Move to production
 
-1. Register its OAuth client, exact redirect URIs and allowed browser origins.
-2. Register the API audience and scopes it needs.
-3. Use authorization code with PKCE S256 for user sign-in, or client credentials
-   for services. ProudAuth does not provide the OAuth password grant.
-4. Validate issuer, audience, token type and organization in your API.
-5. Choose offline, strict-online or bounded-state revocation behavior deliberately.
+Use a fresh installation directory and choose your own HTTPS issuer before
+creating the realm. Copy `.env.example` to `.env`, replace the public origin and
+SMTP values, supply the SMTP password privately and run `./init.sh production`.
+The [production procedure](../../../docs/operations/docker-compose.md#production-configuration)
+covers the reverse proxy, separated database roles, backups and first sign-in.
+Read the [environment reference](../../../docs/operations/environment.md) before editing settings.
 
-Continue with [OAuth and OIDC](../../../docs/protocols/oauth-oidc-profile.md),
-[SDKs](../sdks/overview.md) and the [API reference](/api/).
+For a full example, your application would discover
+`https://identity.example.com/realms/main/.well-known/openid-configuration`,
+where `identity.example.com` represents your domain, not a ProudAuth-hosted API.
 
-## Before production
+## Integrate and operate
 
-Use the [production installation runbook](../../../docs/operations/installation.md):
-real SMTP, production mode, separated database roles, HTTPS, secret references,
-private operator access, backups and restore drills. Keep the root key separately
-from database backups. The local development profile is not a production profile.
+Register the application's client, exact redirect URI and API audience. Use
+[authorization code with PKCE](../../../docs/protocols/oauth-oidc-profile.md)
+for users and [client credentials](../../../docs/integrations/machine-clients.md)
+for workloads. Supply your own login UI or BFF and choose a deliberate
+[SDK validation profile](../sdks/overview.md).
 
-```sh
-docker compose -f deploy/compose/compose.yaml down
-```
+`docker compose down` keeps the database volume. Adding `-v` permanently deletes
+that installation's identity data. Review [backup/restore](../../../docs/operations/backup-restore.md),
+[key custody](../../../docs/operations/keys.md) and [upgrades](../../../docs/operations/upgrades.md).
 
-This stops the local instance while preserving its database volume. Adding `-v`
-deletes that volume and its identity data.
+Contributors can instead build from source with `make image VERSION=0.2.0-dev`
+in the [service repository](https://github.com/proudbase/proudauth).

@@ -1,5 +1,11 @@
 # @proudauth/sdk for Node.js
 
+> **Repository status:** public standalone source; package version 0.2.0 remains unpublished.
+> No package-registry release or stable-support window is promised yet.
+> [Documentation](https://proudauth.com/docs/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+[![CI](https://github.com/proudbase/proudauth-sdk-node/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-sdk-node/actions/workflows/ci.yml)
+
 The first-party Node.js/TypeScript SDK for ProudAuth (spec §28, SDK-001 to SDK-009).
 It is a port of the Go SDK in `sdk/go`, with the same security behavior:
 
@@ -11,7 +17,7 @@ It is a port of the Go SDK in `sdk/go`, with the same security behavior:
 | `@proudauth/sdk/oidc-client`     | Backend-for-frontend login: code + PKCE, ID-token validation, single-flight refresh, logout   | `sdk/go/oidcclient`               |
 | `@proudauth/sdk/admin`           | Typed admin API client: RFC 9457 problems, cursor pagination, idempotency, If-Match, deadlines, one-time secrets wrapped in `Secret`, deprecation reporting | `sdk/go/admin`                    |
 
-Version 0.2.0 (`SDK_VERSION` in `@proudauth/sdk/admin`), unpublished. Its compatibility and security-update policy, and the breaking change of 0.2.0, are in [docs/integrations/sdk-compatibility.md](../../docs/integrations/sdk-compatibility.md).
+Version 0.2.0 (`SDK_VERSION` in `@proudauth/sdk/admin`), unpublished. Its compatibility and security-update policy, and the breaking change of 0.2.0, are in [docs/integrations/sdk-compatibility.md](https://proudauth.com/docs/integrations/sdk-compatibility/).
 
 - **Zero runtime dependencies.** The SDK uses only `node:crypto`, `node:http` and the global `fetch`.
 - **Node.js 20.10 or later**, ESM only (`"type": "module"`). Types are included.
@@ -20,16 +26,21 @@ Version 0.2.0 (`SDK_VERSION` in `@proudauth/sdk/admin`), unpublished. Its compat
 
 ## Installation
 
-```sh
-npm install @proudauth/sdk
-```
-
-From this repository (before the package is published):
+This package is unpublished. Build it from this standalone checkout:
 
 ```sh
-cd sdk/node && npm install && npm pack     # builds dist/ and creates proudauth-sdk-0.2.0.tgz
-cd /path/to/your-service && npm install /path/to/proudauth/sdk/node/proudauth-sdk-0.2.0.tgz
+git clone https://github.com/proudbase/proudauth-sdk-node.git
+cd proudauth-sdk-node
+npm ci
+npm pack
+# In your application:
+npm install /path/to/proudauth-sdk-node/proudauth-sdk-0.2.0.tgz
 ```
+
+The tarball includes the built ESM entry points, TypeScript declarations and
+license notices; it excludes tests and synthetic fixtures. No runtime dependencies
+are installed by this package. Registry installation will become available only
+after an actual npm publication; it has not happened yet.
 
 ## Which validation profile should I use?
 
@@ -121,7 +132,7 @@ const multi = new MultiIssuerVerifier({
 const { claims, tenant } = await multi.verifyTenant(rawToken);
 ```
 
-`MultiIssuerVerifier` also works as the authenticator of the adapters above (`authenticate()`), but then the tenant is not passed on. More integration patterns (GraphQL, WebSockets, streams, background jobs) are in [docs/integrations/patterns.md](../../docs/integrations/patterns.md).
+`MultiIssuerVerifier` also works as the authenticator of the adapters above (`authenticate()`), but then the tenant is not passed on. More integration patterns (GraphQL, WebSockets, streams, background jobs) are in [docs/integrations/patterns.md](https://proudauth.com/docs/integrations/patterns/).
 
 The adapters answer according to RFC 6750:
 
@@ -181,7 +192,7 @@ function listOrders(req, res) {
 - For routes that never serve support sessions, `middleware(introspector)` from the same entry point is enough. It rejects support tokens with 401.
 - `guard.authorize(raw, operation, { read })` accepts support tokens only. `guard.authorizeAny(...)` accepts both kinds and is the function the middleware uses.
 - `read` must be `true` for an operation to count as a read. If it's omitted, the operation is treated as a write. An operation whose name contains a write verb as a segment (`WRITE_SEGMENTS`: `create`, `update`, `delete`, `cancel`, `issue` and so on) is always a write, even with `read: true`. Write allowlist entries match the whole operation name, case-insensitively.
-- Protected operations (`PROTECTED_OPERATIONS`: password, MFA, identifier and credential changes, API-key and personal-token creation, payments, refunds, ownership transfer, secrets, deletes, purges) are always denied to support sessions. Operation names are split into segments on `.`, `:` and `/`, case-insensitively, and an entry matches when its segments appear anywhere in the name as a run, with or without a trailing `s`. For example, `orders.delete`, `users.password.change`, `payments.create`, `refunds.issue`, `secrets.read`, `read.payments` and `orders.purge` are protected; `secretary.list` is not. You can add more with `protectedOperations`. You can't remove the defaults from a guard. A list passed as the second argument of `isProtectedOperation(op, list)` replaces the defaults instead of adding to them, so pass `[...PROTECTED_OPERATIONS, ...yours]`. The Go SDK and the server's decision API apply the same rule; the shared cases are in `sdk/fixtures/support-operations/cases.json`. `isWriteOperation(op)` and `isProtectedOperation(op)` expose the classification.
+- Protected operations (`PROTECTED_OPERATIONS`: password, MFA, identifier and credential changes, API-key and personal-token creation, payments, refunds, ownership transfer, secrets, deletes, purges) are always denied to support sessions. Operation names are split into segments on `.`, `:` and `/`, case-insensitively, and an entry matches when its segments appear anywhere in the name as a run, with or without a trailing `s`. For example, `orders.delete`, `users.password.change`, `payments.create`, `refunds.issue`, `secrets.read`, `read.payments` and `orders.purge` are protected; `secretary.list` is not. You can add more with `protectedOperations`. You can't remove the defaults from a guard. A list passed as the second argument of `isProtectedOperation(op, list)` replaces the defaults instead of adding to them, so pass `[...PROTECTED_OPERATIONS, ...yours]`. The Go SDK and the server's decision API apply the same rule; the shared cases are in `testdata/contracts/support-operations/cases.json`. `isWriteOperation(op)` and `isProtectedOperation(op)` expose the classification.
 - When your service also calls the decision API (`POST /authorization/check`) with a support token as `subject_token`, the server allows an `allowlisted_write` grant only the writes listed in the resource's `impersonation_policy.write_actions` (`SUPPORT_ACCESS_WRITE_NOT_ALLOWLISTED` otherwise). Keep that list equal to `writeOperations`.
 
 ## Backend-for-frontend (BFF)
@@ -352,12 +363,11 @@ Token-only verification and introspection reject any `cnf` claim with
 `sender_constraint`, including malformed or unsupported bindings. This SDK
 does not yet provide request-level DPoP or TLS certificate verification. Use
 the Go `SenderVerifier` or a separately reviewed request verifier for bound
-tokens; see the [resource-server profile](../../docs/integrations/resource-servers.md#sender-constrained-tokens).
+tokens; see the [resource-server profile](https://proudauth.com/docs/integrations/resource-servers/#sender-constrained-tokens).
 
 ## Development
 
 ```sh
-cd sdk/node
 npm install   # dev dependencies only: typescript, @types/node
 npm test      # clean, compile with tsc, run node:test suites
 ```
@@ -368,4 +378,4 @@ The tests (`test/*.test.ts`) run the spec's negative scenarios against real keys
 - expired and not-yet-valid tokens, duplicate claims, the unknown-`kid` flood, oversized tokens, impersonation tokens used offline
 - introspection fail-closed behavior and the support contract, including audit-before-access
 - OIDC state, `iss`, nonce and `at_hash` checks, and single-flight refresh against an IdP that revokes the token family on reuse
-- the shared verification fixtures (SDK-009): `test/fixtures.test.ts` runs every case of [`sdk/fixtures/access-tokens/cases.json`](../fixtures/README.md) (22 accepted and rejected access tokens signed with test-only keys) through the offline verifier and expects the same outcome as the Go SDK
+- the shared verification fixtures (SDK-009): `test/fixtures.test.ts` runs every case of [`testdata/contracts/access-tokens/cases.json`](testdata/contracts/README.md) (22 accepted and rejected access tokens signed with test-only keys) through the offline verifier and expects the same outcome as the Go SDK

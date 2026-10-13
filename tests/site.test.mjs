@@ -35,7 +35,7 @@ test('API operations exactly match the source contract',()=>{
   const expected=Object.values(spec.paths).reduce((n,item)=>n+['get','post','patch','put','delete','options','head'].filter(m=>item[m]).length,0);
   const actual=htmlFiles.reduce((n,f)=>n+(fs.readFileSync(f,'utf8').match(/class="operation"/g)||[]).length,0);
   assert.equal(actual,expected);
-  assert.equal(spec.servers[0].variables.origin.default,'https://api.proudauth.com');
+  assert.equal(spec.servers[0].variables.origin.default,'https://identity.example.com');
   assert.equal(spec.info.license.url,'https://proudauth.com/docs/reference/license/');
 });
 test('publication excludes deployment secrets, source code and private seed material',()=>{

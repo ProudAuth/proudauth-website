@@ -25,7 +25,7 @@ service (TOK-004..TOK-008, JWT-BCP). Local verification cannot observe revocatio
   by access-token verifiers.
 - A resource may instead choose `token_format: opaque`; such tokens must be
   verified online (introspection).
-- The first-party Go verifier (`sdk/go/verifier`) implements the §14.4 algorithm:
+- The first-party Go verifier (`proudauth-sdk-go/verifier`) implements the §14.4 algorithm:
   configured issuer only, strict parsing with duplicate-member rejection,
   asymmetric algorithm allowlist, bounded JWKS refresh on unknown `kid`, exact
   issuer and single-audience checks, and clock skew of at most 60 s.

@@ -1,7 +1,7 @@
 # Backend-for-frontend (BFF) integration
 
 Requirements: §28.4, SDK-004, SES-009, OIDC-016. Reference code:
-`sdk/go/oidcclient` and `examples/backend-for-frontend` (exercised end to end by
+`proudauth-sdk-go/oidcclient` and `examples/backend-for-frontend` (exercised end to end by
 `TestBackendForFrontendExample` and `TestOIDCClientValidationFixtures` in
 `tests/e2e/bff_test.go`).
 

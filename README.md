@@ -6,8 +6,9 @@ The website is independent of the identity service checkout and builds offline.
 
 **Status:** public standalone source at
 [`proudbase/proudauth-website`](https://github.com/proudbase/proudauth-website).
-No website image release, DNS route or issuer migration is claimed by this
-repository. The existing live deployment remains separate from this source split.
+The landing page and documentation publish to GitHub Pages at
+[`proudauth.com`](https://proudauth.com). This is a static project website.
+Operators deploy the identity service, database and worker on their own infrastructure.
 
 [![Website checks](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml)
 
@@ -34,15 +35,27 @@ only to loopback; choose another free port with `PORT=3001 npm run preview`.
 | --- | --- |
 | `https://proudauth.com/` | Landing page |
 | `https://proudauth.com/docs/` | Guides, SDKs and API reference |
-| `https://api.proudauth.com/` | Identity service and OAuth/OIDC endpoints |
-| `https://status.proudauth.com/` | Optional sanitized status summary |
-| `https://www.proudauth.com/*` | Permanent redirect to the apex, preserving path/query |
-| `https://docs.proudauth.com/*` | Compatibility redirect to `/docs/*` |
+| `https://identity.example.com/` | Reserved example for an operator's self-hosted identity origin |
 
-These are the **planned** destinations. Changing this static site's configuration
-does not migrate an existing OIDC issuer, stored audiences or application
-settings. Keep the current live deployment intact until the service transition
-and Cloudflare changes are separately validated.
+The website has no hosted identity API, login account, status backend or database.
+OpenAPI examples use the reserved operator-owned origin; request execution and
+credential persistence are disabled in the explorer.
+
+## GitHub Pages hosting
+
+The public site can use GitHub Pages with GitHub Free for organizations, as
+documented in [GitHub's Pages availability](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+The pinned
+[`pages.yml`](.github/workflows/pages.yml) workflow builds and checks the static
+publication on Node 24, uploads only `dist/`, then deploys through the
+`github-pages` environment. Only deployment receives `pages:write` and
+`id-token:write`; no registry, SMTP or identity credentials are needed.
+
+The artifact includes the landing page, `/docs/`, `.nojekyll`, `CNAME`, a root
+`404.html`, local assets, search and a sitemap. Configure the repository's Pages
+source as GitHub Actions and custom domain as `proudauth.com`; point the domain to
+GitHub Pages through your DNS provider and enable HTTPS after certificate issuance.
+GitHub Pages serves static files and has no custom Nginx/header configuration.
 
 ## Content ownership and provenance
 
@@ -50,17 +63,32 @@ and Cloudflare changes are separately validated.
 - `content/snapshot/`: explicitly selected service guides, API contracts, SDK
   READMEs and public benchmark evidence; original relative paths are retained.
 - `content.lock.json`: SHA-256 for every imported file, original-byte hash,
-  redaction flag, original HEAD and dirty state; Swagger asset provenance.
+  redaction flag, source state and per-repository commit pins; Swagger provenance.
 - `scripts/`: independent builder, manifest checks, preview and optional status.
 - `tests/`: publication and status tests.
 - `vendor/`: licensed parsers and already-cached Swagger assets.
 - `deploy/`: hardened static container configuration; never mounts credentials.
 
-The initial input was a dirty private workspace at recorded HEAD `5ff6ddb…`,
-not a clean source release. Its exact imported bytes are pinned by per-file
-hashes. `commitPinned:false` is deliberate. Future updates should identify exact
-commits in the split service and SDK repositories and pass the same import and
-publication checks. Builds never fetch a moving branch or require adjacent repos.
+The initial service input was a workspace snapshot at baseline `5ff6ddb…`.
+Service imports remain explicitly unpinned until a published service commit is
+selected. All five SDK READMEs are imported byte-for-byte from their published
+commits, including .NET's portable strict signature/key-validation corrections.
+Exact upstreams and byte hashes are in the manifest. Builds never fetch a moving
+branch or require adjacent repositories.
+
+Refresh content explicitly, inspect the diff, then run all checks:
+
+```sh
+node scripts/sync-content.mjs --service=../proudauth --sdk-root=..
+# Once that exact service commit is public:
+node scripts/sync-content.mjs --service=../proudauth --sdk-root=.. --service-commit=<full-sha>
+npm run check
+```
+
+The import allowlist includes the complete Docker Compose guide and every one of
+the 19 supported `.env` settings. A dirty service snapshot never claims clean
+commit provenance; a pinned import reads the exact Git object instead of the
+working tree.
 
 Service runbooks, API contracts, benchmarks and its changelog remain owned by the
 service repository. SDK documentation remains owned by each SDK repository.
@@ -72,7 +100,7 @@ copies therefore may differ from original evidence bytes. Their original hashes
 and measurement versions are preserved; the manifest pins the sanitized copies.
 Numbers remain observations from one laptop, not guarantees or sizing advice.
 
-## Containers
+## Optional local container preview
 
 Builds use only existing local images when the operator requests an offline run:
 
@@ -88,11 +116,12 @@ initial container base is the existing `nginx:1.27-alpine` tag. Validate and pin
 maintained multi-architecture digest before public image publication; no
 multi-architecture image/release is claimed by this staging snapshot.
 
-The optional sanitized status process is `scripts/status.mjs`. It needs three
+The optional operator-owned status process is `scripts/status.mjs`. It needs three
 explicit configured health URLs and the four status assets beside its script;
 `deploy/Dockerfile.status` packages these files. It is not started by default.
 It checks fixed targets without returning private upstream diagnostics and makes
-no historical uptime or independent worker/email claim.
+no historical uptime or independent worker/email claim. It is a utility for your
+deployment and is not published or executed by GitHub Pages.
 
 ## Publication boundaries
 

@@ -3,7 +3,7 @@
   "files": {
     "binary-sha256.txt": "a050e65e93149e9d8e2224ccaa2cc8bbbf8d686ea5b1bbfac75092bdcc2c666a",
     "build-info.txt": "581e580d6d2f5ffa9c01f134d3c5d73d80df5bdc6e673cf77edb147b2f9ea93e",
-    "effective-config-redacted.json": "c3d907e2f44aaf6c449f04c2630f37f003a26028d7a60d4debdeaf046141a006",
+    "effective-config-redacted.json": "e651879c4f969fc8347f13f0e75c00ce9d6653ae78544eaacdc4b40dfb9e95f5",
     "environment.json": "a0d56891bfc126d8bf2baa4d494c1a8507adda0a472fd20ad00dbbe9da663b3c",
     "postgres/database-size-bytes.txt": "bdce4a7cce7c308789fca5ea85eb533e0974e0a2f8b2e783202947cf66994321",
     "postgres/largest-tables.tsv": "cb4d64c1843ca38948b47ed74120af90233d34e097500de9ebd9a2c5a592b295",

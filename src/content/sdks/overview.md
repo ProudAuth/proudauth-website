@@ -28,10 +28,19 @@ before selecting an adapter.
 
 ## Installation and maturity
 
-These are development libraries, version 0.2.0, and the packages are unpublished.
-Use a source checkout or a supplied package artifact until package releases are published. No public npm, Pub,
-Packagist or NuGet availability is implied. Go uses module `github.com/proudbase/proudauth-sdk-go`
-from the source checkout.
+The five independent source repositories are public under
+[`proudbase`](https://github.com/proudbase):
+[Go](https://github.com/proudbase/proudauth-sdk-go),
+[Node](https://github.com/proudbase/proudauth-sdk-node),
+[Dart](https://github.com/proudbase/proudauth-sdk-dart),
+[PHP](https://github.com/proudbase/proudauth-sdk-php) and
+[.NET](https://github.com/proudbase/proudauth-sdk-dotnet).
+
+The libraries retain development version 0.2.0. npm, Pub, Packagist and NuGet
+packages remain unpublished; the individual guides explain source installation
+and local package creation. Go can install its pinned public module commit.
+Independent CI covers each SDK's declared runtime matrix; .NET runs its strict
+signature and invalid-key regression vectors on Linux, macOS and Windows.
 
 Read [runtime compatibility](../../../docs/integrations/sdk-compatibility.md) and
 [interoperability evidence](../../../docs/integrations/interoperability.md) for

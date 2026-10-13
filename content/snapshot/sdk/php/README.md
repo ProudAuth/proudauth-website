@@ -1,5 +1,11 @@
 # proudauth/sdk for PHP
 
+> **Repository status:** public standalone source; package version 0.2.0 remains unpublished.
+> No package-registry release or stable-support window is promised yet.
+> [Documentation](https://proudauth.com/docs/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+[![CI](https://github.com/proudbase/proudauth-sdk-php/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-sdk-php/actions/workflows/ci.yml)
+
 The first-party PHP SDK for ProudAuth (spec §28, SDK-001 to SDK-009). It is a
 port of the Node.js SDK in `sdk/node` (and through it of the Go SDK in
 `sdk/go`), with the same security behavior:
@@ -16,7 +22,7 @@ port of the Node.js SDK in `sdk/node` (and through it of the Go SDK in
 
 Version 0.2.0 (`ProudAuth\Sdk\Version::SDK_VERSION`), unpublished. Its
 compatibility and security-update policy are the same as the other SDKs'
-([docs/integrations/sdk-compatibility.md](../../docs/integrations/sdk-compatibility.md)).
+([docs/integrations/sdk-compatibility.md](https://proudauth.com/docs/integrations/sdk-compatibility/)).
 
 - **No Composer dependencies.** The SDK needs only PHP and the extensions
   `openssl`, `sodium`, `json` and `curl`. It does not depend on PSR packages
@@ -36,7 +42,7 @@ Token-only verification and introspection reject any `cnf` claim with
 bindings. This SDK does not yet provide request-level DPoP or TLS certificate
 verification. Use the Go `SenderVerifier` or a separately reviewed request
 verifier for bound tokens; see the
-[resource-server profile](../../docs/integrations/resource-servers.md#sender-constrained-tokens).
+[resource-server profile](https://proudauth.com/docs/integrations/resource-servers/#sender-constrained-tokens).
 
 ## Installation
 
@@ -46,7 +52,7 @@ repository with a Composer path repository:
 ```json
 {
     "repositories": [
-        { "type": "path", "url": "../proudauth/sdk/php", "options": { "symlink": false } }
+        { "type": "path", "url": "../proudauth-sdk-php", "options": { "symlink": false } }
     ],
     "require": {
         "proudauth/sdk": "0.2.0"
@@ -58,20 +64,18 @@ repository with a Composer path repository:
 composer update proudauth/sdk
 ```
 
-Composer's VCS repositories need `composer.json` at the repository root, and
-this package lives in `sdk/php`, so a VCS install needs a subtree split of
-that directory (`git subtree split --prefix=sdk/php`) pushed to its own
-repository:
+This standalone repository has `composer.json` at its root. You can install
+from this public GitHub repository without a subtree split:
 
 ```json
 {
-    "repositories": [{ "type": "vcs", "url": "https://git.example.com/your-org/proudauth-sdk-php.git" }],
+    "repositories": [{ "type": "vcs", "url": "https://github.com/proudbase/proudauth-sdk-php.git" }],
     "require": { "proudauth/sdk": "0.2.0" }
 }
 ```
 
 Without Composer, register a PSR-4 autoloader for `ProudAuth\Sdk\` pointing at
-`sdk/php/src` (the tests do exactly that in `tests/bootstrap.php`).
+`src/` (the tests do exactly that in `tests/bootstrap.php`).
 
 ## Which validation profile should I use?
 
@@ -332,7 +336,7 @@ $guard = new SupportGuard(
   `SupportOperations::isProtectedOperation($op, $list)` replaces the defaults,
   so pass `[...SupportOperations::PROTECTED_OPERATIONS, ...$yours]`. The Go and
   Node SDKs and the server's decision API apply the same rule; the shared
-  cases are in `sdk/fixtures/support-operations/cases.json`.
+  cases are in `testdata/contracts/support-operations/cases.json`.
 - When your service also calls the decision API with a support token as
   `subject_token`, keep the resource's `impersonation_policy.write_actions`
   equal to `writeOperations`.
@@ -650,7 +654,7 @@ The PHP SDK has the Node SDK's behavior unless listed here.
 | ext-mbstring | optional | loaded |
 
 Version policy, security updates and the 0.2.0 changes are those of the other
-SDKs: [docs/integrations/sdk-compatibility.md](../../docs/integrations/sdk-compatibility.md).
+SDKs: [docs/integrations/sdk-compatibility.md](https://proudauth.com/docs/integrations/sdk-compatibility/).
 No test runs this SDK against a ProudAuth server yet; its tests use in-process
 fakes and a local `php -S` server.
 
@@ -659,7 +663,6 @@ fakes and a local `php -S` server.
 The tests need no Composer and no network:
 
 ```sh
-cd sdk/php
 php -d error_reporting=-1 -d display_errors=1 tests/run.php           # all tests
 php tests/run.php Verifier                                             # classes or methods matching "Verifier"
 ```
@@ -669,9 +672,9 @@ autoloads the SDK and the tests). Every PHP warning, notice or deprecation
 fails the test that raised it, and the exit status is non-zero when any test
 fails. The suites cover:
 
-- the shared access-token fixtures (`sdk/fixtures/access-tokens/cases.json`,
+- the shared access-token fixtures (`testdata/contracts/access-tokens/cases.json`,
   every case with the expected category) and the shared support-operation
-  fixtures (`sdk/fixtures/support-operations/cases.json`, classification and
+  fixtures (`testdata/contracts/support-operations/cases.json`, classification and
   `SupportGuard` decisions), like the Go and Node SDKs;
 - independent ES256, PS256, RS256 and EdDSA signature vectors and the DER
   encoding of every key type (`tests/vectors`, test-only keys);

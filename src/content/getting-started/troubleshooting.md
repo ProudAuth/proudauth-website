@@ -7,14 +7,14 @@ Use a discovery or readiness URL when testing the identity hostname. A request t
 
 | Symptom | Check |
 | --- | --- |
-| Cloudflare `502` | The local service is running on the port configured in the published application route. Check Docker health and local `curl` first. |
+| Reverse proxy `502` | Your identity service is running on the configured upstream address and port. Check Docker health and local `curl` before inspecting proxy settings. |
 | `421 misdirected_request` | The request's Host matches the configured canonical origin or a verified realm custom domain. |
 | `401` | Bearer credentials, token issuer/audience, token kind, expiry and any sender constraint. |
 | `403` | Required permission/scope, organization context, MFA freshness and support-access restrictions. |
 | `404` for an organization | Existence may intentionally be hidden from callers without authority in that organization. |
 | `412` or `428` | Re-read the resource, obtain its ETag and supply `If-Match`. |
 | `429` or `503` | Honor `Retry-After`; inspect rate budgets and dependency health privately. |
-| Swagger can load but API calls fail | Registered browser-origin CORS policy. Use the CLI examples; do not loosen CORS globally. |
+| The documentation explorer cannot execute requests | The project explorer is intentionally read-only. Run the curl/CLI examples against your own instance; do not enter credentials into the documentation website. |
 
 ## Refresh failures
 

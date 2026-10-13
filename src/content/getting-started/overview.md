@@ -13,8 +13,8 @@ required for the core deployment. Production email requires an SMTP relay.
 
 | Your goal | Start here |
 | --- | --- |
-| Run a local instance | [Local quickstart](quickstart.md) |
-| Deploy for real users | [Production installation](../../../docs/operations/installation.md) |
+| Run your own instance | [Docker quickstart](quickstart.md) |
+| Configure production | [Docker Compose installation](../../../docs/operations/docker-compose.md) and [environment variables](../../../docs/operations/environment.md) |
 | Add browser sign-in | [Backend-for-frontend](../../../docs/integrations/backend-for-frontend.md) |
 | Build your own sign-in UI | [Headless authentication](../../../docs/protocols/headless-authentication.md) |
 | Protect an API | [Resource-server integration](../../../docs/integrations/resource-servers.md) |
@@ -41,13 +41,15 @@ identity API is not a login page.
 
 ## Know the release status
 
-The implementation and SDKs are in development. No official version is tagged,
-and the SDK packages are unpublished. Access to a source checkout or a provided
-image bundle is required; package-install examples in SDK guides describe the
-intended package interface, not a claim of registry availability.
+The service release is **0.2.0-alpha.1**, an explicit pre-release. Download its
+versioned image and source-free Compose installer from
+[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1).
+The five SDKs have independent public source repositories; npm, Pub, Packagist
+and NuGet packages remain unpublished. Use their documented source installation.
 
-The current public hostname is a demonstration installation on one Mac with
-development email. It is not an availability guarantee or a production service.
+`proudauth.com` is the static project website. Your identity API, database,
+email relay and application sign-in interface run on your infrastructure.
+There is no ProudAuth-operated hosted identity endpoint or availability SLA.
 See [compatibility](../../../docs/protocols/compatibility.md),
 [interoperability](../../../docs/integrations/interoperability.md) and
 [security checks](../../../docs/operations/security-checks.md) for measured scope.

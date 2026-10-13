@@ -92,7 +92,7 @@ without being disabled first.
   connectors, suspended memberships; `recovery_restricted` accounts count
   as active.
 
-Operations: create (`POST /Users`), update (`PUT [LOCAL_PATH]`; a `404`
+Operations: create (`POST /Users`), update (`PUT [LOCAL_PATH] a `404`
 recreates the resource), deactivate (`PATCH` with `active: false`) and
 delete (`DELETE`; a `404` counts as done). Groups go to `/Groups` with their
 members' downstream IDs. Requests carry `Content-Type:
@@ -217,7 +217,7 @@ user API.
 | Endpoint | `base_url` `http://localhost:<port>/scim/v2/<ZITADEL organization ID>`: ZITADEL's SCIM endpoint is per organization. ZITADEL picks its instance from the `Host` header, so the URL must use the instance's external domain (here `localhost`; `127.0.0.1` answers `404`) |
 | Authentication | Bearer: the personal access token of a ZITADEL service account (machine user, access token type Bearer) holding only `ORG_USER_MANAGER` in that organization. Its token cannot reach another organization (`404`). A revoked token answers `401`, which dead-letters as `unauthorized`; a new token set with `PUT .../credential` and a replay deliver |
 | Connectors | An organization connector (`deprovision_action: deactivate`) and a realm connector with `eligible_organization_ids` (`deprovision_action: delete`), each to its own ZITADEL organization |
-| Operations | `POST /Users` (initial reconciliation and membership events), `PUT [LOCAL_PATH]` (profile and email changes, account and membership suspension and reactivation), `PATCH` `active: false` (membership removal, account deletion), `DELETE [LOCAL_PATH]`, `GET /Users?filter=externalId eq "..."` and `GET /Users?startIndex=&count=` (reconciliation) |
+| Operations | `POST /Users` (initial reconciliation and membership events), `PUT [LOCAL_PATH] (profile and email changes, account and membership suspension and reactivation), `PATCH` `active: false` (membership removal, account deletion), `DELETE [LOCAL_PATH] `GET /Users?filter=externalId eq "..."` and `GET /Users?startIndex=&count=` (reconciliation) |
 | Attributes | Default mapping: `userName`, `displayName`, `name.givenName`, `name.familyName`, `emails` (the verified primary address), `active`, `externalId` (the account ID). ZITADEL stores `externalId` and returns it, and filters on it |
 | Reconciliation | Dry run, then applied: `drift` (a `displayName` changed in ZITADEL) repaired, `missing_remote` (a managed user deleted in ZITADEL) recreated, `unmanaged_remote` (a user created in ZITADEL, and its first-instance administrator) reported and left alone |
 

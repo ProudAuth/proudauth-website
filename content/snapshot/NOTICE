@@ -2,7 +2,9 @@ ProudAuth
 Copyright 2026 The ProudAuth Authors
 
 This product includes software developed by The ProudAuth Authors and
-contributors (see the git history; contributions are DCO signed-off).
+contributors. This migration preview is a source snapshot of the original
+development worktree; it does not include its private history. Upstream
+attribution is retained and future contributions require DCO sign-off.
 
 Third-party components are distributed under their own licenses. The
 authoritative list for any release is the SBOM attached to that release
@@ -20,14 +22,6 @@ the direct dependencies are:
   golang.org/x/crypto, net, sync,
     sys, term, text                  BSD-3-Clause
   gopkg.in/yaml.v3                   MIT and Apache-2.0
-  BouncyCastle.Cryptography         MIT (ProudAuth .NET SDK)
-
-Documentation build-only components (licenses in docs-site/vendor/):
-  marked 13.0.3                     MIT
-  js-yaml 4.3.2                     MIT
-
-The API explorer uses Swagger UI assets from the operator-provided local image;
-its bundled license notices are retained with those assets.
 
 internal/credential/data/common-passwords.txt is a short list of commonly
 used passwords compiled for breached-password screening; it contains no

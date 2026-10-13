@@ -1,7 +1,12 @@
 # Go SDK
 
-The Go SDK lives inside module `github.com/proudbase/proudauth-sdk-go`. Import it from the
-source checkout; an official tagged SDK release is not available yet.
+The Go SDK is a separate public module,
+[`github.com/proudbase/proudauth-sdk-go`](https://github.com/proudbase/proudauth-sdk-go).
+No tagged SDK release is available yet. Install the reviewed source commit:
+
+```sh
+go get github.com/proudbase/proudauth-sdk-go@116f9fa19d0b0174a0c270763e2ef6abf872233b
+```
 
 | Package | Purpose |
 | --- | --- |
@@ -22,7 +27,7 @@ import (
 
 func main() {
     v, err := verifier.New(verifier.Config{
-        Issuer: "https://api.proudauth.com/realms/main",
+        Issuer: "https://identity.example.com/realms/main", // your instance
         Audience: "https://api.example.com/billing",
         Algorithms: []string{"RS256"},
     })
@@ -50,7 +55,7 @@ strict-online introspection; support tokens must pass the support contract.
 
 ```go
 client, err := oidcclient.New(oidcclient.Config{
-    Issuer: "https://api.proudauth.com/realms/main",
+    Issuer: "https://identity.example.com/realms/main", // your instance
     ClientID: "customer-web-bff",
     ClientSecret: os.Getenv("BFF_CLIENT_SECRET"),
     RedirectURI: "https://app.example.com/callback",

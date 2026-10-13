@@ -1,7 +1,7 @@
 # Integrating a resource server (API)
 
 Requirements: §14.4, §28.2, SDK-001, SDK-002, SDK-005, INT-010, §16. Reference
-code: `sdk/go/verifier`, `examples/protected-orders-api` (strict-online, support
+code: `proudauth-sdk-go/verifier`, `examples/protected-orders-api` (strict-online, support
 contract, policy decisions) and `examples/protected-billing-api` (offline). Both
 examples run in `tests/e2e/isolation_test.go` and `impersonation_test.go`.
 
@@ -29,7 +29,7 @@ identity-cli api POST /resources '{
 - `verification_mode` (`offline`, `bounded_online`, `strict_online`) declares how
   you validate. The IdP enforces it only for support access (which requires
   `strict_online`) and for `token_format: opaque` (which cannot be `offline`).
-  For `bounded_online`, the SDKs provide a bounded-state mode (`sdk/go/verifier`
+  For `bounded_online`, the SDKs provide a bounded-state mode (`proudauth-sdk-go/verifier`
   `BoundedState` and `BoundedVerifier`; Node.js `@proudauth/sdk/bounded-state`;
   Dart `package:proudauth_sdk/bounded_state.dart`; PHP
   `ProudAuth\Sdk\BoundedState`; .NET `ProudAuth.Sdk.BoundedState`):
@@ -389,8 +389,8 @@ What the guard enforces per request:
   recorded **before** access; if recording fails, access is denied.
 
 All five SDKs and the server run the same cases from
-`sdk/fixtures/support-operations/cases.json`
-([sdk/fixtures/README.md](../../sdk/fixtures/README.md#support-operationscasesjson)),
+`tests/fixtures/sdk-contracts/support-operations/cases.json`
+([tests/fixtures/sdk-contracts/README.md](../../tests/fixtures/sdk-contracts/README.md#support-operationscasesjson)),
 and the decision API applies the same rule to support tokens passed as
 `subject_token` (`internal/authorization/catalog.go`):
 

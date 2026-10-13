@@ -36,9 +36,11 @@ measurements, not sizing advice or performance guarantees.
 
 ## Release and assurance
 
-There is no official tagged release or public SDK package publication yet. The
-public repository split is being prepared; no public release is implied. The service is not independently security
-reviewed or certified. Protocol conformance and third-party interoperability are
+The service version **0.2.0-alpha.1** is a pre-release with versioned container
+images and a Docker Compose installer. The service, website and five SDKs have
+separate public source repositories. SDK registry packages remain unpublished.
+The service is not independently security reviewed or certified.
+Protocol conformance and third-party interoperability are
 limited to the specific profiles and versions recorded in the guides.
 
 This page does not turn planned requirements into availability claims. See

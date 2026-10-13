@@ -1,5 +1,11 @@
 # proudauth_sdk for Dart
 
+> **Repository status:** public standalone source; package version 0.2.0 remains unpublished.
+> No package-registry release or stable-support window is promised yet.
+> [Documentation](https://proudauth.com/docs/) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+[![CI](https://github.com/proudbase/proudauth-sdk-dart/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-sdk-dart/actions/workflows/ci.yml)
+
 The first-party Dart SDK for ProudAuth (spec §28, SDK-001 to SDK-009). It is
 a port of the Node.js SDK in `sdk/node`, which itself ports the Go SDK in
 `sdk/go`, with the same security behavior and the same error categories:
@@ -17,7 +23,7 @@ a port of the Node.js SDK in `sdk/node`, which itself ports the Go SDK in
 Version 0.2.0 (`sdkVersion` in `admin.dart`), unpublished
 (`publish_to: none`). Its compatibility and security-update policy are the
 ones of the other SDKs in
-[docs/integrations/sdk-compatibility.md](../../docs/integrations/sdk-compatibility.md).
+[docs/integrations/sdk-compatibility.md](https://proudauth.com/docs/integrations/sdk-compatibility/).
 
 - **Pure Dart, no Flutter.** Runtime dependencies: `crypto` and `http`, both
   maintained by the Dart team. No web framework dependency: the request
@@ -36,7 +42,7 @@ Token-only verification and introspection reject any `cnf` claim with
 bindings. This SDK does not yet provide request-level DPoP or TLS certificate
 verification. Use the Go `SenderVerifier` or a separately reviewed request
 verifier for bound tokens; see the
-[resource-server profile](../../docs/integrations/resource-servers.md#sender-constrained-tokens).
+[resource-server profile](https://proudauth.com/docs/integrations/resource-servers/#sender-constrained-tokens).
 
 ## Installation
 
@@ -46,15 +52,14 @@ The package is not published. Depend on it by path or from git:
 # pubspec.yaml of your service
 dependencies:
   proudauth_sdk:
-    path: /path/to/proudauth/sdk/dart
+    path: /path/to/proudauth-sdk-dart
 ```
 
 ```yaml
 dependencies:
   proudauth_sdk:
     git:
-      url: <the ProudAuth repository's git URL>
-      path: sdk/dart
+      url: https://github.com/proudbase/proudauth-sdk-dart.git
       ref: <tag or commit>
 ```
 
@@ -291,7 +296,7 @@ final refund = protectOperation(guard, refundHandler, operation: 'orders.refund'
   `isProtectedOperation(op, list)` replaces the defaults, so pass
   `[...protectedOperations, ...yours]`. The Go and Node.js SDKs and the
   server's decision API apply the same rule; the shared cases are in
-  `sdk/fixtures/support-operations/cases.json`.
+  `testdata/contracts/support-operations/cases.json`.
 - When your service also calls the decision API (`POST /authorization/check`)
   with a support token as `subject_token`, keep the resource's
   `impersonation_policy.write_actions` equal to `writeOperations`.
@@ -587,7 +592,6 @@ places where Dart needs its own answer:
 ## Development
 
 ```sh
-cd sdk/dart
 dart pub get                          # dev dependencies: lints, test
 dart analyze                          # package:lints recommended rules plus strict casts/inference/raw types
 dart format --set-exit-if-changed .
@@ -600,11 +604,11 @@ test-only signer (`test/support/signer.dart`), the counterpart of the Node.js
 tests' `node:crypto` helpers. The suites port every Node.js test file:
 
 - `fixtures_test.dart` runs every case of
-  [`sdk/fixtures/access-tokens/cases.json`](../fixtures/README.md) (the 22
+  [`testdata/contracts/access-tokens/cases.json`](testdata/contracts/README.md) (the 22
   tokens shared with the Go and Node.js SDKs: exactly the two `accept` cases
   are accepted, every other case reports its expected category), and
   `support_operations_test.dart` runs every case of
-  `sdk/fixtures/support-operations/cases.json` through
+  `testdata/contracts/support-operations/cases.json` through
   `isProtectedOperation`, `isWriteOperation` and `SupportGuard`;
 - `crypto_vectors_test.dart` runs the Go-generated RS256, PS256, ES256 and
   Ed25519 vectors and the RFC 8032 tests;

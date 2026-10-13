@@ -4,7 +4,7 @@ Requirements: INT-001..INT-010. Each section says what to do in your service
 and which SDK function does the ProudAuth-specific part. Everything here
 builds on [resource-servers.md](resource-servers.md): a valid token
 authenticates a caller; your service still decides, per object, what that
-caller may do. SDK names: Go `sdk/go/verifier` (`verifier.`), Node.js
+caller may do. SDK names: Go `proudauth-sdk-go/verifier` (`verifier.`), Node.js
 `@proudauth/sdk/verifier`, `/introspection` and `/bounded-state`
 ([sdk-compatibility.md](sdk-compatibility.md#framework-adapters-sdk-011)).
 

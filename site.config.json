@@ -1,11 +1,12 @@
 {
   "title": "ProudAuth",
-  "version": "0.2.0 \u00b7 development snapshot",
+  "version": "0.2.0-alpha.1 · pre-release",
+  "releaseVersion": "0.2.0-alpha.1",
   "homeOrigin": "https://proudauth.com",
   "docsOrigin": "https://proudauth.com/docs",
   "docsBasePath": "/docs",
-  "authOrigin": "https://api.proudauth.com",
-  "statusOrigin": "https://status.proudauth.com",
+  "exampleIdentityOrigin": "https://identity.example.com",
+  "serviceRepository": "https://github.com/proudbase/proudauth",
   "repository": "https://github.com/proudbase/proudauth-website",
-  "deploymentStatus": "planned; live DNS and issuer unchanged"
+  "hosting": "GitHub Pages; static project website only"
 }
