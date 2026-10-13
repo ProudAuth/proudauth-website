@@ -1,0 +1,3 @@
+# Preserve imported evidence and licensed vendor bytes exactly as pinned.
+content/snapshot/docs/operations/bench-results/** whitespace=-blank-at-eol
+vendor/** whitespace=-blank-at-eol

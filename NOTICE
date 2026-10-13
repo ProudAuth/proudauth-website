@@ -1,0 +1,19 @@
+ProudAuth website
+Copyright 2026 The ProudAuth Authors
+
+Website code and the imported ProudAuth documentation are Apache-2.0 licensed.
+Original source documentation notices are preserved in
+content/snapshot/NOTICE. No third-party branding or website assets are copied
+from ZITADEL; ProudAuth has its own identity and interface.
+
+The build uses these checked-in dependencies without package installation:
+  marked 13.0.3                         MIT
+  js-yaml 4.3.2                         MIT
+
+The read-only API explorer distributes cached Swagger UI 5.33.2 assets:
+  Swagger UI                           Apache-2.0
+  bundled third-party notices           vendor/swagger-ui/*.LICENSE.txt
+
+License texts accompany every vendored component. Swagger's version, cached
+image digest and asset hashes are recorded in content.lock.json. Its CSS
+includes the original ProudAuth explorer presentation overrides.

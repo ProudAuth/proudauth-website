@@ -1,0 +1,5 @@
+/* Reference-only viewer: no credential input or alternative remote contracts. */
+.swagger-ui .auth-wrapper,
+.swagger-ui .authorization__btn,
+.swagger-ui .btn.authorize,
+.swagger-ui .topbar .download-url-wrapper { display: none !important; }

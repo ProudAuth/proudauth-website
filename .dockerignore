@@ -1,0 +1,15 @@
+*
+!dist
+!dist/**
+!deploy
+!deploy/nginx.conf
+!deploy/Dockerfile
+!deploy/Dockerfile.status
+!scripts
+!scripts/status.mjs
+!src
+!src/assets
+!src/assets/status.html
+!src/assets/status.js
+!src/assets/site.css
+!src/assets/favicon.svg

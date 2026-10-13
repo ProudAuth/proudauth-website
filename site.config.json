@@ -1,0 +1,11 @@
+{
+  "title": "ProudAuth",
+  "version": "0.2.0 \u00b7 development snapshot",
+  "homeOrigin": "https://proudauth.com",
+  "docsOrigin": "https://proudauth.com/docs",
+  "docsBasePath": "/docs",
+  "authOrigin": "https://api.proudauth.com",
+  "statusOrigin": "https://status.proudauth.com",
+  "repository": "https://github.com/proudbase/proudauth-website",
+  "deploymentStatus": "planned; live DNS and issuer unchanged"
+}

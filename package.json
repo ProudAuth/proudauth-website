@@ -1,0 +1,17 @@
+{
+  "name": "@proudbase/proudauth-website",
+  "version": "0.2.0",
+  "private": true,
+  "description": "ProudAuth landing page and source-derived developer documentation.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {"node": ">=20.10"},
+  "repository": {"type": "git", "url": "https://github.com/proudbase/proudauth-website.git"},
+  "scripts": {
+    "build": "node scripts/verify-content.mjs && node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run build && npm test",
+    "preview": "node scripts/preview.mjs",
+    "verify-content": "node scripts/verify-content.mjs"
+  }
+}
