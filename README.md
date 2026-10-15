@@ -1,3 +1,13 @@
+<p align="center">
+  <a href="https://proudauth.com"><img src="https://raw.githubusercontent.com/ProudAuth/.github/main/assets/banner-proudauth-website.png" alt="ProudAuth website and documentation" width="100%"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ProudAuth/proudauth-website/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ProudAuth/proudauth-website/ci.yml?branch=main&label=checks&style=for-the-badge&labelColor=06120e"></a>
+  <a href="https://github.com/ProudAuth/proudauth-website/actions/workflows/pages.yml"><img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/ProudAuth/proudauth-website/pages.yml?branch=main&label=deploy&style=for-the-badge&labelColor=06120e"></a>
+  <a href="https://proudauth.com"><img alt="Website" src="https://img.shields.io/badge/web-proudauth.com-3ee6b0?style=for-the-badge&labelColor=06120e"></a>
+</p>
+
 # ProudAuth website
 
 One home for ProudAuth: a landing page and developer documentation at `/docs/`,
@@ -5,12 +15,10 @@ with source-derived guides, a complete API reference and first-party SDK guides.
 The website is independent of the identity service checkout and builds offline.
 
 **Status:** public standalone source at
-[`proudbase/proudauth-website`](https://github.com/proudbase/proudauth-website).
+[`ProudAuth/proudauth-website`](https://github.com/proudauth/proudauth-website).
 The landing page and documentation publish to GitHub Pages at
 [`proudauth.com`](https://proudauth.com). This is a static project website.
 Operators deploy the identity service, database and worker on their own infrastructure.
-
-[![Website checks](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml)
 
 ## Build, check and preview
 
@@ -45,7 +53,7 @@ credential persistence are disabled in the explorer.
 
 The published site follows the latest ProudAuth release on its own. Every run of
 [`pages.yml`](.github/workflows/pages.yml) asks GitHub for the newest
-[proudbase/proudauth release](https://github.com/proudbase/proudauth/releases),
+[ProudAuth/proudauth release](https://github.com/proudauth/proudauth/releases),
 syncs the documentation from that release tag (`sync-content.mjs --release`),
 builds, checks and deploys. Nothing in this repository carries a version number:
 the landing page, the sidebar, the overview and the quickstart all take it from

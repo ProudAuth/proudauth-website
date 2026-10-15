@@ -4,7 +4,7 @@
   "docsOrigin": "https://proudauth.com/docs",
   "docsBasePath": "/docs",
   "exampleIdentityOrigin": "https://identity.example.com",
-  "serviceRepository": "https://github.com/proudbase/proudauth",
-  "repository": "https://github.com/proudbase/proudauth-website",
+  "serviceRepository": "https://github.com/proudauth/proudauth",
+  "repository": "https://github.com/proudauth/proudauth-website",
   "hosting": "GitHub Pages; static project website only"
 }

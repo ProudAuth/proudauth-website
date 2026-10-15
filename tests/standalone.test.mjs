@@ -129,12 +129,13 @@ test('Pages publication contains the complete static site and operator deploymen
   assert(!endpoints.includes('status.proudauth.com'));
   const release=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8')).source.release;
   const quickstart=read('docs/getting-started/quickstart/index.html');
-  assert(quickstart.includes(`VERSION=${release}`),'The quickstart is the install guide of the synced release');
+  assert(quickstart.includes(`PROUDAUTH_IMAGE=ghcr.io/proudauth/proudauth:${release.slice(1)}`),'The quickstart is the install guide of the synced release');
   assert(quickstart.includes('docker compose pull'));
   assert(quickstart.includes('docker compose up -d'));
   assert(read('docs/operations/docker-compose/index.html').includes('url=/docs/getting-started/quickstart/'),'The former install guide address redirects');
   for(const page of ['docs/getting-started/overview/index.html','docs/reference/capabilities/index.html'])assert(read(page).includes(release.slice(1))&&!/\{\{[A-Z_]+\}\}/.test(read(page)),`${page} must show the synced release`);
   for(const removed of ['init.sh','configure.py','.env.example','git clone'])assert(!quickstart.includes(removed),`Quickstart still mentions ${removed}`);
+  for(const sdk of ['go-reference','node','dart','php','dotnet'])assert(!read(`docs/sdks/${sdk}/index.html`).includes('&lt;p align'),`The ${sdk} SDK page shows the README's GitHub header`);
   const environment=read('docs/operations/environment/index.html');
   assert(read('docs/integrations/scim-provisioning/index.html').includes('<code>/Users/{id}</code>'));
   assert(read('docs/integrations/outbound-provisioning/index.html').includes('<code>PUT /Users/{id}</code>'));

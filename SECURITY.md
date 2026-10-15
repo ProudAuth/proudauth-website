@@ -6,8 +6,8 @@ service's security policy remains authoritative for authentication behavior.
 
 Do not report vulnerabilities by including credentials, tokens, user exports,
 private keys or operator responses in public issues. Use
-[GitHub private vulnerability reporting](https://github.com/proudbase/proudauth-website/security/advisories/new).
-If that channel is unavailable, arrange a private channel with the ProudBase
+[GitHub private vulnerability reporting](https://github.com/proudauth/proudauth-website/security/advisories/new).
+If that channel is unavailable, arrange a private channel with the ProudAuth
 maintainers before sending sensitive details.
 
 All inputs to the Markdown renderer are trusted, reviewed repository files.

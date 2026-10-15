@@ -5,7 +5,7 @@ FROM ${NGINX_IMAGE}
 ARG VERSION=0.2.0-snapshot
 ARG REVISION=workspace-snapshot
 LABEL org.opencontainers.image.title="ProudAuth website" \
-      org.opencontainers.image.source="https://github.com/proudbase/proudauth-website" \
+      org.opencontainers.image.source="https://github.com/proudauth/proudauth-website" \
       org.opencontainers.image.licenses="Apache-2.0" \
       org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.revision="${REVISION}"

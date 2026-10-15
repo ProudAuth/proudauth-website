@@ -1,7 +1,7 @@
 ARG NODE_IMAGE=node:24-alpine
 FROM ${NODE_IMAGE}
 LABEL org.opencontainers.image.title="ProudAuth public status summary" \
-      org.opencontainers.image.source="https://github.com/proudbase/proudauth-website" \
+      org.opencontainers.image.source="https://github.com/proudauth/proudauth-website" \
       org.opencontainers.image.licenses="Apache-2.0"
 COPY scripts/status.mjs /app/status.mjs
 COPY src/assets/status.html src/assets/status.js src/assets/site.css src/assets/favicon.svg /app/

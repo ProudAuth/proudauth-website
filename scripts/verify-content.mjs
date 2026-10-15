@@ -14,7 +14,7 @@ for(const item of lock.files){
   const data=fs.readFileSync(path.join(root,item.path));
   if(crypto.createHash('sha256').update(data).digest('hex')!==item.sha256)throw new Error(`Snapshot hash mismatch: ${item.path}`);
   if(!/^[a-f0-9]{64}$/.test(item.sourceSha256))throw new Error(`Missing source-byte provenance: ${item.path}`);
-  if(item.upstream?.commitPinned && (!/^[a-f0-9]{40}$/.test(item.upstream.commit)||!/^https:\/\/github\.com\/proudbase\/proudauth(?:-sdk-(?:go|node|dart|php|dotnet))?$/.test(item.upstream.repository)))throw new Error(`Invalid upstream commit provenance: ${item.path}`);
+  if(item.upstream?.commitPinned && (!/^[a-f0-9]{40}$/.test(item.upstream.commit)||!/^https:\/\/github\.com\/proudauth\/proudauth(?:-sdk-(?:go|node|dart|php|dotnet))?$/.test(item.upstream.repository)))throw new Error(`Invalid upstream commit provenance: ${item.path}`);
   const text=data.toString('utf8');
   if(item.path.startsWith('content/') && /\/Users\/[A-Za-z0-9_.-]+\//.test(text))throw new Error(`Private local path: ${item.path}`);
 }

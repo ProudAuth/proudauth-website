@@ -1,18 +1,18 @@
 # Go SDK
 
 The Go SDK is a separate public module,
-[`github.com/proudbase/proudauth-sdk-go`](https://github.com/proudbase/proudauth-sdk-go).
+[`github.com/proudauth/proudauth-sdk-go`](https://github.com/proudauth/proudauth-sdk-go).
 No tagged SDK release is available yet. Install the reviewed source commit:
 
 ```sh
-go get github.com/proudbase/proudauth-sdk-go@116f9fa19d0b0174a0c270763e2ef6abf872233b
+go get github.com/proudauth/proudauth-sdk-go@116f9fa19d0b0174a0c270763e2ef6abf872233b
 ```
 
 | Package | Purpose |
 | --- | --- |
-| `github.com/proudbase/proudauth-sdk-go/verifier` | Offline verification, introspection, support guard, bounded state, sender constraints and HTTP middleware |
-| `github.com/proudbase/proudauth-sdk-go/oidcclient` | OIDC backend-for-frontend client |
-| `github.com/proudbase/proudauth-sdk-go/admin` | Typed administration API client |
+| `github.com/proudauth/proudauth-sdk-go/verifier` | Offline verification, introspection, support guard, bounded state, sender constraints and HTTP middleware |
+| `github.com/proudauth/proudauth-sdk-go/oidcclient` | OIDC backend-for-frontend client |
+| `github.com/proudauth/proudauth-sdk-go/admin` | Typed administration API client |
 
 ## Protect an HTTP endpoint
 
@@ -22,7 +22,7 @@ package main
 import (
     "log"
     "net/http"
-    "github.com/proudbase/proudauth-sdk-go/verifier"
+    "github.com/proudauth/proudauth-sdk-go/verifier"
 )
 
 func main() {

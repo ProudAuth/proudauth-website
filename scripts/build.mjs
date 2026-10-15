@@ -39,8 +39,11 @@ const groups = [
 const revision = lock.source.head.slice(0,12) + (lock.source.dirty ? ' · workspace snapshot' : '');
 const builtAt = new Date().toISOString();
 
+// Repository READMEs open with a GitHub banner and badges above the title; a docs page starts at the title.
+const fromTitle = markdown => markdown.startsWith('<p') && /^# /m.test(markdown) ? markdown.slice(markdown.search(/^# /m)) : markdown;
+
 function add(source, route, group, title) {
-  const markdown = source.startsWith('docs-site/content/') ? fillRelease(read(source)) : read(source);
+  const markdown = fromTitle(source.startsWith('docs-site/content/') ? fillRelease(read(source)) : read(source));
   const heading = markdown.match(/^#\s+(.+)$/m)?.[1] || path.basename(source, '.md');
   pages.push({source, route, group, title:title || heading.replace(/`/g,''), markdown});
 }

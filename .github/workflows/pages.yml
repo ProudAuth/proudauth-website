@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 # The published documentation always follows the latest ProudAuth release:
 # every run syncs the docs from that release tag, so the version and the
-# install instructions come from proudbase/proudauth, never from hand edits.
+# install instructions come from ProudAuth/proudauth, never from hand edits.
 on:
   push:
     branches: [main]
@@ -38,7 +38,7 @@ jobs:
           EVENT: ${{ github.event_name }}
         run: |
           set -euo pipefail
-          tag=$(gh api 'repos/proudbase/proudauth/releases?per_page=30' --jq '[.[] | select(.draft | not)] | first | .tag_name')
+          tag=$(gh api 'repos/proudauth/proudauth/releases?per_page=30' --jq '[.[] | select(.draft | not)] | first | .tag_name')
           [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]] || { echo "Unexpected release tag: $tag"; exit 1; }
           live=$(curl -fsS --max-time 20 https://proudauth.com/docs/build-info.json | jq -r '.release // empty' || true)
           deploy=true
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         if: steps.release.outputs.deploy == 'true'
         with:
-          repository: proudbase/proudauth
+          repository: proudauth/proudauth
           ref: ${{ steps.release.outputs.tag }}
           path: proudauth
       - name: Check out the five SDK repositories
@@ -61,7 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           for language in go node dart php dotnet; do
-            git clone --quiet --depth 1 --branch main "https://github.com/proudbase/proudauth-sdk-$language" "proudauth-sdk-$language"
+            git clone --quiet --depth 1 --branch main "https://github.com/proudauth/proudauth-sdk-$language" "proudauth-sdk-$language"
           done
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         if: steps.release.outputs.deploy == 'true'
