@@ -9,10 +9,9 @@ hosts documentation, and your applications connect to the instance you deploy.
 
 ```sh
 VERSION=v0.2.0-alpha.2
-gh release download "$VERSION" --repo proudbase/proudauth \
-  --pattern "proudauth-$VERSION-compose.tar.gz" --pattern SHA256SUMS
-grep " proudauth-$VERSION-compose.tar.gz\$" SHA256SUMS | sha256sum -c -
-tar -xzf "proudauth-$VERSION-compose.tar.gz" && cd "proudauth-$VERSION-compose"
+mkdir proudauth && cd proudauth
+curl -fsSLO https://raw.githubusercontent.com/proudbase/proudauth/$VERSION/deploy/prod/docker-compose.yaml
+curl -fsSLO https://raw.githubusercontent.com/proudbase/proudauth/$VERSION/deploy/prod/.env
 ```
 
 ## 2. Fill in `.env`
@@ -30,7 +29,8 @@ tar -xzf "proudauth-$VERSION-compose.tar.gz" && cd "proudauth-$VERSION-compose"
 
 ```sh
 chmod 600 .env
-docker compose up -d --wait
+docker compose pull
+docker compose up -d
 ```
 
 Migrations run and the `main` realm is created on the first start. Point your
@@ -50,19 +50,6 @@ docker compose exec server identity-cli login --url https://identity.example.com
 
 The first sign-in enrolls an authenticator app (TOTP) and verifies the email
 address.
-
-## Try it on your machine first
-
-The service repository's `deploy/dev` adds PostgreSQL and a mail catcher, with
-nothing to fill in:
-
-```sh
-git clone https://github.com/proudbase/proudauth.git
-cd proudauth/deploy/dev
-docker compose up -d --build --wait
-```
-
-The API is at `http://localhost:8080` and every email at `http://localhost:8025`.
 
 ## Next steps
 

@@ -123,10 +123,11 @@ test('Pages publication contains the complete static site and operator deploymen
   assert(!endpoints.includes('status.proudauth.com'));
   const compose=read('docs/operations/docker-compose/index.html');
   assert(compose.includes('VERSION=v0.2.0-alpha.2'));
-  assert(compose.includes('docker compose up -d --wait'));
+  assert(compose.includes('docker compose up -d'));
   const quickstart=read('docs/getting-started/quickstart/index.html');
   assert(quickstart.includes('VERSION=v0.2.0-alpha.2'));
-  for(const removed of ['init.sh','configure.py','.env.example'])assert(!quickstart.includes(removed),`Quickstart still mentions ${removed}`);
+  assert(quickstart.includes('docker compose pull'));
+  for(const removed of ['init.sh','configure.py','.env.example','git clone','--build'])assert(!quickstart.includes(removed),`Quickstart still mentions ${removed}`);
   const environment=read('docs/operations/environment/index.html');
   assert(read('docs/integrations/scim-provisioning/index.html').includes('<code>/Users/{id}</code>'));
   assert(read('docs/integrations/outbound-provisioning/index.html').includes('<code>PUT /Users/{id}</code>'));
