@@ -270,6 +270,7 @@ write('build-info.json',JSON.stringify({builtAt,revision,source:lock.source,cont
 const home = read('docs-site/assets/home.html').replaceAll('{{DOCS}}',config.docsBasePath).replaceAll('{{IDENTITY}}',config.exampleIdentityOrigin).replaceAll('{{SOURCE}}',config.serviceRepository).replaceAll('{{RELEASE}}',releaseUrl).replaceAll('{{VERSION}}',releaseVersion).replaceAll('{{OPERATIONS}}',String(operations.length));
 write('index.html',home,homeOutput);
 write('assets/site.css',read('docs-site/assets/site.css'),homeOutput);
+write('assets/home.css',read('docs-site/assets/home.css'),homeOutput);
 write('assets/favicon.svg',read('docs-site/assets/favicon.svg'),homeOutput);
 write('.nojekyll','',homeOutput);
 write('CNAME',new URL(config.homeOrigin).hostname+'\n',homeOutput);
