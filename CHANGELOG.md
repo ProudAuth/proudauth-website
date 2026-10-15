@@ -8,6 +8,27 @@ ProudAuth and keep their original source provenance.
 
 ### Added
 
+- Deployment follows the latest ProudAuth release automatically: an hourly
+  check (or a dispatch from the ProudAuth release workflow) syncs the docs
+  from the newest release tag, then builds, checks and deploys.
+
+### Changed
+
+- The version shown anywhere on the site comes from the synced release tag
+  (`content.lock.json` `source.release`); `site.config.json` no longer holds one.
+- The Docker quickstart is ProudAuth's own install guide at the release tag;
+  `/docs/operations/docker-compose/` redirects to it.
+
+- Documentation snapshot pinned to service `main` commit `9fdc0c7` (v0.2.0-alpha.2):
+  the two-file Compose installer (`docker-compose.yaml` + `.env`), environment
+  reference, trimmed OpenAPI header and the new API conventions page.
+- The Docker quickstart is four steps: download `docker-compose.yaml` and `.env`,
+  fill in `.env`, `docker compose pull` and `up -d`, create the first
+  administrator; no source checkout, image build, `init.sh` or Python. The landing
+  page, overview and capabilities point to `0.2.0-alpha.2`.
+
+### Added
+
 - Independent landing page and developer documentation build, with canonical
   documentation under `/docs/` and operator-owned identity examples.
 - Reviewed service/API/SDK documentation snapshots with per-file SHA-256,

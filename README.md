@@ -41,21 +41,27 @@ The website has no hosted identity API, login account, status backend or databas
 OpenAPI examples use the reserved operator-owned origin; request execution and
 credential persistence are disabled in the explorer.
 
-## GitHub Pages hosting
+## Always the latest release
 
-The public site can use GitHub Pages with GitHub Free for organizations, as
-documented in [GitHub's Pages availability](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-The pinned
-[`pages.yml`](.github/workflows/pages.yml) workflow builds and checks the static
-publication on Node 24, uploads only `dist/`, then deploys through the
-`github-pages` environment. Only deployment receives `pages:write` and
-`id-token:write`; no registry, SMTP or identity credentials are needed.
+The published site follows the latest ProudAuth release on its own. Every run of
+[`pages.yml`](.github/workflows/pages.yml) asks GitHub for the newest
+[proudbase/proudauth release](https://github.com/proudbase/proudauth/releases),
+syncs the documentation from that release tag (`sync-content.mjs --release`),
+builds, checks and deploys. Nothing in this repository carries a version number:
+the landing page, the sidebar, the overview and the quickstart all take it from
+the synced release, and the [Docker quickstart](https://proudauth.com/docs/getting-started/quickstart/)
+is ProudAuth's own install guide (`docs/operations/docker-compose.md`) at that tag.
 
-The artifact includes the landing page, `/docs/`, `.nojekyll`, `CNAME`, a root
-`404.html`, local assets, search and a sitemap. Configure the repository's Pages
-source as GitHub Actions and custom domain as `proudauth.com`; point the domain to
-GitHub Pages through your DNS provider and enable HTTPS after certificate issuance.
-GitHub Pages serves static files and has no custom Nginx/header configuration.
+| Trigger | When |
+| --- | --- |
+| New ProudAuth release | Within the hour (hourly check); immediately when ProudAuth's release workflow has a dispatch token |
+| Push to `main` | Website changes deploy with the latest release's content |
+| Manual | Actions → Deploy GitHub Pages → Run workflow |
+
+The hourly check deploys only when the live site shows an older release. The
+pages use GitHub Pages with the `github-pages` environment; only deployment
+receives `pages:write` and `id-token:write`. Configure the repository's Pages
+source as GitHub Actions and the custom domain as `proudauth.com`.
 
 ## Content ownership and provenance
 
@@ -77,24 +83,17 @@ and PHP's tested public VCS installation example.
 Exact upstreams and byte hashes are in the manifest. Builds never fetch a moving
 branch or require adjacent repositories.
 
-Refresh content explicitly, inspect the diff, then run all checks:
+To preview a release locally, sync it into the committed snapshot and check:
 
 ```sh
-node scripts/sync-content.mjs --service=../proudauth --sdk-root=..
-# Once that exact service commit is public:
-node scripts/sync-content.mjs --service=../proudauth --sdk-root=.. --service-commit=<full-sha>
+node scripts/sync-content.mjs --service=../proudauth --sdk-root=.. --release=v0.2.0-alpha.2
 npm run check
 ```
 
-The import allowlist includes the complete Docker Compose guide and every one of
-the 19 supported `.env` settings. A dirty service snapshot never claims clean
-commit provenance; a pinned import reads the exact Git object instead of the
-working tree.
-
 Service runbooks, API contracts, benchmarks and its changelog remain owned by the
 service repository. SDK documentation remains owned by each SDK repository.
-Website updates import approved snapshots in a reviewable change; content is not
-silently rewritten by a network fetch during a build.
+The build itself never fetches: deployment syncs an exact, immutable release tag
+first, and pull requests check the committed snapshot.
 
 Absolute user paths and temporary paths in benchmark evidence are redacted in
 snapshots. Protocol routes such as `/Users/{id}` and operator command examples

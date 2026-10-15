@@ -3,7 +3,7 @@
 This runbook installs a single-node production deployment (docs/plan.md §30.1)
 and creates the first administrator through the local operator channel
 (DEP-007, SEC-011). For a throwaway development stack use `make dev` instead
-([README](../../README.md#quick-start-development-only)).
+([quick start](../service-status.md#quick-start-development-only)).
 
 ## 1. Components
 
@@ -19,16 +19,16 @@ and creates the first administrator through the local operator channel
 All three binaries are in the container image (`/usr/local/bin/`), built by the
 `Dockerfile` as static binaries on a distroless, non-root (UID 65532) base. The
 image works with a read-only root filesystem. The
-[v0.2.0-alpha.1 pre-release](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1)
+[v0.2.0-alpha.2 pre-release](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.2)
 provides Linux/macOS binaries, checksums and source-free installation assets.
 For a single-machine installation, follow the
 [Docker Compose guide](docker-compose.md) and [complete `.env` reference](environment.md).
-Pull `ghcr.io/proudbase/proudauth:0.2.0-alpha.1` or the maintainer's Docker Hub
-mirror `mohamadalialghanem/proudauth:0.2.0-alpha.1`. The published registry image
+Pull `ghcr.io/proudbase/proudauth:0.2.0-alpha.2` or the maintainer's Docker Hub
+mirror `mohamadalialghanem/proudauth:0.2.0-alpha.2`. The published registry image
 supports Linux amd64 and arm64; the offline release image archive is amd64,
 with binaries supplied for both Linux architectures. This is pre-release
 software with no completed external security review or certification.
-To build locally, use `make image VERSION=0.2.0-alpha.1` or `go build ./cmd/...`.
+To build locally, use `make image VERSION=0.2.0-alpha.2` or `go build ./cmd/...`.
 
 ### Verifying a release
 
@@ -87,7 +87,12 @@ Store a copy of each key **separately from database backups** (OPS-005).
 
 ## 3. Write the configuration
 
-Start from `deploy/config/production.example.yaml`. The full key reference is
+Settings with an environment variable need no file: `deploy/prod` configures
+the image with `.env` alone ([environment.md](environment.md)). Write
+`/etc/proudauth/config.yaml` for the rest, such as separate database roles,
+root-key rotation, a pepper or a password blocklist; `PROUDAUTH_*` variables
+still override it. `deploy/kubernetes/overlays/example/config.yaml` is a
+validated production example, and the full key reference is
 [configuration.md](configuration.md). At minimum set:
 
 - `mode: production`

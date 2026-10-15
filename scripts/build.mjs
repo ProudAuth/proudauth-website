@@ -12,12 +12,19 @@ const siteOutput = path.join(root, 'dist');
 const output = path.join(siteOutput, 'docs');
 const homeOutput = siteOutput;
 const config = JSON.parse(fs.readFileSync(path.join(root, 'site.config.json'), 'utf8'));
-const releaseUrl = `${config.serviceRepository}/releases/tag/v${config.releaseVersion}`;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug = value => String(value).toLowerCase().replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}\s_-]/gu, '').trim().replace(/\s/g, '-');
 const sourcePath = relative => path.join(root, relative.startsWith('docs-site/assets/') ? relative.replace('docs-site/assets/','src/assets/') : relative.startsWith('docs-site/content/') ? relative.replace('docs-site/content/','src/content/') : relative.startsWith('docs-site/vendor/') ? relative.replace('docs-site/vendor/','vendor/') : 'content/snapshot/'+relative);
 const read = relative => fs.readFileSync(sourcePath(relative), 'utf8');
 const lock = JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
+// The synced ProudAuth release is the only source of the version shown anywhere.
+if (!/^v[0-9]+\.[0-9]+\.[0-9]+(?:-[A-Za-z0-9.-]+)?$/.test(lock.source.release || '')) throw new Error('content.lock.json must come from a release: run sync-content.mjs --release=vX.Y.Z');
+const releaseVersion = lock.source.release.slice(1);
+const prerelease = releaseVersion.includes('-');
+const releaseUrl = `${config.serviceRepository}/releases/tag/${lock.source.release}`;
+const versionLabel = `${releaseVersion}${prerelease ? ' · pre-release' : ''}`;
+const fillRelease = text => text.replaceAll('{{VERSION}}', releaseVersion).replaceAll('{{RELEASE_URL}}', releaseUrl)
+  .replaceAll('{{RELEASE_KIND}}', prerelease ? 'a pre-release' : 'a release');
 if (!/^\/[a-z0-9/-]+$/.test(config.docsBasePath) || config.docsBasePath.endsWith('/')) throw new Error('docsBasePath must be an absolute path without a trailing slash');
 if (config.docsOrigin !== config.homeOrigin + config.docsBasePath) throw new Error('docsOrigin must equal homeOrigin + docsBasePath');
 const docsPath = route => config.docsBasePath + route;
@@ -33,15 +40,18 @@ const revision = lock.source.head.slice(0,12) + (lock.source.dirty ? ' · worksp
 const builtAt = new Date().toISOString();
 
 function add(source, route, group, title) {
-  const markdown = read(source);
+  const markdown = source.startsWith('docs-site/content/') ? fillRelease(read(source)) : read(source);
   const heading = markdown.match(/^#\s+(.+)$/m)?.[1] || path.basename(source, '.md');
   pages.push({source, route, group, title:title || heading.replace(/`/g,''), markdown});
 }
 for (const file of files('docs-site/content/getting-started')) add(file, `/getting-started/${path.basename(file,'.md')}/`, 'getting-started');
+// The quickstart is ProudAuth's own install guide from the synced release tag.
+add('docs/operations/docker-compose.md', '/getting-started/quickstart/', 'getting-started', 'Docker quickstart');
 for (const file of files('docs-site/content/sdks')) add(file, `/sdks/${path.basename(file,'.md')}/`, 'sdks');
 for (const file of files('docs-site/content/reference')) add(file, `/reference/${path.basename(file,'.md')}/`, 'reference');
 for (const [folder,group] of [['protocols','protocols'],['integrations','integrations'],['operations','operations'],['architecture-decisions','architecture'],['threat-models','security']]) {
   for (const file of files(`docs/${folder}`)) {
+    if (file === 'docs/operations/docker-compose.md') continue; // published as the quickstart
     add(file, `/${group}/${path.basename(file,'.md') === 'README' ? '' : path.basename(file,'.md')+'/'}`, group);
   }
 }
@@ -53,10 +63,11 @@ const sourceRoutes = new Map(pages.map(p => [p.source,p.route]));
 sourceRoutes.set('README.md','/getting-started/overview/');
 sourceRoutes.set('docs/plan.md','/reference/capabilities/');
 sourceRoutes.set('docs/requirements-traceability.md','/reference/capabilities/');
-sourceRoutes.set('docker-deploy/README.md','/getting-started/quickstart/');
+sourceRoutes.set('deploy/README.md','/getting-started/quickstart/');
 
 const contract = yaml.load(read('api/openapi/proudauth.yaml'));
 contract.servers[0].variables.origin.default = config.exampleIdentityOrigin;
+delete contract.info.license.identifier; // OpenAPI 3.1: url and identifier are exclusive
 contract.info.license.url = `${config.docsOrigin}/reference/license/`;
 const methods = ['get','post','put','patch','delete','options','head'];
 const operations = [];
@@ -100,7 +111,7 @@ function resolveLink(href, source) {
   const [clean] = file.split('?');
   const relative = path.posix.normalize(path.posix.join(path.posix.dirname(source),clean));
   const route = sourceRoutes.get(relative);
-  if (route) return {href:route+(fragment && !['README.md','docs/plan.md','docs/requirements-traceability.md','docker-deploy/README.md'].includes(relative) ? '#'+fragment : '')};
+  if (route) return {href:route+(fragment && !['README.md','docs/plan.md','docs/requirements-traceability.md','deploy/README.md'].includes(relative) ? '#'+fragment : '')};
   const asset = publishFile(relative);
   if (asset) return {href:asset};
   omitted.add(relative);
@@ -156,7 +167,7 @@ function layout(page,html,toc=[],extra='') {
   return `<!doctype html><html lang="en" data-docs-base="${config.docsBasePath}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(page.title)} · ProudAuth Docs</title><meta name="description" content="${esc(description)}"><meta name="color-scheme" content="light dark"><link rel="canonical" href="${config.docsOrigin}${page.route}"><meta property="og:title" content="${esc(page.title)} · ProudAuth"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script></head><body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar"><a href="/" class="brand">${logo}<strong>ProudAuth</strong><span>Docs</span></a><nav aria-label="Top navigation"><a href="/getting-started/quickstart/">Guides</a><a href="/api/">API reference</a><a href="/sdks/overview/">SDKs</a></nav><div class="top-actions"><button class="search-open" type="button">⌕ <span>Search docs</span><kbd>⌘ K</kbd></button><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button><button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button></div></header>
-  <aside class="sidebar" id="navigation"><a class="workspace" href="/"><span class="workspace-mark">PA</span><span>Developer documentation<small>${esc(config.version)}</small></span></a><nav aria-label="Documentation navigation">${nav(page)}</nav><div class="sidebar-bottom"><a href="${config.homeOrigin}">Project website ↗</a><a href="${config.serviceRepository}">Source code ↗</a></div></aside>
+  <aside class="sidebar" id="navigation"><a class="workspace" href="/"><span class="workspace-mark">PA</span><span>Developer documentation<small>${esc(versionLabel)}</small></span></a><nav aria-label="Documentation navigation">${nav(page)}</nav><div class="sidebar-bottom"><a href="${config.homeOrigin}">Project website ↗</a><a href="${config.serviceRepository}">Source code ↗</a></div></aside>
   <div class="reader-layout"><main id="main" class="content ${extra}"><div class="breadcrumb"><span>Documentation</span><span>/</span><span>${esc(section)}</span></div><article>${html}</article><nav class="page-turns" aria-label="Adjacent pages">${previous ? `<a href="${previous.route}"><small>← Previous</small>${esc(previous.title)}</a>` : '<span></span>'}${next ? `<a href="${next.route}"><small>Next →</small>${esc(next.title)}</a>` : ''}</nav><footer class="page-footer"><span>ProudAuth · Self-hosted identity</span><span>Built ${builtAt.slice(0,10)} · ${esc(revision)} · content snapshot</span></footer></main><aside class="toc" aria-label="On this page"><strong>On this page</strong>${toc.slice(0,36).map(t=>`<a href="#${esc(t.id)}" class="toc-depth-${t.depth}">${esc(t.text)}</a>`).join('')}<a class="toc-bottom" href="/getting-started/troubleshooting/">Need a hand? Troubleshooting →</a></aside></div>
   <dialog id="search-dialog" aria-label="Search documentation"><div class="search-top"><span>⌕</span><input type="search" id="search-input" aria-label="Search documentation" placeholder="Search guides, SDKs and endpoints…" autocomplete="off"><button class="search-close" aria-label="Close search">Esc</button></div><div id="search-results" role="list" aria-live="polite"><p>Search all guides and the API contract.</p></div><div class="search-help">↑ ↓ to navigate <span>Enter to open · Esc to close</span></div></dialog><div id="notice" role="status" aria-live="polite"></div></body></html>`;
 }
@@ -243,7 +254,7 @@ const highlights = [
   ['05','Connect your systems','Federation, SCIM, webhooks and workflows.','/integrations/'],
   ['06','Operate with confidence','Keys, monitoring, backups and restore.','/operations/']
 ];
-const homepage = `<div class="eyebrow"><span class="live-dot"></span> PROUDAUTH DOCUMENTATION</div><h1 class="hero-title">Identity,<br>on your terms<span>.</span></h1><p class="hero-lead">Build secure sign-in and access control.<br>Keep your identity infrastructure in your hands.</p><div class="action-row"><a class="primary-button" href="/getting-started/quickstart/">Get started <span>→</span></a><a class="secondary-button" href="/api/">Explore the API</a></div><div class="hero-terminal"><div class="terminal-title"><span>● ● ●</span><span>Your first connection</span><span>HTTPS</span></div><pre><code><span class="token-comment"># Discover the identity provider</span>\ncurl --fail \\\n  ${config.exampleIdentityOrigin}/realms/main/.well-known/openid-configuration</code></pre><div class="terminal-foot">Self-hosted · Go + PostgreSQL · Headless by design</div></div><h2 id="start-building">Find your path</h2><p>Everything you need to integrate, deploy and operate ProudAuth.</p><div class="card-grid">${highlights.map(([n,title,text,href])=>`<a class="guide-card" href="${href}"><span class="card-icon">${n}</span><h3>${title}</h3><p>${text}</p><span class="card-arrow">→</span></a>`).join('')}</div><div class="docs-stats"><span><strong>${pages.filter(p=>p.markdown).length}</strong> complete guides</span><span><strong>${operations.length}</strong> API operations</span><span><strong>5</strong> first-party SDKs</span></div><div class="callout"><strong>Know what you're building on.</strong><p>ProudAuth ${esc(config.releaseVersion)} is a pre-release. You run the identity service on your own infrastructure; this website hosts documentation only. SDK registry packages remain unpublished. Read the <a href="/reference/capabilities/">capabilities and boundaries</a> before deployment.</p></div><h2 id="popular-guides">A few useful next stops</h2><div class="link-list"><a href="/protocols/oauth-oidc-profile/">OAuth & OpenID Connect profile <span>→</span></a><a href="/operations/configuration/">Full configuration reference <span>→</span></a><a href="/operations/benchmarks/">Measured benchmark results <span>→</span></a><a href="/operations/backup-restore/">Backup & disaster recovery <span>→</span></a></div>`;
+const homepage = `<div class="eyebrow"><span class="live-dot"></span> PROUDAUTH DOCUMENTATION</div><h1 class="hero-title">Identity,<br>on your terms<span>.</span></h1><p class="hero-lead">Build secure sign-in and access control.<br>Keep your identity infrastructure in your hands.</p><div class="action-row"><a class="primary-button" href="/getting-started/quickstart/">Get started <span>→</span></a><a class="secondary-button" href="/api/">Explore the API</a></div><div class="hero-terminal"><div class="terminal-title"><span>● ● ●</span><span>Your first connection</span><span>HTTPS</span></div><pre><code><span class="token-comment"># Discover the identity provider</span>\ncurl --fail \\\n  ${config.exampleIdentityOrigin}/realms/main/.well-known/openid-configuration</code></pre><div class="terminal-foot">Self-hosted · Go + PostgreSQL · Headless by design</div></div><h2 id="start-building">Find your path</h2><p>Everything you need to integrate, deploy and operate ProudAuth.</p><div class="card-grid">${highlights.map(([n,title,text,href])=>`<a class="guide-card" href="${href}"><span class="card-icon">${n}</span><h3>${title}</h3><p>${text}</p><span class="card-arrow">→</span></a>`).join('')}</div><div class="docs-stats"><span><strong>${pages.filter(p=>p.markdown).length}</strong> complete guides</span><span><strong>${operations.length}</strong> API operations</span><span><strong>5</strong> first-party SDKs</span></div><div class="callout"><strong>Know what you're building on.</strong><p>ProudAuth ${esc(releaseVersion)} is ${prerelease ? 'a pre-release' : 'a release'}. You run the identity service on your own infrastructure; this website hosts documentation only. SDK registry packages remain unpublished. Read the <a href="/reference/capabilities/">capabilities and boundaries</a> before deployment.</p></div><h2 id="popular-guides">A few useful next stops</h2><div class="link-list"><a href="/protocols/oauth-oidc-profile/">OAuth & OpenID Connect profile <span>→</span></a><a href="/operations/configuration/">Full configuration reference <span>→</span></a><a href="/operations/benchmarks/">Measured benchmark results <span>→</span></a><a href="/operations/backup-restore/">Backup & disaster recovery <span>→</span></a></div>`;
 writePage(welcome,homepage,[{depth:2,id:'start-building',text:'Find your path'},{depth:2,id:'popular-guides',text:'Popular guides'}],'welcome');
 indexPage(welcome,'ProudAuth documentation getting started API SDK deployment integration');
 write('search-index.json',JSON.stringify(search));
@@ -252,9 +263,11 @@ write('api/openapi.json',JSON.stringify(contract,null,2));
 const sitemap = `<url><loc>${config.homeOrigin}/</loc></url>`+[welcome,...pages].map(p=>`<url><loc>${config.docsOrigin}${p.route}</loc></url>`).join('');
 write('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 write('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${config.docsOrigin}/sitemap.xml\n`);
+// The install guide moved to the quickstart; keep its former address working.
+write('operations/docker-compose/index.html',`<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Docker quickstart · ProudAuth Docs</title><link rel="canonical" href="${config.docsOrigin}/getting-started/quickstart/"><meta http-equiv="refresh" content="0; url=${config.docsBasePath}/getting-started/quickstart/"></head><body><a href="${config.docsBasePath}/getting-started/quickstart/">Docker quickstart</a></body></html>`);
 write('404.html',baseHtml(layout({title:'Page not found',group:'getting-started',route:'/404/'},'<h1>Page not found</h1><p>This address is not in the documentation. Search the guides or start from the overview.</p><a class="primary-button" href="/">Back to documentation →</a>')));
-write('build-info.json',JSON.stringify({builtAt,revision,source:lock.source,contentManifest:'content.lock.json',docsBasePath:config.docsBasePath,version:config.version,guides:pages.filter(p=>p.markdown).length,apiOperations:operations.length,apiGroups:tagGroups.size,pages:pages.length+1,publishedFiles:copied.size},null,2));
-const home = read('docs-site/assets/home.html').replaceAll('{{DOCS}}',config.docsBasePath).replaceAll('{{IDENTITY}}',config.exampleIdentityOrigin).replaceAll('{{SOURCE}}',config.serviceRepository).replaceAll('{{RELEASE}}',releaseUrl).replaceAll('{{VERSION}}',config.releaseVersion).replaceAll('{{OPERATIONS}}',String(operations.length));
+write('build-info.json',JSON.stringify({builtAt,revision,source:lock.source,contentManifest:'content.lock.json',docsBasePath:config.docsBasePath,version:versionLabel,release:lock.source.release,guides:pages.filter(p=>p.markdown).length,apiOperations:operations.length,apiGroups:tagGroups.size,pages:pages.length+1,publishedFiles:copied.size},null,2));
+const home = read('docs-site/assets/home.html').replaceAll('{{DOCS}}',config.docsBasePath).replaceAll('{{IDENTITY}}',config.exampleIdentityOrigin).replaceAll('{{SOURCE}}',config.serviceRepository).replaceAll('{{RELEASE}}',releaseUrl).replaceAll('{{VERSION}}',releaseVersion).replaceAll('{{OPERATIONS}}',String(operations.length));
 write('index.html',home,homeOutput);
 write('assets/site.css',read('docs-site/assets/site.css'),homeOutput);
 write('assets/favicon.svg',read('docs-site/assets/favicon.svg'),homeOutput);

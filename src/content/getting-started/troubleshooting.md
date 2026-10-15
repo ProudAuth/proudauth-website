@@ -7,6 +7,7 @@ Use a discovery or readiness URL when testing the identity hostname. A request t
 
 | Symptom | Check |
 | --- | --- |
+| `required variable ... is missing a value` | Docker Compose names the empty `.env` value; fill it in and start again. |
 | Reverse proxy `502` | Your identity service is running on the configured upstream address and port. Check Docker health and local `curl` before inspecting proxy settings. |
 | `421 misdirected_request` | The request's Host matches the configured canonical origin or a verified realm custom domain. |
 | `401` | Bearer credentials, token issuer/audience, token kind, expiry and any sender constraint. |

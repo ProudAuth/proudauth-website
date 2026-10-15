@@ -8,23 +8,28 @@ import {publicText} from './publication.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const args=new Map(process.argv.slice(2).map(arg=>{
-  const match=arg.match(/^--(service|sdk-root|service-commit)=(.+)$/);
-  if(!match)throw new Error('Usage: node scripts/sync-content.mjs --service=PATH --sdk-root=PATH [--service-commit=SHA]');
+  const match=arg.match(/^--(service|sdk-root|service-commit|release)=(.+)$/);
+  if(!match)throw new Error('Usage: node scripts/sync-content.mjs --service=PATH --sdk-root=PATH [--release=vX.Y.Z | --service-commit=SHA]');
   return [match[1],match[2]];
 }));
 if(!args.has('service')||!args.has('sdk-root'))throw new Error('Both explicit source paths are required.');
 const service=path.resolve(args.get('service'));
 const sdkRoot=path.resolve(args.get('sdk-root'));
-const serviceCommit=args.get('service-commit');
-if(serviceCommit&&!/^[a-f0-9]{40}$/.test(serviceCommit))throw new Error('Service commit must be a full SHA.');
 const git=(directory,...parameters)=>execFileSync('git',['-C',directory,...parameters],{maxBuffer:32*1024*1024});
+// A release tag is the normal input: its commit is pinned and the tag becomes
+// the website's version, so pages never carry a hand-edited version number.
+const release=args.get('release');
+if(release&&!/^v[0-9]+\.[0-9]+\.[0-9]+(?:-[A-Za-z0-9.-]+)?$/.test(release))throw new Error('Release must be a tag such as v1.2.3 or v1.2.3-alpha.1.');
+if(release&&args.has('service-commit'))throw new Error('Use either --release or --service-commit.');
+const serviceCommit=release?git(service,'rev-parse',`${release}^{commit}`).toString('utf8').trim():args.get('service-commit');
+if(serviceCommit&&!/^[a-f0-9]{40}$/.test(serviceCommit))throw new Error('Service commit must be a full SHA.');
 const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
 const lock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
 const prefix='content/snapshot/';
 const imported=new Map(lock.files.map(item=>[item.path,item]));
 const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
 const serviceFiles=lock.files.filter(item=>item.path.startsWith(prefix)&&!item.path.startsWith(prefix+'sdk/')).map(item=>item.path.slice(prefix.length));
-serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json');
+serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json','docs/protocols/api-conventions.md');
 for(const relative of new Set(serviceFiles)){
   if(!approved.test(relative)||relative.split('/').includes('..')||/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i.test(relative))throw new Error(`Disallowed source: ${relative}`);
   const bytes=serviceCommit?git(service,'show',`${serviceCommit}:${relative}`):fs.readFileSync(path.join(service,relative));
@@ -59,7 +64,7 @@ for(const language of ['go','node','dart','php','dotnet']){
 }
 lock.createdAt=new Date().toISOString();
 lock.state=serviceCommit?'commit-pinned-service-and-sdks':'service-workspace-and-commit-pinned-sdks';
-lock.source={description:serviceCommit?'Published service source commit':'Prepared service workspace; not yet pinned to a published service commit',head:serviceCommit||lock.source.head,dirty:!serviceCommit,commitPinned:!!serviceCommit};
+lock.source={description:release?`Published service release ${release}`:serviceCommit?'Published service source commit':'Prepared service workspace; not yet pinned to a published service commit',head:serviceCommit||lock.source.head,dirty:!serviceCommit,commitPinned:!!serviceCommit,...(release?{release}:{})};
 lock.files=[...imported.values()].sort((a,b)=>a.path.localeCompare(b.path));
 fs.writeFileSync(path.join(root,'content.lock.json'),JSON.stringify(lock,null,2)+'\n');
 console.log(`Imported ${lock.files.length} allowlisted inputs; service commitPinned=${!!serviceCommit}; five SDK commits pinned.`);
