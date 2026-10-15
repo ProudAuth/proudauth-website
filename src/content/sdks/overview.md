@@ -29,12 +29,12 @@ before selecting an adapter.
 ## Installation and maturity
 
 The five independent source repositories are public under
-[`proudbase`](https://github.com/proudbase):
-[Go](https://github.com/proudbase/proudauth-sdk-go),
-[Node](https://github.com/proudbase/proudauth-sdk-node),
-[Dart](https://github.com/proudbase/proudauth-sdk-dart),
-[PHP](https://github.com/proudbase/proudauth-sdk-php) and
-[.NET](https://github.com/proudbase/proudauth-sdk-dotnet).
+[`ProudAuth`](https://github.com/proudauth):
+[Go](https://github.com/proudauth/proudauth-sdk-go),
+[Node](https://github.com/proudauth/proudauth-sdk-node),
+[Dart](https://github.com/proudauth/proudauth-sdk-dart),
+[PHP](https://github.com/proudauth/proudauth-sdk-php) and
+[.NET](https://github.com/proudauth/proudauth-sdk-dotnet).
 
 The libraries retain development version 0.2.0. npm, Pub, Packagist and NuGet
 packages remain unpublished; the individual guides explain source installation

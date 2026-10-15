@@ -42,7 +42,7 @@ for(const relative of new Set(serviceFiles)){
     path:target,source:relative,sourceSha256:hash(bytes),sha256:hash(sanitized),
     matchesHead:!!serviceCommit&&bytes.equals(sanitized),redacted:!bytes.equals(sanitized),
     initialSourceSha256:previous?.initialSourceSha256||previous?.previousSourceSha256||previous?.sourceSha256||hash(bytes),
-    upstream:{repository:'https://github.com/proudbase/proudauth',commit:serviceCommit||null,path:relative,commitPinned:!!serviceCommit},
+    upstream:{repository:'https://github.com/proudauth/proudauth',commit:serviceCommit||null,path:relative,commitPinned:!!serviceCommit},
     ...(previous?.sourceSha256&&previous.sourceSha256!==hash(bytes)?{previousSourceSha256:previous.sourceSha256}:previous?.previousSourceSha256?{previousSourceSha256:previous.previousSourceSha256}:{})
   });
 }
@@ -52,9 +52,9 @@ for(const language of ['go','node','dart','php','dotnet']){
   const commit=git(directory,'rev-parse','HEAD').toString('utf8').trim();
   const remoteCommit=git(directory,'rev-parse','refs/remotes/origin/main').toString('utf8').trim();
   if(commit!==remoteCommit)throw new Error(`SDK ${language} must match its reviewed published origin/main snapshot.`);
-  const repository=`https://github.com/proudbase/proudauth-sdk-${language}`;
+  const repository=`https://github.com/proudauth/proudauth-sdk-${language}`;
   const remote=git(directory,'remote','get-url','origin').toString('utf8').trim().replace(/\.git$/,'');
-  if(remote!==repository)throw new Error(`Unexpected SDK upstream: ${language}`);
+  if(remote.toLowerCase()!==repository)throw new Error(`Unexpected SDK upstream: ${language}`);
   const bytes=git(directory,'show',`${commit}:README.md`);
   const target=`${prefix}sdk/${language}/README.md`;
   fs.mkdirSync(path.dirname(path.join(root,target)),{recursive:true});

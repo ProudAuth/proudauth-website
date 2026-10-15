@@ -5,12 +5,12 @@ with source-derived guides, a complete API reference and first-party SDK guides.
 The website is independent of the identity service checkout and builds offline.
 
 **Status:** public standalone source at
-[`proudbase/proudauth-website`](https://github.com/proudbase/proudauth-website).
+[`ProudAuth/proudauth-website`](https://github.com/proudauth/proudauth-website).
 The landing page and documentation publish to GitHub Pages at
 [`proudauth.com`](https://proudauth.com). This is a static project website.
 Operators deploy the identity service, database and worker on their own infrastructure.
 
-[![Website checks](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml/badge.svg)](https://github.com/proudbase/proudauth-website/actions/workflows/ci.yml)
+[![Website checks](https://github.com/proudauth/proudauth-website/actions/workflows/ci.yml/badge.svg)](https://github.com/proudauth/proudauth-website/actions/workflows/ci.yml)
 
 ## Build, check and preview
 
@@ -45,7 +45,7 @@ credential persistence are disabled in the explorer.
 
 The published site follows the latest ProudAuth release on its own. Every run of
 [`pages.yml`](.github/workflows/pages.yml) asks GitHub for the newest
-[proudbase/proudauth release](https://github.com/proudbase/proudauth/releases),
+[ProudAuth/proudauth release](https://github.com/proudauth/proudauth/releases),
 syncs the documentation from that release tag (`sync-content.mjs --release`),
 builds, checks and deploys. Nothing in this repository carries a version number:
 the landing page, the sidebar, the overview and the quickstart all take it from

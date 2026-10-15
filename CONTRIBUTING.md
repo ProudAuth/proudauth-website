@@ -4,8 +4,8 @@ Use Node.js 20.10 or newer. Node 24 is the CI target; no npm dependencies are
 installed. Run `npm run check` before opening a pull request.
 
 Edit website-owned copy in `src/content/` and layout/assets in `src/assets/`.
-Technical service guides and contracts belong in `proudbase/proudauth`;
-each SDK README belongs in its `proudbase/proudauth-sdk-*` repository. Imported
+Technical service guides and contracts belong in `ProudAuth/proudauth`;
+each SDK README belongs in its `ProudAuth/proudauth-sdk-*` repository. Imported
 files under `content/snapshot/` are reviewed snapshots: do not edit them silently.
 
 A content update must record the upstream repository and exact revision, import
