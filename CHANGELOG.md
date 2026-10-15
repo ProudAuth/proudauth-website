@@ -6,6 +6,15 @@ ProudAuth and keep their original source provenance.
 
 ## Unreleased
 
+### Changed
+
+- The landing page is one screen of graphics: your server at the centre with
+  web, mobile, API and services around it, four illustrated pillars (on your
+  server, private, free and open source, scales with you) and a single
+  "Start now" button to the Docker quickstart. No navigation links, no
+  external fonts or scripts; its own `assets/home.css`, with reduced-motion
+  support.
+
 ### Added
 
 - Deployment follows the latest ProudAuth release automatically: an hourly

@@ -17,13 +17,15 @@ const read=relative=>fs.readFileSync(path.join(output,relative),'utf8');
 
 test('landing, canonical guide URLs and every search result use the merged website',()=>{
   const home=read('index.html');
-  assert(home.includes('href="/docs"'));
-  assert(home.includes('href="/docs/sdks/overview/"'));
+  // One screen of graphics and a single call to action: no navigation links.
+  assert.deepEqual([...home.matchAll(/<a [^>]*href="([^"]+)"/g)].map(m=>m[1]),['/','/docs/getting-started/quickstart/']);
+  assert(home.includes('>Start now <'));
+  assert(fs.existsSync(path.join(output,'assets/home.css')));
+  assert(!/src="https?:|<link (?![^>]*rel="canonical")[^>]*href="https?:/.test(home),'The landing page loads nothing from other origins');
   const sourceLock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
   const release=sourceLock.source.release;
   assert.match(release,/^v[0-9]+\.[0-9]+\.[0-9]+/,'The website version comes from a synced ProudAuth release');
-  assert(home.includes(`href="https://github.com/proudbase/proudauth/releases/tag/${release}"`));
-  assert(home.includes(`docker pull ghcr.io/proudbase/proudauth:${release.slice(1)}`));
+  assert(home.includes(`· ${release.slice(1)}</`),'The landing page shows the synced release');
   assert(!/\{\{[A-Z_]+\}\}/.test(home),'Release placeholders must be filled');
   assert(!home.includes('init.sh'),'The landing page must show the docker-compose.yaml + .env installer');
   assert(!home.includes('api.proudauth.com'));
