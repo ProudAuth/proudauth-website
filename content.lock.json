@@ -1,12 +1,13 @@
 {
   "formatVersion": 1,
-  "createdAt": "2026-10-15T14:54:57.125Z",
+  "createdAt": "2026-10-15T15:10:59.718Z",
   "state": "commit-pinned-service-and-sdks",
   "source": {
-    "description": "Published service source commit",
+    "description": "Published service release v0.2.0-alpha.2",
     "head": "9fdc0c76290239c1b62c2f2a108ed863e35a0e68",
     "dirty": false,
-    "commitPinned": true
+    "commitPinned": true,
+    "release": "v0.2.0-alpha.2"
   },
   "policy": {
     "redactions": [

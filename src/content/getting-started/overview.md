@@ -12,8 +12,8 @@ worker; no message broker or object store is needed.
 
 | Your goal | Start here |
 | --- | --- |
-| Run your own instance | [Docker quickstart](quickstart.md) |
-| Configure production | [Docker Compose installation](../../../docs/operations/docker-compose.md) and [environment variables](../../../docs/operations/environment.md) |
+| Run your own instance | [Docker quickstart](../../../docs/operations/docker-compose.md) |
+| Configure production | [Environment variables](../../../docs/operations/environment.md) |
 | Add browser sign-in | [Backend-for-frontend](../../../docs/integrations/backend-for-frontend.md) |
 | Build your own sign-in UI | [Headless authentication](../../../docs/protocols/headless-authentication.md) |
 | Protect an API | [Resource-server integration](../../../docs/integrations/resource-servers.md) |
@@ -40,9 +40,9 @@ identity API is not a login page.
 
 ## Release status
 
-The service release is **0.2.0-alpha.2**, a pre-release with no completed
+The service release is **{{VERSION}}**, {{RELEASE_KIND}} with no completed
 independent security review. Its image and two-file Compose installer are on
-[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.2).
+[GitHub Releases]({{RELEASE_URL}}).
 The five SDKs are installed from their public source repositories; registry
 packages are not published yet. There is no ProudAuth-hosted identity endpoint:
 your identity API runs on your infrastructure.
