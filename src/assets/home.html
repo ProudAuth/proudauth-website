@@ -9,23 +9,22 @@
 <div class="eyebrow"><span class="live-dot"></span> SELF-HOSTED IDENTITY INFRASTRUCTURE</div>
 <h1 class="hero-title">Your users.<br>Your identity.<br>Your control<span>.</span></h1>
 <p class="hero-lead">Sign-in, organizations and access decisions.<br>Built in Go. Run on your infrastructure.</p>
-<div class="action-row"><a class="primary-button" href="{{DOCS}}/operations/docker-compose/">Deploy with Docker →</a><a class="secondary-button" href="{{RELEASE}}">Download v{{VERSION}} ↗</a></div>
+<div class="action-row"><a class="primary-button" href="{{DOCS}}/getting-started/quickstart/">Deploy with Docker →</a><a class="secondary-button" href="{{RELEASE}}">Download v{{VERSION}} ↗</a></div>
 <p class="small" style="color:var(--muted);margin-top:18px">Open source · Apache-2.0 · Pre-release {{VERSION}}</p>
 </section><div><div class="hero-terminal"><div class="terminal-title"><span>● ● ●</span><span>Deploy your own instance</span><span>DOCKER</span></div><pre><code><span class="token-comment"># Pull the versioned identity image</span>
 docker pull ghcr.io/proudbase/proudauth:{{VERSION}}
 
-<span class="token-comment"># In the extracted release Compose bundle</span>
-./init.sh demo
+<span class="token-comment"># Fill in .env beside docker-compose.yaml</span>
 docker compose up -d --wait
 
 <span class="token-comment"># Your backend. Your runtime.</span>
-Go · Node.js · Dart · PHP · .NET</code></pre><div class="terminal-foot">Server + worker + PostgreSQL · Headless by design</div></div>
+Go · Node.js · Dart · PHP · .NET</code></pre><div class="terminal-foot">One image + .env · Headless by design</div></div>
 <p class="small" style="color:var(--muted);margin-top:20px">{{OPERATIONS}} documented API operations.<br>One consistent contract for users, tenants and workloads.</p></div></div>
 <section class="home-features">
 <div><small>01 / AUTHENTICATE</small><h3>Make sign-in your own.</h3><p>OAuth/OIDC, PKCE, passkeys and MFA. Build your own login interface around the headless authentication API.</p><a href="{{DOCS}}/protocols/headless-authentication/">Explore authentication →</a></div>
 <div><small>02 / AUTHORIZE</small><h3>Respect every boundary.</h3><p>Organizations, roles and permissions. Validate the audience and tenant context before your API returns data.</p><a href="{{DOCS}}/integrations/resource-servers/">Protect a resource server →</a></div>
-<div><small>03 / OPERATE</small><h3>Keep the keys to your system.</h3><p>Self-hosted processes and PostgreSQL. Runbooks cover environment settings, key custody, backups, restore drills and measured capacity.</p><a href="{{DOCS}}/operations/environment/">Configure your deployment →</a></div>
+<div><small>03 / OPERATE</small><h3>Keep the keys to your system.</h3><p>One image next to your PostgreSQL. Runbooks cover settings, keys, backups and capacity.</p><a href="{{DOCS}}/operations/environment/">Configure your deployment →</a></div>
 </section>
-<div class="callout"><strong>Your infrastructure. Your identity endpoint.</strong><p>ProudAuth runs on your servers. This project website provides documentation and release downloads; your applications connect to your own instance. The alpha release has no completed independent security review or conformance certification. <a href="{{DOCS}}/reference/capabilities/">Review tested capabilities.</a></p></div>
+<div class="callout"><strong>Your infrastructure. Your identity endpoint.</strong><p>ProudAuth runs on your servers; this website only hosts documentation and downloads. Pre-release: no independent security review yet. <a href="{{DOCS}}/reference/capabilities/">Review tested capabilities.</a></p></div>
 </main><footer class="home-footer"><span>ProudAuth · Self-hosted identity</span><span><a href="{{DOCS}}/operations/benchmarks/">Benchmarks</a> · <a href="{{DOCS}}/reference/license/">License & notices</a> · <a href="{{SOURCE}}">Source code</a></span></footer>
 </body></html>

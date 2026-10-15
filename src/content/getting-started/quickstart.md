@@ -1,117 +1,72 @@
 # Docker quickstart
 
-Run your own ProudAuth server, worker and PostgreSQL database from the versioned
-release installer. No Go compiler or source checkout is required. This project
-website hosts documentation; your applications connect to the instance you deploy.
+ProudAuth is one container image configured by environment variables. The
+release installer is two files, `docker-compose.yaml` and `.env`. Your
+PostgreSQL, HTTPS reverse proxy and SMTP relay stay yours; this website only
+hosts documentation, and your applications connect to the instance you deploy.
 
-## Requirements
-
-Docker Engine/Desktop, Docker Compose v2 with `--wait`, POSIX `sh`, Python 3.9+
-and free local ports. Your application supplies its browser sign-in interface.
-The `0.2.0-alpha.1` release is a pre-release.
-
-## Download the release bundle
-
-Download `proudauth-v0.2.0-alpha.1-compose.tar.gz` and `SHA256SUMS` from
-[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1).
-Follow the [checksum verification example](../../../docs/operations/docker-compose.md#download-and-verify)
-before extracting. With the GitHub CLI installed:
+## 1. Download
 
 ```sh
-gh release download v0.2.0-alpha.1 --repo proudbase/proudauth \
-  --pattern 'proudauth-v0.2.0-alpha.1-compose.tar.gz' --pattern SHA256SUMS
-# Verify the downloaded archive against SHA256SUMS before extracting.
-tar -xzf proudauth-v0.2.0-alpha.1-compose.tar.gz
-cd proudauth-v0.2.0-alpha.1-compose
+VERSION=v0.2.0-alpha.2
+gh release download "$VERSION" --repo proudbase/proudauth \
+  --pattern "proudauth-$VERSION-compose.tar.gz" --pattern SHA256SUMS
+grep " proudauth-$VERSION-compose.tar.gz\$" SHA256SUMS | sha256sum -c -
+tar -xzf "proudauth-$VERSION-compose.tar.gz" && cd "proudauth-$VERSION-compose"
 ```
 
-The bundle supplies `docker-compose.yaml`, environment examples and initialization
-scripts. Keep the files together. Put your `.env` beside `docker-compose.yaml`;
-[all 19 settings and secret files](../../../docs/operations/environment.md) are documented.
+## 2. Fill in `.env`
 
-## Pull and start a local evaluation
+| Variable | Value |
+| --- | --- |
+| `PROUDAUTH_PUBLIC_ORIGIN` | Your HTTPS origin, for example `https://identity.example.com` |
+| `PROUDAUTH_DATABASE_URL` | `postgres://USER:PASSWORD@HOST:5432/DB?sslmode=require` |
+| `PROUDAUTH_ROOT_KEY` | `openssl rand -hex 32`; back it up with the database |
+| `PROUDAUTH_SMTP_HOST`, `PROUDAUTH_SMTP_USERNAME`, `PROUDAUTH_SMTP_PASSWORD`, `PROUDAUTH_EMAIL_FROM` | Your SMTP relay |
+
+[Every variable](../../../docs/operations/environment.md) is documented.
+
+## 3. Start
 
 ```sh
-docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1
-./init.sh demo
-docker compose config --quiet
-docker compose pull
+chmod 600 .env
 docker compose up -d --wait
-PA_ORIGIN=$(python3 -c 'import json; print(json.load(open("config.yaml"))["server"]["public_origin"])')
-curl --fail "$PA_ORIGIN/health/ready"
 ```
 
-The initializer creates `.env`, private file-backed secrets and the configuration.
-The demo profile binds the API and operator listener to loopback, with a private
-development email sink. Its database has no host port. Choose other ports in
-`.env` if needed, update the matching origin, then rerun `./init.sh demo`.
-
-The Docker Hub mirror is
-`docker.io/mohamadalialghanem/proudauth:0.2.0-alpha.1`.
-Set `PROUDAUTH_IMAGE` in `.env` to that reference before initialization if desired.
-Published release digests are the authority for immutable deployment pins.
-
-## Create your realm and administrator
+Migrations run and the `main` realm is created on the first start. Point your
+reverse proxy at `127.0.0.1:8080`, then check discovery:
 
 ```sh
-docker compose exec server /usr/local/bin/identity-cli realm-create -name main
-docker compose exec server /usr/local/bin/identity-cli bootstrap \
-  -realm main -email admin@example.test -username root-admin
+curl --fail https://identity.example.com/realms/main/.well-known/openid-configuration
 ```
 
-The following setup and login commands assume the default host port **8080**.
-For another host port, use the checksum-verified released CLI on your host as
-shown in [nondefault local ports](../../../docs/operations/docker-compose.md#nondefault-local-ports).
-Keep its URL equal to the canonical origin; the server's internal container
-port remains 8080.
+## 4. Create the first administrator
 
 ```sh
-docker compose exec server /usr/local/bin/identity-cli setup-account \
-  --url "$PA_ORIGIN" --realm main
-docker compose exec server /usr/local/bin/identity-cli login \
-  --url "$PA_ORIGIN" --realm main
+docker compose exec server identity-cli bootstrap -realm main -email you@example.com -username admin
+docker compose exec server identity-cli setup-account --url https://identity.example.com --realm main
+docker compose exec server identity-cli login --url https://identity.example.com --realm main
 ```
 
-Create the realm once. Keep bootstrap's one-time setup token private; there is
-no default administrator password. Setup prompts for the token and a password.
-Use `root-admin` at the first login-name prompt; the bootstrap email becomes a
-sign-in identifier after verification. First sign-in requires TOTP enrollment
-and email verification. The demo mailbox
-is available only on your host's private operator listener; see the complete
-[Compose guide](../../../docs/operations/docker-compose.md#local-evaluation).
+The first sign-in enrolls an authenticator app (TOTP) and verifies the email
+address.
+
+## Try it on your machine first
+
+The service repository's `deploy/dev` adds PostgreSQL and a mail catcher, with
+nothing to fill in:
 
 ```sh
-curl --fail "$PA_ORIGIN/realms/main/.well-known/openid-configuration"
-curl --fail "$PA_ORIGIN/realms/main/jwks"
+git clone https://github.com/proudbase/proudauth.git
+cd proudauth/deploy/dev
+docker compose up -d --build --wait
 ```
 
-Configure clients with discovery's exact issuer. A process-origin change does
-not rewrite stored realm issuers or application configuration.
+The API is at `http://localhost:8080` and every email at `http://localhost:8025`.
 
-## Move to production
+## Next steps
 
-Use a fresh installation directory and choose your own HTTPS issuer before
-creating the realm. Copy `.env.example` to `.env`, replace the public origin and
-SMTP values, supply the SMTP password privately and run `./init.sh production`.
-The [production procedure](../../../docs/operations/docker-compose.md#production-configuration)
-covers the reverse proxy, separated database roles, backups and first sign-in.
-Read the [environment reference](../../../docs/operations/environment.md) before editing settings.
-
-For a full example, your application would discover
-`https://identity.example.com/realms/main/.well-known/openid-configuration`,
-where `identity.example.com` represents your domain, not a ProudAuth-hosted API.
-
-## Integrate and operate
-
-Register the application's client, exact redirect URI and API audience. Use
-[authorization code with PKCE](../../../docs/protocols/oauth-oidc-profile.md)
-for users and [client credentials](../../../docs/integrations/machine-clients.md)
-for workloads. Supply your own login UI or BFF and choose a deliberate
-[SDK validation profile](../sdks/overview.md).
-
-`docker compose down` keeps the database volume. Adding `-v` permanently deletes
-that installation's identity data. Review [backup/restore](../../../docs/operations/backup-restore.md),
-[key custody](../../../docs/operations/keys.md) and [upgrades](../../../docs/operations/upgrades.md).
-
-Contributors can instead build from source with `make image VERSION=0.2.0-dev`
-in the [service repository](https://github.com/proudbase/proudauth).
+- [Compose installation guide](../../../docs/operations/docker-compose.md): reverse proxy, upgrades and limits.
+- [Authorization code with PKCE](../../../docs/protocols/oauth-oidc-profile.md) for users,
+  [client credentials](../../../docs/integrations/machine-clients.md) for workloads.
+- [SDKs](../sdks/overview.md) for Go, Node.js, Dart, PHP and .NET.

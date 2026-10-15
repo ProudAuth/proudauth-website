@@ -24,7 +24,7 @@ const prefix='content/snapshot/';
 const imported=new Map(lock.files.map(item=>[item.path,item]));
 const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
 const serviceFiles=lock.files.filter(item=>item.path.startsWith(prefix)&&!item.path.startsWith(prefix+'sdk/')).map(item=>item.path.slice(prefix.length));
-serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json');
+serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json','docs/protocols/api-conventions.md');
 for(const relative of new Set(serviceFiles)){
   if(!approved.test(relative)||relative.split('/').includes('..')||/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i.test(relative))throw new Error(`Disallowed source: ${relative}`);
   const bytes=serviceCommit?git(service,'show',`${serviceCommit}:${relative}`):fs.readFileSync(path.join(service,relative));

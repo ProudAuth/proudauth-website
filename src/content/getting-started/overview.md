@@ -4,10 +4,9 @@ ProudAuth is a self-hosted identity provider written in Go. It handles identitie
 sign-in, tokens, organizations and access decisions while your applications keep
 control of their interfaces and business data.
 
-Run the identity server, background worker and PostgreSQL yourself. The worker
-delivers notifications and webhooks, processes durable jobs and manages key
-lifecycle. PostgreSQL holds durable state; no message broker or object store is
-required for the core deployment. Production email requires an SMTP relay.
+You run one container image, configured by environment variables, next to your
+own PostgreSQL and SMTP relay. It runs the identity server and a background
+worker; no message broker or object store is needed.
 
 ## Choose your starting point
 
@@ -39,17 +38,11 @@ API. There is no built-in hosted browser login or administration console. Supply
 your own login interface or integrate a backend-for-frontend. The root of the
 identity API is not a login page.
 
-## Know the release status
+## Release status
 
-The service release is **0.2.0-alpha.1**, an explicit pre-release. Download its
-versioned image and source-free Compose installer from
-[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1).
-The five SDKs have independent public source repositories; npm, Pub, Packagist
-and NuGet packages remain unpublished. Use their documented source installation.
-
-`proudauth.com` is the static project website. Your identity API, database,
-email relay and application sign-in interface run on your infrastructure.
-There is no ProudAuth-operated hosted identity endpoint or availability SLA.
-See [compatibility](../../../docs/protocols/compatibility.md),
-[interoperability](../../../docs/integrations/interoperability.md) and
-[security checks](../../../docs/operations/security-checks.md) for measured scope.
+The service release is **0.2.0-alpha.2**, a pre-release with no completed
+independent security review. Its image and two-file Compose installer are on
+[GitHub Releases](https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.2).
+The five SDKs are installed from their public source repositories; registry
+packages are not published yet. There is no ProudAuth-hosted identity endpoint:
+your identity API runs on your infrastructure.

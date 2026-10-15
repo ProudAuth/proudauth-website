@@ -1,10 +1,10 @@
 {
   "formatVersion": 1,
-  "createdAt": "2026-10-13T20:42:07.007Z",
+  "createdAt": "2026-10-15T13:18:20.678Z",
   "state": "commit-pinned-service-and-sdks",
   "source": {
     "description": "Published service source commit",
-    "head": "d9cc813ae809a9e02314130030872cc5440897dd",
+    "head": "222805327e872d3d327ff3bf11b93ab20b6387c0",
     "dirty": false,
     "commitPinned": true
   },
@@ -25,7 +25,7 @@
       "initialSourceSha256": "065d4004fd464630dddb99902f415200f2ec24d2e8c2b62780fdf3ff17e5f521",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/authorization.role.assigned.v1.json",
         "commitPinned": true
       }
@@ -40,7 +40,7 @@
       "initialSourceSha256": "ec07f22c907c35fc96bf876b65d326f8898b9f70d92f1eeef0f3af98e75309da",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/authorization.role.assigned.v2.json",
         "commitPinned": true
       }
@@ -55,7 +55,7 @@
       "initialSourceSha256": "83d322317e8aa67e3bd5184e353b5dd9f489cf566da7192b889e85bff476483e",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/authorization.role.unassigned.v1.json",
         "commitPinned": true
       }
@@ -70,7 +70,7 @@
       "initialSourceSha256": "d65b198512f7d638c6ba773294565cd0254393b08e4386865eb61552da25a2fb",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/authorization.role.unassigned.v2.json",
         "commitPinned": true
       }
@@ -85,7 +85,7 @@
       "initialSourceSha256": "7cb652ce107a70867498b97f3b8d1c1f7c0a903c9d8cd86fdad932dbee052891",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/client.state_changed.v1.json",
         "commitPinned": true
       }
@@ -100,7 +100,7 @@
       "initialSourceSha256": "87efc28c0ebcf2e42fafa896cec6a1265604cbca881c738ca96a0743aa1bd80b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/client.state_changed.v2.json",
         "commitPinned": true
       }
@@ -115,7 +115,7 @@
       "initialSourceSha256": "63cb5ab38be252a7f75acd4aafeb23125c28492bde81acffdaa5b1de7f495729",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/envelope.v1.json",
         "commitPinned": true
       }
@@ -130,7 +130,7 @@
       "initialSourceSha256": "cfae6eb340113a017d4631c75f18b8a6ec1df204ff632577b6fd14928e6535df",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/envelope.v2.json",
         "commitPinned": true
       }
@@ -145,7 +145,7 @@
       "initialSourceSha256": "b336063689e82dee868d8fd2246c0086dea9198ebefda9074b48d62f33ad3a39",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.archived.v1.json",
         "commitPinned": true
       }
@@ -160,7 +160,7 @@
       "initialSourceSha256": "9ea852140e9bc1126466cf63053daa45f674994807284814ab0bf0ea604ed059",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.archived.v2.json",
         "commitPinned": true
       }
@@ -175,7 +175,7 @@
       "initialSourceSha256": "6e6da41b05ff357be77ca651414f346d2cc3b765d84a45d43d1fe09679bec6f4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.created.v1.json",
         "commitPinned": true
       }
@@ -190,7 +190,7 @@
       "initialSourceSha256": "0529e9998ca225d8780d8da01f5dec89926fef7aad2acb374c9fc0959e22d410",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.created.v2.json",
         "commitPinned": true
       }
@@ -205,7 +205,7 @@
       "initialSourceSha256": "0d9c038f8bb23cbb6f401756ffe481b85c051598c836a2f35844eb63602dd8e2",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.deleted.v1.json",
         "commitPinned": true
       }
@@ -220,7 +220,7 @@
       "initialSourceSha256": "e2423c117f7749465b18f6d5aa3ab6dc7685da668463d3f0b33363400079c7af",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.deleted.v2.json",
         "commitPinned": true
       }
@@ -235,7 +235,7 @@
       "initialSourceSha256": "f9c40e52d3dffef8d715cdefb425d4bd34eff6222a5125f583b36f9724a86e91",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.invitation.created.v1.json",
         "commitPinned": true
       }
@@ -250,7 +250,7 @@
       "initialSourceSha256": "221c7c755648dbf658f9145ae5965b7b4865f1769ba945d8df898badb5bc9277",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.invitation.created.v2.json",
         "commitPinned": true
       }
@@ -265,7 +265,7 @@
       "initialSourceSha256": "e6a9088e35410a112d8236d1930e6fd3719b246bdf9b13f5a8da8ef5db11419b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.join_request.created.v1.json",
         "commitPinned": true
       }
@@ -280,7 +280,7 @@
       "initialSourceSha256": "75c3a674230bb681b76ed12d39a3eae801438ea9b335af7f4dd0772cb96e3994",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.join_request.created.v2.json",
         "commitPinned": true
       }
@@ -295,7 +295,7 @@
       "initialSourceSha256": "6ea8616a79432f6c81cef11d74a4eed3197feeab36088a9467bcadbefa76072c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.added.v1.json",
         "commitPinned": true
       }
@@ -310,7 +310,7 @@
       "initialSourceSha256": "228dcfbc36744526e99567c296fac3d7c19696c478ba25d25fb31ca6d404d9c2",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.added.v2.json",
         "commitPinned": true
       }
@@ -325,7 +325,7 @@
       "initialSourceSha256": "cb19e77d8be6ff891ed4a36710480e354355f4cab887c96064581fa4af6c40d3",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.reactivated.v1.json",
         "commitPinned": true
       }
@@ -340,7 +340,7 @@
       "initialSourceSha256": "91f2598d3b9497bb249a1e499fc3842831be02226c6e1dca51eaa5fcd646e57d",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.reactivated.v2.json",
         "commitPinned": true
       }
@@ -355,7 +355,7 @@
       "initialSourceSha256": "943acde0fce645055660ead454685af8df0b48a913370e9ba02a2150e7d08918",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.removed.v1.json",
         "commitPinned": true
       }
@@ -370,7 +370,7 @@
       "initialSourceSha256": "2c4490c1141d3284e33abda4189eddd1bb7c94d58e2009b7db12dbe8aea84f36",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.removed.v2.json",
         "commitPinned": true
       }
@@ -385,7 +385,7 @@
       "initialSourceSha256": "e8e98e6b526cb844faf39cbba7a68aa8c424f8eb3829b1a827682060f582ea65",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.suspended.v1.json",
         "commitPinned": true
       }
@@ -400,7 +400,7 @@
       "initialSourceSha256": "772dc22c9c2afd89958e45f0fe82787fd948c5c70979353930ad35d7fc3eb5c5",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.membership.suspended.v2.json",
         "commitPinned": true
       }
@@ -415,7 +415,7 @@
       "initialSourceSha256": "bcefee69d9ca20abaadd926341dd13de52372cd4d5850181444b73f114450940",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.reactivated.v1.json",
         "commitPinned": true
       }
@@ -430,7 +430,7 @@
       "initialSourceSha256": "babea585eeac1c3bf13f266513b42ea67071cf69e488cdbfb2e455099318990b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.reactivated.v2.json",
         "commitPinned": true
       }
@@ -445,7 +445,7 @@
       "initialSourceSha256": "71e040aa1a1ab995d5ebceb87833dbfaa96153711475fdcf99a23dd467a9d717",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.suspended.v1.json",
         "commitPinned": true
       }
@@ -460,7 +460,7 @@
       "initialSourceSha256": "42dd9dbe6d3620bac0a68c2c8adf68ce8333a01ef47b6177f9a17ed136df537f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/organization.suspended.v2.json",
         "commitPinned": true
       }
@@ -475,7 +475,7 @@
       "initialSourceSha256": "b8d705d1f9afeee65375445c56a159eff7438424a039649f2f62d86d5f328ecf",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/README.md",
         "commitPinned": true
       }
@@ -490,7 +490,7 @@
       "initialSourceSha256": "b43bf1f3347b20dbbc2274300517d553ec88867796fcb1a4ff1a7f35ffe89bc6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.alert.v1.json",
         "commitPinned": true
       }
@@ -505,7 +505,7 @@
       "initialSourceSha256": "f6bef0a4d7476238f21a87f8b97443a95cd83940959ac06850e4b31d17d236f7",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.alert.v2.json",
         "commitPinned": true
       }
@@ -520,7 +520,7 @@
       "initialSourceSha256": "4f7766695e0ab6a69d318a89e1365c67746dc11078f467e4ccaa8677437eba77",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.credential_compromised.v1.json",
         "commitPinned": true
       }
@@ -535,7 +535,7 @@
       "initialSourceSha256": "d161a573228602303b1d2a717b3eeb1381f0ae46ae57d41040006073be9b7cca",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.credential_compromised.v2.json",
         "commitPinned": true
       }
@@ -550,7 +550,7 @@
       "initialSourceSha256": "a5814753fed6bb617e17c20356694423d638c3bde43cf889383f86775997ef83",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.refresh_reuse_detected.v1.json",
         "commitPinned": true
       }
@@ -565,7 +565,7 @@
       "initialSourceSha256": "785b2a768a624083b88d52e61317a471210fb7029fa125e3f10dba12cb8d8190",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/security.refresh_reuse_detected.v2.json",
         "commitPinned": true
       }
@@ -580,7 +580,7 @@
       "initialSourceSha256": "b1960696e3c13708f64058c32b51dc285ed777e076f2c437c83d6ff6f93b5019",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/service_principal.state_changed.v1.json",
         "commitPinned": true
       }
@@ -595,7 +595,7 @@
       "initialSourceSha256": "435f4ec993780f6af8d5d1d80342654a820aa244456c7b088453393d2a69f2e3",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/service_principal.state_changed.v2.json",
         "commitPinned": true
       }
@@ -610,7 +610,7 @@
       "initialSourceSha256": "f644c89b488a9e92a64a861d91d433da3f2cad8b873fd342377178c32e29ba80",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/session.revoked.v1.json",
         "commitPinned": true
       }
@@ -625,7 +625,7 @@
       "initialSourceSha256": "f766c2ce55ebf2e7f4fa9ff39c1a589e189435241baa9e06a3df2dd427c1f73f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/session.revoked.v2.json",
         "commitPinned": true
       }
@@ -640,7 +640,7 @@
       "initialSourceSha256": "91885c13ef46d3949c9e5912dc752e80ff2189d96ef7ac2a9583657c4b56c689",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/signing_key.rotated.v1.json",
         "commitPinned": true
       }
@@ -655,7 +655,7 @@
       "initialSourceSha256": "25d25d6274814042923ce2e8411cb09634cc7b07c3b69d681326d1f8e311b9a7",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/signing_key.rotated.v2.json",
         "commitPinned": true
       }
@@ -670,7 +670,7 @@
       "initialSourceSha256": "7da7d9f5f4417f22cde48269b23caadc154038e9b21d30b2289e53214c06ac39",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/support.impersonation.ended.v1.json",
         "commitPinned": true
       }
@@ -685,7 +685,7 @@
       "initialSourceSha256": "72497c2eb137978102e56cac4bd163ec2b079cbc89ba39321c2f5418d56f886a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/support.impersonation.ended.v2.json",
         "commitPinned": true
       }
@@ -700,7 +700,7 @@
       "initialSourceSha256": "5e02f0ad40233f1887afc1efa99fa29893e4f6cfbc855d1663714b13fac2b96f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/support.impersonation.started.v1.json",
         "commitPinned": true
       }
@@ -715,7 +715,7 @@
       "initialSourceSha256": "6e0ba4ec0555e72a225ffa207239053d6e19cebff4ef2639c77beb694e3dd662",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/support.impersonation.started.v2.json",
         "commitPinned": true
       }
@@ -730,7 +730,7 @@
       "initialSourceSha256": "83d651f1d9dcf5cd2fc461a6504a9b9f689f705dffbe504c741cd1a8021bc499",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.created.v1.json",
         "commitPinned": true
       }
@@ -745,7 +745,7 @@
       "initialSourceSha256": "cec42137beb1fc9aedab624d8785f6276f9592a01c92d3eea965fca32a52c018",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.created.v2.json",
         "commitPinned": true
       }
@@ -760,7 +760,7 @@
       "initialSourceSha256": "abba7e6ff04fbfa17fb1f1b81cf45769ee81ed371f2dcc6c657c8bc66d6ba394",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.deleted.v1.json",
         "commitPinned": true
       }
@@ -775,7 +775,7 @@
       "initialSourceSha256": "cbbe5e7ef21a37ec5d38cb2d659ea86de5f1e4a61f75aad529b02cc3d1df8722",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.deleted.v2.json",
         "commitPinned": true
       }
@@ -790,7 +790,7 @@
       "initialSourceSha256": "8865e7d4d57fbb33554a2f8939e3aadb5d93cf5915e03862e6d4bd8a11d5bd32",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.locked.v1.json",
         "commitPinned": true
       }
@@ -805,7 +805,7 @@
       "initialSourceSha256": "d8d917016344379abbc7d706dddc6c392f1c067d96f61f5392267fc298d76560",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.locked.v2.json",
         "commitPinned": true
       }
@@ -820,7 +820,7 @@
       "initialSourceSha256": "7d53d0c33dbeb682e79a92fd628f430fce6f026b12e68070613b0e15d02edc1a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.merged.v1.json",
         "commitPinned": true
       }
@@ -835,7 +835,7 @@
       "initialSourceSha256": "9b88dd0f7dc30f77ae914e6073b9d922c956f54bfb4914269f1b49a488f8e383",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.merged.v2.json",
         "commitPinned": true
       }
@@ -850,7 +850,7 @@
       "initialSourceSha256": "9672aaae4d849bcddf2498fc7264541f06ea1dbba0095b638baf791fe083d293",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.password_reset.v1.json",
         "commitPinned": true
       }
@@ -865,7 +865,7 @@
       "initialSourceSha256": "5d54bfef6fa2b344c4b58c3ad07dcaddb3e7a837edd25f426693ce371e1427c6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.password_reset.v2.json",
         "commitPinned": true
       }
@@ -880,7 +880,7 @@
       "initialSourceSha256": "d1dd057022efde9b5673e7f073e3e9fb5013a4f1a1fbcf0badc06183251a8f81",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.reactivated.v1.json",
         "commitPinned": true
       }
@@ -895,7 +895,7 @@
       "initialSourceSha256": "c026ef84c4e5fbe6ee63d9eb325e8a1542117c140fabace058298743f1d58f2b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.reactivated.v2.json",
         "commitPinned": true
       }
@@ -910,7 +910,7 @@
       "initialSourceSha256": "01a7e983b829cf8cab16fd6257d6bbef511ccb468c26980fcc13676d1b368171",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.recovery_restricted.v1.json",
         "commitPinned": true
       }
@@ -925,7 +925,7 @@
       "initialSourceSha256": "cd94ba65d31daa93fedc91375d6539359d4ac6ca233b7d9f5a2826785e6fed40",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.recovery_restricted.v2.json",
         "commitPinned": true
       }
@@ -940,7 +940,7 @@
       "initialSourceSha256": "0fc631b6efae35e9103b3e2f7c60f96ab309c2eb6f9a39cd3336488310f58a7c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.signed_in.v1.json",
         "commitPinned": true
       }
@@ -955,7 +955,7 @@
       "initialSourceSha256": "d4607df040acd46c0054ddb946068bc8b77f2e1ea75af9a0d658f81f73e06a83",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.signed_in.v2.json",
         "commitPinned": true
       }
@@ -970,7 +970,7 @@
       "initialSourceSha256": "564cadeef1a0ccbb1f088ddd977587b62c6ac6f054c6196279f603049a5d5a64",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.suspended.v1.json",
         "commitPinned": true
       }
@@ -985,7 +985,7 @@
       "initialSourceSha256": "db1acb949ec5ef18e1fb0a6677fd69bae7a4efa3f72408984b2f6270f2a73a80",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/events/user.suspended.v2.json",
         "commitPinned": true
       }
@@ -1000,7 +1000,7 @@
       "initialSourceSha256": "39b7c1bf1cd40effefdd0b0f95165072e498ca69c564a50169554b925faf5b6b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/authentication.risk.request.v1.json",
         "commitPinned": true
       }
@@ -1015,7 +1015,7 @@
       "initialSourceSha256": "6b82ef8f01058d8725344e752979d2ee4c7a40cbb905e895adbb5392d91dd45e",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/authentication.risk.response.v1.json",
         "commitPinned": true
       }
@@ -1030,7 +1030,7 @@
       "initialSourceSha256": "9cdbb8d6c49cf287ca818cffb9d20a42c1d5d4358351c8883621393a0a1fc9f8",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/authorization.decision.request.v1.json",
         "commitPinned": true
       }
@@ -1045,7 +1045,7 @@
       "initialSourceSha256": "3eb1078038050b72998d1bd38b2bda1f24552b3f524f5eb968966892f0a807bc",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/authorization.decision.response.v1.json",
         "commitPinned": true
       }
@@ -1060,7 +1060,7 @@
       "initialSourceSha256": "050b3d8c9ec90e7629e437f734c70fc3f4217402ff995d6e27ce9b304e82988d",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/common.v1.json",
         "commitPinned": true
       }
@@ -1075,7 +1075,7 @@
       "initialSourceSha256": "ebcc9c7751f43f49841fe0cfefa04bc409c631d92268feb2ea20d14ce53baad8",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/profile.validation.request.v1.json",
         "commitPinned": true
       }
@@ -1090,7 +1090,7 @@
       "initialSourceSha256": "03bd9e35643faf183c7ba7674b8528bb509b73a42354f0721d17e224a5316c74",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/profile.validation.response.v1.json",
         "commitPinned": true
       }
@@ -1105,7 +1105,7 @@
       "initialSourceSha256": "b55b3f751ef1b38694f4623bbfac49d6440eb1639061008fc535ead524446402",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/README.md",
         "commitPinned": true
       }
@@ -1120,7 +1120,7 @@
       "initialSourceSha256": "d7e0e76f4a7b85b90c28e63b1325f5c5351d25e23bae19ce3de16c8167c5ddb5",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/registration.eligibility.request.v1.json",
         "commitPinned": true
       }
@@ -1135,7 +1135,7 @@
       "initialSourceSha256": "7106c243e6f18fb9fe74f4ee8a3bc3373b0887ebd6adcc6823b72678706c2c8f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/registration.eligibility.response.v1.json",
         "commitPinned": true
       }
@@ -1150,7 +1150,7 @@
       "initialSourceSha256": "ef4e7ef40bc3dd0d8ac5b86b32268873a531197e400e1c7c0ac81edf744bed11",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/token.claims.request.v1.json",
         "commitPinned": true
       }
@@ -1165,7 +1165,7 @@
       "initialSourceSha256": "fd960039ca107a537cb99f915c5c19b7bc22e5ab01e00cd71e538aaee89a3b15",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/hooks/token.claims.response.v1.json",
         "commitPinned": true
       }
@@ -1173,17 +1173,18 @@
     {
       "path": "content/snapshot/api/openapi/proudauth.yaml",
       "source": "api/openapi/proudauth.yaml",
-      "sourceSha256": "5cdb831dc79b85e41196bccecd14ed6aeb35fad84070e56587a43edf2fb41f77",
-      "sha256": "5cdb831dc79b85e41196bccecd14ed6aeb35fad84070e56587a43edf2fb41f77",
+      "sourceSha256": "600b0bf762cd72c2e1264b499f86a45926ca3acf5a9328e912ef147b7421bf4f",
+      "sha256": "600b0bf762cd72c2e1264b499f86a45926ca3acf5a9328e912ef147b7421bf4f",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "5cdb831dc79b85e41196bccecd14ed6aeb35fad84070e56587a43edf2fb41f77",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/openapi/proudauth.yaml",
         "commitPinned": true
-      }
+      },
+      "previousSourceSha256": "5cdb831dc79b85e41196bccecd14ed6aeb35fad84070e56587a43edf2fb41f77"
     },
     {
       "path": "content/snapshot/api/plugins/manifest.v1.json",
@@ -1195,7 +1196,7 @@
       "initialSourceSha256": "d5ebeda93242c40629f5b4cba5cf7778629e7318d3e4a9e77bf67ae031205f62",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/plugins/manifest.v1.json",
         "commitPinned": true
       }
@@ -1210,7 +1211,7 @@
       "initialSourceSha256": "d9d98172c41b8fe93db8d8fd46b6e5d1a9aaaeefc8d7774c182b5436b44eda36",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/plugins/package.v1.json",
         "commitPinned": true
       }
@@ -1225,7 +1226,7 @@
       "initialSourceSha256": "6106e753103897b5a3816ef07f4c38b23d318ccfeaedf751505029a248786e20",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/schemas/config-document.schema.json",
         "commitPinned": true
       }
@@ -1240,7 +1241,7 @@
       "initialSourceSha256": "e168ad7a200dcc5caaebd20b8bf880178a8fb1ff2413dd4ff2b4a0a671d84983",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/schemas/config.schema.json",
         "commitPinned": true
       }
@@ -1255,7 +1256,7 @@
       "initialSourceSha256": "0729c1ef065f29579fbf65ddf10730719ceaf852db25aa832ca4c83dc68e2e59",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/schemas/user-import.schema.json",
         "commitPinned": true
       }
@@ -1270,7 +1271,7 @@
       "initialSourceSha256": "6df9954df661ee168e81da1031e23f00ada90ee0d450bfccac1d997805bbad11",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/workflows/definition.v1.json",
         "commitPinned": true
       }
@@ -1285,7 +1286,7 @@
       "initialSourceSha256": "8c01b9040c4b8b4bf93f886a958e9d5f461646e7c6a9476d4501c4ffecffdad0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "api/workflows/step-call.v1.json",
         "commitPinned": true
       }
@@ -1293,18 +1294,18 @@
     {
       "path": "content/snapshot/CHANGELOG.md",
       "source": "CHANGELOG.md",
-      "sourceSha256": "92f1de10ffa94b0f0d7ab5e5501f7d8f13577dc8120c54c97181c34c663f4984",
-      "sha256": "92f1de10ffa94b0f0d7ab5e5501f7d8f13577dc8120c54c97181c34c663f4984",
+      "sourceSha256": "d4eec8f450868bb4a6af5bf395b04012e07d428da52d2d60f5d238e21a3133c7",
+      "sha256": "d4eec8f450868bb4a6af5bf395b04012e07d428da52d2d60f5d238e21a3133c7",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "10777d5a6c26cc2c4867f94563b8f5c6b4872cb67d0d32cb34d30d8685b7d6ee",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "CHANGELOG.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "a72f03161956ecbe3ec9c86cd73ab359f27624198876139852d1f0e36ddd7e2c"
+      "previousSourceSha256": "92f1de10ffa94b0f0d7ab5e5501f7d8f13577dc8120c54c97181c34c663f4984"
     },
     {
       "path": "content/snapshot/docs/architecture-decisions/0001-modular-monolith.md",
@@ -1316,7 +1317,7 @@
       "initialSourceSha256": "268273f21ea7e901c6351d6b62cc6a97da47705cdf6709eb18b6c5ee7ca6fb08",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0001-modular-monolith.md",
         "commitPinned": true
       },
@@ -1332,7 +1333,7 @@
       "initialSourceSha256": "55b91ddaaeaee68bd2ee06237472bea61e5535f5979e0c501be76c52009ca0f1",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0002-go-implementation.md",
         "commitPinned": true
       }
@@ -1347,7 +1348,7 @@
       "initialSourceSha256": "ab0d3fb6ed2372a57ea74d52246f199e7097885ca1e47605b28769141aee8a3c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0003-apache-2-license.md",
         "commitPinned": true
       }
@@ -1362,7 +1363,7 @@
       "initialSourceSha256": "9cd9911d364c11bb7085eb91f480bf8b16c1da0c25d0f3889274d26bdb6bd8e1",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0004-persistence.md",
         "commitPinned": true
       }
@@ -1377,7 +1378,7 @@
       "initialSourceSha256": "2e3036e0489b9766a1133380f506e90ea5a7526a99453cc48e88fa49959ff97b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0005-database-outbox-no-broker.md",
         "commitPinned": true
       }
@@ -1392,7 +1393,7 @@
       "initialSourceSha256": "709076a26e582ca3310d7ee229fe25f4d804c0f8e7556a752e04000816c3bbad",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0006-realm-and-organization-boundaries.md",
         "commitPinned": true
       }
@@ -1407,7 +1408,7 @@
       "initialSourceSha256": "2b4837a254bce95558f767541a03d99f509a74ffc941ba3c1cb7ec92f653336c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0007-stable-account-key.md",
         "commitPinned": true
       }
@@ -1422,7 +1423,7 @@
       "initialSourceSha256": "707e9bd6bbe0eb562f07b4249b95f918baa88d58a41b5af29934539bb0a4c318",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0008-authorization-code-pkce-only.md",
         "commitPinned": true
       }
@@ -1437,7 +1438,7 @@
       "initialSourceSha256": "da05be24c2eb7c2e5d79e84b7eef1ee6772f4d0237b74bf2893aa6fba08ce463",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0009-jwt-access-tokens.md",
         "commitPinned": true
       },
@@ -1453,7 +1454,7 @@
       "initialSourceSha256": "b06edb5796b838e0bd72c72cf5f1af6c4406777afc01e38b970de77c90d7fa73",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0010-opaque-support-tokens.md",
         "commitPinned": true
       },
@@ -1469,7 +1470,7 @@
       "initialSourceSha256": "b10f4fd74e5cc7b357ed4b83d7ba1add5025478a35bdd9340c4b2ab7a707cf81",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0011-refresh-token-families.md",
         "commitPinned": true
       },
@@ -1485,7 +1486,7 @@
       "initialSourceSha256": "613c9a676e9bf57346fd878376d398040e369ec68152362f917b0817edcecce1",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0012-one-organization-per-token.md",
         "commitPinned": true
       }
@@ -1500,7 +1501,7 @@
       "initialSourceSha256": "2bbbd2b2d1dd577de42c47df99f20a9132c98ce92541b33b01414e572d5b91d1",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0013-authorization-model.md",
         "commitPinned": true
       }
@@ -1515,7 +1516,7 @@
       "initialSourceSha256": "734b091ac9f10b9c4b3471963079fc5ea6561cb302a6290884d60c8f7b5f00bc",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0014-support-impersonation.md",
         "commitPinned": true
       },
@@ -1531,7 +1532,7 @@
       "initialSourceSha256": "c398fd4e122fa8b8f116dc30463149ea3503c109aea8ec4a1ac0c33605cf7f6b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0015-key-hierarchy.md",
         "commitPinned": true
       }
@@ -1546,7 +1547,7 @@
       "initialSourceSha256": "217104f88f95b08f986c4a58b14d839d1aea723b42bafd2c593d99c88f54d231",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0016-delivery-adapters.md",
         "commitPinned": true
       }
@@ -1561,7 +1562,7 @@
       "initialSourceSha256": "e384ebbf3da465f2461a26a3ab7ff39a124cafaede750c8022e7679f38348118",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0017-external-login-ui.md",
         "commitPinned": true
       },
@@ -1577,7 +1578,7 @@
       "initialSourceSha256": "5eb8934092bd6398a0fb4572057610628f1e9ce57ab6cdb5978726c4167608a6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0018-enterprise-protocols-deferred.md",
         "commitPinned": true
       }
@@ -1592,7 +1593,7 @@
       "initialSourceSha256": "abb1fc5ba155b1c9a224223febef05472ecdf10b9600bd45f5b2ba551076f99a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0019-single-write-region.md",
         "commitPinned": true
       }
@@ -1607,7 +1608,7 @@
       "initialSourceSha256": "de77345bceb7874b133e07739c02f6e8630f4069be298632effec0bc4ddabd32",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0020-compliance-posture.md",
         "commitPinned": true
       }
@@ -1622,7 +1623,7 @@
       "initialSourceSha256": "7881d668f7702f9ff67983345d02ce804609c28670f9c5e48382f3377f3c4bad",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0021-no-embedded-code-execution.md",
         "commitPinned": true
       }
@@ -1637,7 +1638,7 @@
       "initialSourceSha256": "1586d1bc5c5b3e0bc0c1f2514975fb789992c6b330ba847b5dac99776c408cba",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/0022-shared-signals-adapter.md",
         "commitPinned": true
       }
@@ -1652,7 +1653,7 @@
       "initialSourceSha256": "9a3146c6af234e835b34b6d7cb4e615819c143053b519b2b5c1e3ea5a934408a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/architecture-decisions/README.md",
         "commitPinned": true
       }
@@ -1667,7 +1668,7 @@
       "initialSourceSha256": "7374db26f268607fb3a20295ece60ba8a02e9220c42347a13707d27f381ffe0a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/backend-for-frontend.md",
         "commitPinned": true
       },
@@ -1683,7 +1684,7 @@
       "initialSourceSha256": "f724b41be86502429fd7a27bb486d43e076d95d549473b12e94011b43f810408",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/container-registry.md",
         "commitPinned": true
       }
@@ -1698,7 +1699,7 @@
       "initialSourceSha256": "25d91a83d2563cc4d775f175adcf77bd12300699e6cc85f919c7b61e3ac923e5",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/directory.md",
         "commitPinned": true
       }
@@ -1713,7 +1714,7 @@
       "initialSourceSha256": "d1351c90aa71ca9bee2a0767216e8874f02a7a2e8d9ad3f46e2145f8f84d0eb7",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/dynamic-client-registration.md",
         "commitPinned": true
       }
@@ -1728,7 +1729,7 @@
       "initialSourceSha256": "724f1016ede314c901650a79dda5bedbfbe0cc274c2a9ef52041cbc7a80859de",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/elevation-and-access-reviews.md",
         "commitPinned": true
       }
@@ -1743,7 +1744,7 @@
       "initialSourceSha256": "05eea2c96241e58126df39a054fb304adda773291f19781d82fe8a0f6084e480",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/extension-contracts.md",
         "commitPinned": true
       }
@@ -1758,7 +1759,7 @@
       "initialSourceSha256": "af09db7a8f5f35c8027cbbf1eb8028106721c4e0dc4217df78a8829bfd78d7a1",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/interoperability.md",
         "commitPinned": true
       },
@@ -1774,7 +1775,7 @@
       "initialSourceSha256": "bc853f2158b9a42fafdf52d4046db53b8b71e6450c9364425e2f2d1e0a5010a4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/machine-clients.md",
         "commitPinned": true
       }
@@ -1789,7 +1790,7 @@
       "initialSourceSha256": "f7109ec60c0644fef12f13d319fdbb31d606adf9e2299594af3d4e661ec1f5aa",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/outbound-provisioning.md",
         "commitPinned": true
       }
@@ -1804,7 +1805,7 @@
       "initialSourceSha256": "f5ec3f84f11b7e577bbc71df60ea9129f35bce61bdc643c5b5775575fbf6381c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/partner-access.md",
         "commitPinned": true
       }
@@ -1819,7 +1820,7 @@
       "initialSourceSha256": "9c99e0ff58ffc1fd8c94f2004a179b93782942238b9313422402d3d8b238fb29",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/patterns.md",
         "commitPinned": true
       },
@@ -1835,7 +1836,7 @@
       "initialSourceSha256": "c0eeff4348605b017904b5bb64259dfe0cc0fe3ab4bab3070a489b865532ff6d",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/plugins.md",
         "commitPinned": true
       }
@@ -1850,7 +1851,7 @@
       "initialSourceSha256": "26eab1f1fb5b5aee8d89379ea421b9816e6834823c9343889612f4485086478c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/policy-engines.md",
         "commitPinned": true
       }
@@ -1865,7 +1866,7 @@
       "initialSourceSha256": "3e2f3625beeff203170bbb0821a558297a9c4ac03758af12e2228cb8d8582bae",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/README.md",
         "commitPinned": true
       },
@@ -1881,7 +1882,7 @@
       "initialSourceSha256": "f99af16805e42210819b947c2cd4e6951e94e006231a2b0016e930b24930571f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/relationship-authorization.md",
         "commitPinned": true
       }
@@ -1896,7 +1897,7 @@
       "initialSourceSha256": "a67acfa73861f211d9b11dae3320ff869dc9ad4b58e428d3d78e12266dcc3e53",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/resource-servers.md",
         "commitPinned": true
       },
@@ -1912,7 +1913,7 @@
       "initialSourceSha256": "b565543b70109d90c1dc3aa2fb174b82cc5aac60d9b55b6004c157488d869026",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/saml.md",
         "commitPinned": true
       }
@@ -1927,7 +1928,7 @@
       "initialSourceSha256": "2a91e38d60893317a9bda974469a1c9ca745a0e96f4340e3f86271390ce508c9",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/scim-provisioning.md",
         "commitPinned": true
       }
@@ -1942,7 +1943,7 @@
       "initialSourceSha256": "acde43f5bbd1ed8f3f4cebbd90150646ef0d615d5b10b3e55053b2ecdd768eea",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/sdk-compatibility.md",
         "commitPinned": true
       },
@@ -1958,7 +1959,7 @@
       "initialSourceSha256": "623c72955337f5d0483980f16fabe93b68e2ece25066dff0b9bd4b5db1172e85",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/sdk-repositories.json",
         "commitPinned": true
       }
@@ -1973,7 +1974,7 @@
       "initialSourceSha256": "23992914e1924bb71df6191f24a436df4e3e4cc1f96044b87a5635fe0a30fdae",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/shared-signals.md",
         "commitPinned": true
       }
@@ -1988,7 +1989,7 @@
       "initialSourceSha256": "c8580950ffb7d3647010c54d862c75e187d20f3543d8ae59ceb899451f267116",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/webhooks.md",
         "commitPinned": true
       }
@@ -2003,7 +2004,7 @@
       "initialSourceSha256": "813c93533e1e930047cb6c49aa12e83611d4847082442be4496af0e3920771b3",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/workflows.md",
         "commitPinned": true
       }
@@ -2018,7 +2019,7 @@
       "initialSourceSha256": "1795228f244f364124a32586c678e07380789184707537a12dd6f35efa7fe9e2",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/integrations/workload-federation.md",
         "commitPinned": true
       }
@@ -2033,7 +2034,7 @@
       "initialSourceSha256": "a38dcad3a3663d81c6948aec2f11abd9a197337d35fb68c56f61b68db8f8793b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/account-recovery.md",
         "commitPinned": true
       }
@@ -2048,7 +2049,7 @@
       "initialSourceSha256": "0e35110aef5087583692f3674dd9ed9d2a2fa21ee6fe5381b7ecaa3839ea3222",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/backup-restore.md",
         "commitPinned": true
       }
@@ -2063,7 +2064,7 @@
       "initialSourceSha256": "030fc7a7c2ae53d60922275f1fc53eefe7496f6b8d125db9cb0348c584984940",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop-otp/otp-budget-evidence.json",
         "commitPinned": true
       }
@@ -2078,7 +2079,7 @@
       "initialSourceSha256": "6b3638a313608a0a15e11161ab42a445d846c95e441d4d072b8305eaf957ea93",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop-replicas/artifact-sha256.json",
         "commitPinned": true
       },
@@ -2094,7 +2095,7 @@
       "initialSourceSha256": "771ab5f4e1c21c432d05ba24a65288048810a9ac90c2e20a8d124884d2e29179",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop-replicas/refresh-race-database.json",
         "commitPinned": true
       }
@@ -2109,7 +2110,7 @@
       "initialSourceSha256": "4a59ad28dccda75a47f749f5d98953faf7267655999414a693d2d211efa911d0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop-replicas/replica-routing.json",
         "commitPinned": true
       }
@@ -2124,7 +2125,7 @@
       "initialSourceSha256": "fc5f4cf8c10fb0e554ae0b4fcabc5519f100b94334f0ee32c001800b001030db",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop-replicas/summary.json",
         "commitPinned": true
       }
@@ -2139,7 +2140,7 @@
       "initialSourceSha256": "f50d6823c3042cf6f1b813b3b71b9b3afebc49ea11690c1f391f035f23127e1e",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-11-laptop/reference-summary.json",
         "commitPinned": true
       }
@@ -2154,7 +2155,7 @@
       "initialSourceSha256": "ebb14e7e7a2113d01d6b2e8a6e79cbad6a4efb2b2527486b10542285be3b96b4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/artifact-sha256.json",
         "commitPinned": true
       },
@@ -2170,7 +2171,7 @@
       "initialSourceSha256": "a98cb0a2b6a4e8ed7c096611745fa0129e04fb8e80805cadac4e1beb4d9e09d3",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/complex-audit-filter.json",
         "commitPinned": true
       }
@@ -2185,7 +2186,7 @@
       "initialSourceSha256": "838002f71e07e7d346c41de84dc8c9f8d9735acc6e44a74741370cbb1cde02b2",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/environment.json",
         "commitPinned": true
       }
@@ -2200,7 +2201,7 @@
       "initialSourceSha256": "f181e2ac46f522c90ac3aaa6d589309eacac1f8e2d9ef25786cd9883ba35c73b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/postgres/settings.tsv",
         "commitPinned": true
       }
@@ -2215,7 +2216,7 @@
       "initialSourceSha256": "08265b7054f5c77ebcca7a224a2b76424737cbccabd496f3c478699ec36df29c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/proudauth-config.yaml",
         "commitPinned": true
       }
@@ -2230,7 +2231,7 @@
       "initialSourceSha256": "49bced8f67db9395921dd8e5e11d94a363df167768700391f908a4387a6a1af9",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-audit-filter/summary.json",
         "commitPinned": true
       }
@@ -2245,7 +2246,7 @@
       "initialSourceSha256": "e6ffb652902c5ae815989a1bcce833abd3672c2bfa25044d65903f6e4886e672",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/artifact-sha256.json",
         "commitPinned": true
       },
@@ -2261,7 +2262,7 @@
       "initialSourceSha256": "6d6266b12233525fd9f5dc6bc9b117e4e1ee591b821818898c31e60a6965a1c6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/complex-group-filter.json",
         "commitPinned": true
       }
@@ -2276,7 +2277,7 @@
       "initialSourceSha256": "b0f86d5bc558be03f47ff35284b37e614afa193f120e93a5b015c9dc6c4a52cc",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/environment.json",
         "commitPinned": true
       }
@@ -2291,7 +2292,7 @@
       "initialSourceSha256": "f181e2ac46f522c90ac3aaa6d589309eacac1f8e2d9ef25786cd9883ba35c73b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/postgres/settings.tsv",
         "commitPinned": true
       }
@@ -2306,7 +2307,7 @@
       "initialSourceSha256": "da6fff6d849a6f51098e6277bc63d70b4120f38589a28e6426269ba298830e90",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/proudauth-config.yaml",
         "commitPinned": true
       }
@@ -2321,7 +2322,7 @@
       "initialSourceSha256": "1c6d7acf14987f697c3a6a86c182fd50da127ce0a59b22e7afe9ea0fe06be6da",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-12-laptop-groups/summary.json",
         "commitPinned": true
       }
@@ -2336,7 +2337,7 @@
       "initialSourceSha256": "d6ab609c2a51cdf099ee79f991cefad2a4355c846c1f7412e111be5b8e970420",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/artifact-sha256.json",
         "commitPinned": true
       }
@@ -2351,7 +2352,7 @@
       "initialSourceSha256": "e881c5edd40b8c6325f7c1bed54c7932ac0686e9c68c23c4bcccd36c6d7662a8",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/environment.json",
         "commitPinned": true
       }
@@ -2366,7 +2367,7 @@
       "initialSourceSha256": "4a2fbaecfdbf26cbb7ce6685bed1c2abf81f7ed13e1cf41d5bcbcda8b957bae4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/metadata-fetch.json",
         "commitPinned": true
       }
@@ -2381,7 +2382,7 @@
       "initialSourceSha256": "fddb3ce10fe0d18c85577710bce761903d92eb57f21fe7f1b9cf77b8078ae0a0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/metadata-receiver.json",
         "commitPinned": true
       }
@@ -2396,7 +2397,7 @@
       "initialSourceSha256": "f181e2ac46f522c90ac3aaa6d589309eacac1f8e2d9ef25786cd9883ba35c73b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/postgres/settings.tsv",
         "commitPinned": true
       }
@@ -2411,7 +2412,7 @@
       "initialSourceSha256": "35f538f2e4b4b8c25aaef097b3d582adc782e651c54ddd0baa15fc585a52322a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/proudauth-config.yaml",
         "commitPinned": true
       }
@@ -2426,7 +2427,7 @@
       "initialSourceSha256": "e16e74c9e963890f3832d489f7f6d09fa2e3ffe422120af49db2e3e2b4491b01",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/summary.json",
         "commitPinned": true
       }
@@ -2441,7 +2442,7 @@
       "initialSourceSha256": "3ea3c2a116930de6c9e5152ea76daa1771af10b9ec765b2af4e6ca8ab13532fa",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/bench-results/2026-10-13-laptop-metadata/verification.json",
         "commitPinned": true
       }
@@ -2456,7 +2457,7 @@
       "initialSourceSha256": "ab833beb97737f8e77df3e04647408874b3440219baa0fee6ff9ea203f527aa4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/benchmarks.md",
         "commitPinned": true
       }
@@ -2471,7 +2472,7 @@
       "initialSourceSha256": "63359884596912fd030c84b12f95b998b08ad60679ee08c63967f48f11d30d41",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/capacity.md",
         "commitPinned": true
       }
@@ -2479,17 +2480,18 @@
     {
       "path": "content/snapshot/docs/operations/configuration.md",
       "source": "docs/operations/configuration.md",
-      "sourceSha256": "67a2cedd9f625b8bd5c6277243e0e320801330ef39e521cf177b140c7efb7109",
-      "sha256": "67a2cedd9f625b8bd5c6277243e0e320801330ef39e521cf177b140c7efb7109",
+      "sourceSha256": "92cb8b71276186541a6e3794d04c1de61a8736b754fa02479bb6796543957464",
+      "sha256": "92cb8b71276186541a6e3794d04c1de61a8736b754fa02479bb6796543957464",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "67a2cedd9f625b8bd5c6277243e0e320801330ef39e521cf177b140c7efb7109",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/configuration.md",
         "commitPinned": true
-      }
+      },
+      "previousSourceSha256": "67a2cedd9f625b8bd5c6277243e0e320801330ef39e521cf177b140c7efb7109"
     },
     {
       "path": "content/snapshot/docs/operations/consistency-tests.md",
@@ -2501,7 +2503,7 @@
       "initialSourceSha256": "e1f7e5043b9ca6d8d255f24b16eed3a00e3056ec1fa45913be752542b16c1b09",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/consistency-tests.md",
         "commitPinned": true
       }
@@ -2516,7 +2518,7 @@
       "initialSourceSha256": "9baee828668d2f0f2c4c5c2f1123ceb038c502748881eaf909f72e053a711191",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/data-inventory.md",
         "commitPinned": true
       }
@@ -2524,34 +2526,34 @@
     {
       "path": "content/snapshot/docs/operations/docker-compose.md",
       "source": "docs/operations/docker-compose.md",
-      "sourceSha256": "35e192da3f16786ba89ff30eab055899f39009a054317d244bd553aea13f6680",
-      "sha256": "35e192da3f16786ba89ff30eab055899f39009a054317d244bd553aea13f6680",
+      "sourceSha256": "239c57b1b16b8186cdf7bba46ad5636d52df8a95365e27fb0ad54a1a211a822b",
+      "sha256": "239c57b1b16b8186cdf7bba46ad5636d52df8a95365e27fb0ad54a1a211a822b",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "5e458b2c23087c97e0e7af77acab8183d7bfe713fc154c2cbbda8ee04c8c4eb0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/docker-compose.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "5e458b2c23087c97e0e7af77acab8183d7bfe713fc154c2cbbda8ee04c8c4eb0"
+      "previousSourceSha256": "35e192da3f16786ba89ff30eab055899f39009a054317d244bd553aea13f6680"
     },
     {
       "path": "content/snapshot/docs/operations/environment.md",
       "source": "docs/operations/environment.md",
-      "sourceSha256": "d860c4311b866226a6a834f42665bcb07611a23aff2382638680d5bbac071c28",
-      "sha256": "d860c4311b866226a6a834f42665bcb07611a23aff2382638680d5bbac071c28",
+      "sourceSha256": "2e488b2f74c01bbae09491e9929f8f79f2303354bdc81bb6ce1ea8d9ead825b1",
+      "sha256": "2e488b2f74c01bbae09491e9929f8f79f2303354bdc81bb6ce1ea8d9ead825b1",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "2222b994007826bf88ecee51a0e598ccf627c48eab45fadddf46c5808d100cda",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/environment.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "2222b994007826bf88ecee51a0e598ccf627c48eab45fadddf46c5808d100cda"
+      "previousSourceSha256": "d860c4311b866226a6a834f42665bcb07611a23aff2382638680d5bbac071c28"
     },
     {
       "path": "content/snapshot/docs/operations/exit-and-export.md",
@@ -2563,7 +2565,7 @@
       "initialSourceSha256": "95a9e3a14b64f98cdf7d7ec38967df20ed5d3e2a60163f0576fbcce5ef391448",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/exit-and-export.md",
         "commitPinned": true
       }
@@ -2578,7 +2580,7 @@
       "initialSourceSha256": "6c4f07333a6fca6ea4c122b93863a9b6305da60e9a8c12292960c7eeda7b77dd",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/federation-transfer.md",
         "commitPinned": true
       }
@@ -2593,7 +2595,7 @@
       "initialSourceSha256": "82a0d7bdeb88c2d29bb3b888a1b2a354044854945b29511a27fca76b13012f8a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/incidents.md",
         "commitPinned": true
       }
@@ -2601,18 +2603,18 @@
     {
       "path": "content/snapshot/docs/operations/installation.md",
       "source": "docs/operations/installation.md",
-      "sourceSha256": "df20fbee7c82f84c4b38e7faf43b3ee13362395b2b62ff901f9e1fdc2d15a5b4",
-      "sha256": "df20fbee7c82f84c4b38e7faf43b3ee13362395b2b62ff901f9e1fdc2d15a5b4",
+      "sourceSha256": "a1d744f2067be6b82801a535e00e2b24d4d8d7491cef6cf15da559e725afc9cc",
+      "sha256": "a1d744f2067be6b82801a535e00e2b24d4d8d7491cef6cf15da559e725afc9cc",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "9107ee7ba3f4c16dbbd5d9adfbd6e9d778e777c448559d205cf4943e10175d4f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/installation.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "9107ee7ba3f4c16dbbd5d9adfbd6e9d778e777c448559d205cf4943e10175d4f"
+      "previousSourceSha256": "df20fbee7c82f84c4b38e7faf43b3ee13362395b2b62ff901f9e1fdc2d15a5b4"
     },
     {
       "path": "content/snapshot/docs/operations/investigations.md",
@@ -2624,7 +2626,7 @@
       "initialSourceSha256": "7514c445bdb0f2ce3ea4076d6c05685cd61d28487d4dcee7bd71ece56e8895e8",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/investigations.md",
         "commitPinned": true
       }
@@ -2639,7 +2641,7 @@
       "initialSourceSha256": "a01316f60ce661c0e0980d61deda1395b79b4faba71b7474a83407f0090d9c1f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/isolation-tiers.md",
         "commitPinned": true
       }
@@ -2647,18 +2649,18 @@
     {
       "path": "content/snapshot/docs/operations/keys.md",
       "source": "docs/operations/keys.md",
-      "sourceSha256": "2035f06108b3a1dbab74a2c4e94bf39e509e77c0288b995e58b9e5df6070b6c4",
-      "sha256": "2035f06108b3a1dbab74a2c4e94bf39e509e77c0288b995e58b9e5df6070b6c4",
+      "sourceSha256": "161420f08795f3a1efd928add85c92aa08ac5a7f463c46a488975f7c3cf4d7a9",
+      "sha256": "161420f08795f3a1efd928add85c92aa08ac5a7f463c46a488975f7c3cf4d7a9",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "d805541d9e0a5733f40994095cf5104cb77e77d50b8d8233700655c4f90395b6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/keys.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "d805541d9e0a5733f40994095cf5104cb77e77d50b8d8233700655c4f90395b6"
+      "previousSourceSha256": "2035f06108b3a1dbab74a2c4e94bf39e509e77c0288b995e58b9e5df6070b6c4"
     },
     {
       "path": "content/snapshot/docs/operations/migration-adapters.md",
@@ -2670,7 +2672,7 @@
       "initialSourceSha256": "848c3474b072b7686d4e7d38e2f055a6ab9b5a00a3a92c571f5c417d52704d2a",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/migration-adapters.md",
         "commitPinned": true
       }
@@ -2685,7 +2687,7 @@
       "initialSourceSha256": "56f17b39a7619c0a84283362fd23d9df95a581ee5fec1bb2c5bf7bb6d20fb61c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/migration.md",
         "commitPinned": true
       }
@@ -2700,7 +2702,7 @@
       "initialSourceSha256": "fe08624e1bec42b1411d8e770a202174a9c928e63553f8050324c27672f9e9e7",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/monitoring.md",
         "commitPinned": true
       }
@@ -2715,7 +2717,7 @@
       "initialSourceSha256": "15dd9bce1e07ff62bc3c546a176d18a4d0c3aee6a824e70401598c1bd66ebaa8",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/offline-install.md",
         "commitPinned": true
       }
@@ -2730,7 +2732,7 @@
       "initialSourceSha256": "e0c1ac23bb233dc263ec42ce106c797be81294a7d4cf5c11d967463ea9e6f6d5",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/passkey-trust.md",
         "commitPinned": true
       }
@@ -2738,18 +2740,18 @@
     {
       "path": "content/snapshot/docs/operations/README.md",
       "source": "docs/operations/README.md",
-      "sourceSha256": "d6436bc5a198ed4dc24b17f7ac04e31187113166a869e87cd756454b0853c04c",
-      "sha256": "d6436bc5a198ed4dc24b17f7ac04e31187113166a869e87cd756454b0853c04c",
+      "sourceSha256": "97f1c3b86543fc12954f9c13c32e62280cf0bba0ce75ac53f1b9f637d6dcbbea",
+      "sha256": "97f1c3b86543fc12954f9c13c32e62280cf0bba0ce75ac53f1b9f637d6dcbbea",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "e4d53e088bc33eed79e805a2303396b3a10509210774b41d85c6f564058ef222",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/README.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "e4d53e088bc33eed79e805a2303396b3a10509210774b41d85c6f564058ef222"
+      "previousSourceSha256": "d6436bc5a198ed4dc24b17f7ac04e31187113166a869e87cd756454b0853c04c"
     },
     {
       "path": "content/snapshot/docs/operations/revocation-exposure.md",
@@ -2761,7 +2763,7 @@
       "initialSourceSha256": "0a528b981fba6083d34e9433e52404a4d79ffd3a65e20a90fa02ffcafc0d39ee",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/revocation-exposure.md",
         "commitPinned": true
       }
@@ -2769,18 +2771,18 @@
     {
       "path": "content/snapshot/docs/operations/security-checks.md",
       "source": "docs/operations/security-checks.md",
-      "sourceSha256": "879061ce3b074fd8da9f0dfdd43859d7acbe2c1abcc743dbfd42a969a7a020db",
-      "sha256": "879061ce3b074fd8da9f0dfdd43859d7acbe2c1abcc743dbfd42a969a7a020db",
+      "sourceSha256": "c45cdfa8dfdeae6100a93dff8881b5d809a1b198f685f0a7ff58144a7f29a004",
+      "sha256": "c45cdfa8dfdeae6100a93dff8881b5d809a1b198f685f0a7ff58144a7f29a004",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "8b844b114165ef1b95c65ae4b9ff705ed7cc87822233319af3488a5d516c997c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/security-checks.md",
         "commitPinned": true
       },
-      "previousSourceSha256": "8b844b114165ef1b95c65ae4b9ff705ed7cc87822233319af3488a5d516c997c"
+      "previousSourceSha256": "879061ce3b074fd8da9f0dfdd43859d7acbe2c1abcc743dbfd42a969a7a020db"
     },
     {
       "path": "content/snapshot/docs/operations/support-bundle.md",
@@ -2792,7 +2794,7 @@
       "initialSourceSha256": "3122716f9e18e460210a898c97942f966a16a6b963408be2ae7300bddc64cc4b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/support-bundle.md",
         "commitPinned": true
       }
@@ -2807,8 +2809,23 @@
       "initialSourceSha256": "537e39dccca00a1008daa31c5b00e82c573728fcd3890a613bf6ed8c67f460e4",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/operations/upgrades.md",
+        "commitPinned": true
+      }
+    },
+    {
+      "path": "content/snapshot/docs/protocols/api-conventions.md",
+      "source": "docs/protocols/api-conventions.md",
+      "sourceSha256": "2b156705b0e1fea6987e37f8666e8a289e59ee3cae4071da89d300eac3f1d6eb",
+      "sha256": "2b156705b0e1fea6987e37f8666e8a289e59ee3cae4071da89d300eac3f1d6eb",
+      "matchesHead": true,
+      "redacted": false,
+      "initialSourceSha256": "2b156705b0e1fea6987e37f8666e8a289e59ee3cae4071da89d300eac3f1d6eb",
+      "upstream": {
+        "repository": "https://github.com/proudbase/proudauth",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
+        "path": "docs/protocols/api-conventions.md",
         "commitPinned": true
       }
     },
@@ -2822,7 +2839,7 @@
       "initialSourceSha256": "360effaafe2e128b3ba9715216cc7b55fe0b40ba8e780058e36119028c8edd44",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/authentication-flows.md",
         "commitPinned": true
       }
@@ -2837,7 +2854,7 @@
       "initialSourceSha256": "793bd00591907129c172d40d72aa70aa305281334bd80a4dd1ba669a5a71828b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/compatibility.md",
         "commitPinned": true
       }
@@ -2852,7 +2869,7 @@
       "initialSourceSha256": "6e88a797ad7f1e4dfff4b51ee484bd632eb626ca47ab18cc6c54f62edeada09f",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/headless-authentication.md",
         "commitPinned": true
       }
@@ -2867,7 +2884,7 @@
       "initialSourceSha256": "313e52f929efa98fdc102a59f3ea28ef170b38e6615bea5d70176b66f96df773",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/identifiers.md",
         "commitPinned": true
       }
@@ -2882,7 +2899,7 @@
       "initialSourceSha256": "50bd7786b46d971accc3fb3cb4ac1013a4314016fe438f32cfd45d96b2f0dbd0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/mutual-tls.md",
         "commitPinned": true
       }
@@ -2897,7 +2914,7 @@
       "initialSourceSha256": "bcd67fd6e15d02685ce9b54ad1a23f0710ce0632452f56c448daffa7111decb9",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/oauth-oidc-profile.md",
         "commitPinned": true
       }
@@ -2905,17 +2922,18 @@
     {
       "path": "content/snapshot/docs/protocols/README.md",
       "source": "docs/protocols/README.md",
-      "sourceSha256": "57e4599d921fc4d2acb803f8b627924d898d164e21865fa5230a2d1949a82390",
-      "sha256": "57e4599d921fc4d2acb803f8b627924d898d164e21865fa5230a2d1949a82390",
+      "sourceSha256": "85c4540b10cd5c179665cb74c9fa5addad608cd259f097e65696428ae0728b29",
+      "sha256": "85c4540b10cd5c179665cb74c9fa5addad608cd259f097e65696428ae0728b29",
       "matchesHead": true,
       "redacted": false,
       "initialSourceSha256": "57e4599d921fc4d2acb803f8b627924d898d164e21865fa5230a2d1949a82390",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/README.md",
         "commitPinned": true
-      }
+      },
+      "previousSourceSha256": "57e4599d921fc4d2acb803f8b627924d898d164e21865fa5230a2d1949a82390"
     },
     {
       "path": "content/snapshot/docs/protocols/response-security.md",
@@ -2927,7 +2945,7 @@
       "initialSourceSha256": "3d86ee0bca722b6ce2d4a75a59165b5b1f16f666d4515a4c6badc303c1c12021",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/response-security.md",
         "commitPinned": true
       }
@@ -2942,7 +2960,7 @@
       "initialSourceSha256": "a105f3c217bd3829782f21924bc639d88843206da7ae514b3082ad9690f7cc44",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/protocols/tokens.md",
         "commitPinned": true
       },
@@ -2958,7 +2976,7 @@
       "initialSourceSha256": "26879c3390f3a926bf0a68708633f67839883ac9cb31d5b14f7ebcb2ddd590b7",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/attack-suites.md",
         "commitPinned": true
       }
@@ -2973,7 +2991,7 @@
       "initialSourceSha256": "778b6caf49273cb2700117ff108a90d9d5bab7ee36ed95d4c18df04f56e581ef",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/cross-system-trust.md",
         "commitPinned": true
       }
@@ -2988,7 +3006,7 @@
       "initialSourceSha256": "4a229533e7d3417433a6ac6b368b0d6420ae78b6f1b36df5f8ed09987666013e",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/directory.md",
         "commitPinned": true
       }
@@ -3003,7 +3021,7 @@
       "initialSourceSha256": "4cb7adc2ba5c32680d33b6fb55d3c43856019441c70abfcb1c5a9ae95a8b7653",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/impersonation.md",
         "commitPinned": true
       },
@@ -3019,7 +3037,7 @@
       "initialSourceSha256": "47dc684b0555d7accaff2d9978f3f363e0690a64d0f66b78331ee7d11e6e9b3c",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/README.md",
         "commitPinned": true
       }
@@ -3034,7 +3052,7 @@
       "initialSourceSha256": "e567c8b92f2456af6c67c4ef733f0b150409f1eabd48e5880e80ce13e4d1addd",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/review-scope.md",
         "commitPinned": true
       },
@@ -3050,7 +3068,7 @@
       "initialSourceSha256": "c88bb2b72c3f63b3b6be576001c9d701f4b09ca95cbd20250904abe808fba5d0",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/saml.md",
         "commitPinned": true
       }
@@ -3065,7 +3083,7 @@
       "initialSourceSha256": "c7b6d8c20769cf40a3028bbb0215d8119230e24e262389b2fff90e6e69f4719b",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "docs/threat-models/system.md",
         "commitPinned": true
       },
@@ -3081,7 +3099,7 @@
       "initialSourceSha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "LICENSE",
         "commitPinned": true
       }
@@ -3096,7 +3114,7 @@
       "initialSourceSha256": "f2a5ca7ed782352af796f36cef49f432f792c31d35e46c7a78fcd0c78fd076d6",
       "upstream": {
         "repository": "https://github.com/proudbase/proudauth",
-        "commit": "d9cc813ae809a9e02314130030872cc5440897dd",
+        "commit": "222805327e872d3d327ff3bf11b93ab20b6387c0",
         "path": "NOTICE",
         "commitPinned": true
       },

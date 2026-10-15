@@ -19,8 +19,9 @@ test('landing, canonical guide URLs and every search result use the merged websi
   const home=read('index.html');
   assert(home.includes('href="/docs"'));
   assert(home.includes('href="/docs/sdks/overview/"'));
-  assert(home.includes('href="https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.1"'));
-  assert(home.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1'));
+  assert(home.includes('href="https://github.com/proudbase/proudauth/releases/tag/v0.2.0-alpha.2"'));
+  assert(home.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.2'));
+  assert(!home.includes('init.sh'),'The landing page must show the docker-compose.yaml + .env installer');
   assert(!home.includes('api.proudauth.com'));
   assert(!home.includes('status.proudauth.com'));
   const overview=read('docs/getting-started/overview/index.html');
@@ -58,7 +59,7 @@ test('Swagger, source provenance and downloads remain local and credentials-free
   const inputLock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
   assert.deepEqual(info.source,inputLock.source);
   if(info.source.dirty)assert.equal(info.source.commitPinned,false);
-  assert.equal(info.guides,104);
+  assert.equal(info.guides,105);
   assert.equal(info.apiOperations,603);
   const lock=JSON.parse(read('docs/content.lock.json'));
   assert.equal(lock.source.head,info.source.head);
@@ -121,18 +122,20 @@ test('Pages publication contains the complete static site and operator deploymen
   assert(!endpoints.includes('api.proudauth.com'));
   assert(!endpoints.includes('status.proudauth.com'));
   const compose=read('docs/operations/docker-compose/index.html');
-  assert(compose.includes('proudauth-v0.2.0-alpha.1-compose.tar.gz'));
-  assert(compose.includes('docker pull ghcr.io/proudbase/proudauth:0.2.0-alpha.1'));
+  assert(compose.includes('VERSION=v0.2.0-alpha.2'));
+  assert(compose.includes('docker compose up -d --wait'));
+  const quickstart=read('docs/getting-started/quickstart/index.html');
+  assert(quickstart.includes('VERSION=v0.2.0-alpha.2'));
+  for(const removed of ['init.sh','configure.py','.env.example'])assert(!quickstart.includes(removed),`Quickstart still mentions ${removed}`);
   const environment=read('docs/operations/environment/index.html');
   assert(read('docs/integrations/scim-provisioning/index.html').includes('<code>/Users/{id}</code>'));
   assert(read('docs/integrations/outbound-provisioning/index.html').includes('<code>PUT /Users/{id}</code>'));
   const evidence=JSON.parse(read('docs/downloads/docs/integrations/sdk-repositories.json'));
   assert.equal(evidence.schema_version,1);
   assert.equal(evidence.repositories.length,5);
-  const settings=['COMPOSE_PROJECT_NAME','PROUDAUTH_IMAGE','POSTGRES_IMAGE','DEPLOYMENT_PROFILE',
-    'PROUDAUTH_PUBLIC_ORIGIN','PROUDAUTH_REALM','PROUDAUTH_TRUSTED_PROXIES','PUBLIC_BIND',
-    'PUBLIC_PORT','OPERATOR_PORT','POSTGRES_MAX_CONNECTIONS','POSTGRES_SHARED_BUFFERS',
-    'POOL_MAX_CONNECTIONS','SMTP_HOST','SMTP_PORT','SMTP_TLS','SMTP_USERNAME','EMAIL_FROM','LOG_LEVEL'];
+  const settings=['PROUDAUTH_IMAGE','PROUDAUTH_PUBLIC_ORIGIN','PROUDAUTH_TRUSTED_PROXIES','PROUDAUTH_DATABASE_URL',
+    'PROUDAUTH_ROOT_KEY','PROUDAUTH_SMTP_HOST','PROUDAUTH_SMTP_PORT','PROUDAUTH_SMTP_TLS','PROUDAUTH_SMTP_USERNAME',
+    'PROUDAUTH_SMTP_PASSWORD','PROUDAUTH_EMAIL_FROM','PROUDAUTH_LOG_LEVEL','PUBLIC_BIND','PUBLIC_PORT'];
   for(const name of settings)assert(environment.includes(`<code>${name}</code>`),`Missing environment setting: ${name}`);
   assert(read('docs/sitemap.xml').includes('<loc>https://proudauth.com/</loc>'));
   const lock=JSON.parse(read('docs/content.lock.json'));

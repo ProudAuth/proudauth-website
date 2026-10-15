@@ -6,6 +6,15 @@ ProudAuth and keep their original source provenance.
 
 ## Unreleased
 
+### Changed
+
+- Documentation snapshot pinned to service commit `2228053` (proudbase/proudauth#9):
+  the two-file Compose installer (`docker-compose.yaml` + `.env`), environment
+  reference, trimmed OpenAPI header and the new API conventions page.
+- The Docker quickstart is four steps: download, fill in `.env`, start, create
+  the first administrator; no `init.sh`, Python or demo profile. The landing
+  page, overview and capabilities point to `0.2.0-alpha.2`.
+
 ### Added
 
 - Independent landing page and developer documentation build, with canonical

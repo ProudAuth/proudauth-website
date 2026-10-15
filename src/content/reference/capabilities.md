@@ -36,8 +36,8 @@ measurements, not sizing advice or performance guarantees.
 
 ## Release and assurance
 
-The service version **0.2.0-alpha.1** is a pre-release with versioned container
-images and a Docker Compose installer. The service, website and five SDKs have
+The service version **0.2.0-alpha.2** is a pre-release with a versioned container
+image and a two-file Docker Compose installer (`docker-compose.yaml` and `.env`). The service, website and five SDKs have
 separate public source repositories. SDK registry packages remain unpublished.
 The service is not independently security reviewed or certified.
 Protocol conformance and third-party interoperability are

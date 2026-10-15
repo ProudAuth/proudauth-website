@@ -53,7 +53,7 @@ const sourceRoutes = new Map(pages.map(p => [p.source,p.route]));
 sourceRoutes.set('README.md','/getting-started/overview/');
 sourceRoutes.set('docs/plan.md','/reference/capabilities/');
 sourceRoutes.set('docs/requirements-traceability.md','/reference/capabilities/');
-sourceRoutes.set('docker-deploy/README.md','/getting-started/quickstart/');
+sourceRoutes.set('deploy/README.md','/getting-started/quickstart/');
 
 const contract = yaml.load(read('api/openapi/proudauth.yaml'));
 contract.servers[0].variables.origin.default = config.exampleIdentityOrigin;
@@ -100,7 +100,7 @@ function resolveLink(href, source) {
   const [clean] = file.split('?');
   const relative = path.posix.normalize(path.posix.join(path.posix.dirname(source),clean));
   const route = sourceRoutes.get(relative);
-  if (route) return {href:route+(fragment && !['README.md','docs/plan.md','docs/requirements-traceability.md','docker-deploy/README.md'].includes(relative) ? '#'+fragment : '')};
+  if (route) return {href:route+(fragment && !['README.md','docs/plan.md','docs/requirements-traceability.md','deploy/README.md'].includes(relative) ? '#'+fragment : '')};
   const asset = publishFile(relative);
   if (asset) return {href:asset};
   omitted.add(relative);
