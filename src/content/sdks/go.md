@@ -1,12 +1,15 @@
 # Go SDK
 
 The Go SDK is a separate public module,
-[`github.com/proudauth/proudauth-sdk-go`](https://github.com/proudauth/proudauth-sdk-go).
-No tagged SDK release is available yet. Install the reviewed source commit:
+[`github.com/proudauth/proudauth-sdk-go`](https://github.com/proudauth/proudauth-sdk-go),
+for Go 1.25 or later. Install it into your application:
 
 ```sh
-go get github.com/proudauth/proudauth-sdk-go@116f9fa19d0b0174a0c270763e2ef6abf872233b
+go get github.com/proudauth/proudauth-sdk-go@latest
 ```
+
+Go records the resolved revision in your `go.mod` and `go.sum`: the newest
+release tag once one exists, the newest reviewed commit on `main` until then.
 
 | Package | Purpose |
 | --- | --- |
@@ -70,14 +73,14 @@ callback, and preserve serialized refresh ownership across BFF instances.
 
 ## Complete implementations
 
-The source checkout includes runnable examples:
+The service repository ships runnable examples at this release:
 
 | Example | What it demonstrates |
 | --- | --- |
-| `examples/protected-billing-api` | Offline verification |
-| `examples/protected-orders-api` | Introspection, support policy and access decisions |
-| `examples/backend-for-frontend` | Sign-in, callback, server-side sessions and logout |
-| `examples/machine-client` | Service client credentials |
+| [`examples/protected-billing-api`](https://github.com/proudauth/proudauth/tree/v{{VERSION}}/examples/protected-billing-api) | Offline verification |
+| [`examples/protected-orders-api`](https://github.com/proudauth/proudauth/tree/v{{VERSION}}/examples/protected-orders-api) | Introspection, support policy and access decisions |
+| [`examples/backend-for-frontend`](https://github.com/proudauth/proudauth/tree/v{{VERSION}}/examples/backend-for-frontend) | Sign-in, callback, server-side sessions and logout |
+| [`examples/machine-client`](https://github.com/proudauth/proudauth/tree/v{{VERSION}}/examples/machine-client) | Service client credentials |
 
 Continue with [resource servers](../../../docs/integrations/resource-servers.md),
 [BFF integration](../../../docs/integrations/backend-for-frontend.md),
