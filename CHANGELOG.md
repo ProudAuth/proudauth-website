@@ -6,6 +6,16 @@ ProudAuth and keep their original source provenance.
 
 ## Unreleased
 
+### Fixed
+
+- Docs search indexes table cells and list items, so environment variables and
+  configuration keys such as `PROUDAUTH_TRUSTED_PROXIES` find the page that
+  documents them; results are also ranked by how often the terms occur in a page.
+- The checks no longer pin fixed counts of guides, API operations, pages and
+  downloads: they compare the build with the synced `content.lock.json` and
+  OpenAPI contract, so a release that adds an endpoint or a guide deploys
+  without a test edit.
+
 ### Changed
 
 - The landing page is one screen of graphics: your server at the centre with
