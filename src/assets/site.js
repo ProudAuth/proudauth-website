@@ -37,10 +37,13 @@
     try { await load(); } catch { results.textContent='Search could not load. Please try again.'; return; }
     if(mine!==request)return;
     const terms=query.split(/\s+/);
+    // Body hits (tables and lists included) rank pages by how often a term occurs,
+    // capped at 5 so a title hit (10) still ranks first.
+    const bodyHits=(body,t)=>{let n=0;for(let i=body.indexOf(t);i!==-1&&n<5;i=body.indexOf(t,i+t.length))n++;return n;};
     const matches=index.map(page=>{
       const title=page.title.toLowerCase(), body=page.text.toLowerCase(), group=page.group.toLowerCase();
       if(!terms.every(t=>title.includes(t)||body.includes(t)||group.includes(t)))return null;
-      return {page,score:terms.reduce((score,t)=>score+(title.includes(t)?10:0)+(group.includes(t)?3:0),0)+(title===query?30:0)};
+      return {page,score:terms.reduce((score,t)=>score+(title.includes(t)?10:0)+(group.includes(t)?3:0)+bodyHits(body,t),0)+(title===query?30:0)};
     }).filter(Boolean).sort((a,b)=>b.score-a.score).slice(0,20);
     if(!matches.length){results.innerHTML='<p>No results. Try a protocol, field name or endpoint.</p>';return;}
     results.innerHTML=matches.map(({page})=>{

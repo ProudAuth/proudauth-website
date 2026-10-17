@@ -9,6 +9,7 @@ import http from 'node:http';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {createPreviewServer} from '../scripts/preview.mjs';
+import {contractOperations,contractTags,expectedPages,localGuides,lockedGuides,lockedSchemas,lockedSnapshotPaths} from './synced-inputs.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=path.join(root,'dist');
@@ -65,8 +66,26 @@ test('Swagger, source provenance and downloads remain local and credentials-free
   const inputLock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
   assert.deepEqual(info.source,inputLock.source);
   if(info.source.dirty)assert.equal(info.source.commitPinned,false);
-  assert.equal(info.guides,104);
-  assert.equal(info.apiOperations,603);
+  // Counts follow the synced inputs, so a release that adds an endpoint or a guide
+  // deploys unchanged; the floors make an empty or partial sync fail.
+  assert(contractOperations.length>=300,`The synced contract lists only ${contractOperations.length} operations`);
+  assert.equal(info.apiOperations,contractOperations.length,'Every path+method operation of the synced OpenAPI contract is published');
+  assert.equal(info.apiGroups,contractTags.size);
+  assert(lockedGuides.length>=50,`content.lock.json lists only ${lockedGuides.length} guides`);
+  assert.equal(info.guides,lockedGuides.length+localGuides.length,'Every locked and local Markdown guide is published');
+  assert.equal(info.pages,expectedPages);
+  const pages=[...read('docs/sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1])
+    .filter(url=>url.startsWith(config.docsOrigin+'/')).map(url=>url.slice(config.docsOrigin.length));
+  assert.equal(pages.length,info.pages,'The sitemap lists every page');
+  for(const route of pages)assert(fs.existsSync(path.join(output,'docs',route,'index.html')),`Missing page: ${route}`);
+  // Downloads: every locked schema document plus the evidence guides link to, and
+  // nothing that is not a locked input.
+  const downloadRoot=path.join(output,'docs/downloads');
+  const downloads=fs.readdirSync(downloadRoot,{recursive:true}).map(name=>name.split(path.sep).join('/')).filter(name=>fs.statSync(path.join(downloadRoot,name)).isFile());
+  assert(lockedSchemas.length>=20,`content.lock.json lists only ${lockedSchemas.length} schema documents`);
+  assert.equal(info.publishedFiles,downloads.length);
+  for(const schema of lockedSchemas)assert(downloads.includes(schema),`Missing schema download: ${schema}`);
+  for(const file of downloads)assert(lockedSnapshotPaths.has(file),`Download is not a locked input: ${file}`);
   const lock=JSON.parse(read('docs/content.lock.json'));
   assert.equal(lock.source.head,info.source.head);
   for(const input of lock.files){
@@ -141,7 +160,8 @@ test('Pages publication contains the complete static site and operator deploymen
   assert(read('docs/integrations/outbound-provisioning/index.html').includes('<code>PUT /Users/{id}</code>'));
   const evidence=JSON.parse(read('docs/downloads/docs/integrations/sdk-repositories.json'));
   assert.equal(evidence.schema_version,1);
-  assert.equal(evidence.repositories.length,5);
+  const sdkSources=JSON.parse(read('docs/content.lock.json')).sdkSources;
+  assert.deepEqual(evidence.repositories.map(r=>r.language).sort(),Object.keys(sdkSources).sort(),'The SDK evidence lists exactly the SDKs whose READMEs are synced');
   const settings=['PROUDAUTH_IMAGE','PROUDAUTH_PUBLIC_ORIGIN','PROUDAUTH_TRUSTED_PROXIES','PROUDAUTH_DATABASE_URL',
     'PROUDAUTH_ROOT_KEY','PROUDAUTH_SMTP_HOST','PROUDAUTH_SMTP_PORT','PROUDAUTH_SMTP_TLS','PROUDAUTH_SMTP_USERNAME',
     'PROUDAUTH_SMTP_PASSWORD','PROUDAUTH_EMAIL_FROM','PROUDAUTH_LOG_LEVEL','PUBLIC_BIND','PUBLIC_PORT'];
@@ -154,4 +174,16 @@ test('Pages publication contains the complete static site and operator deploymen
     assert.match(input.upstream.commit,/^[a-f0-9]{40}$/);
     assert.equal(input.sha256,input.sourceSha256);
   }
+});
+
+test('Go SDK page installs the renamed module at @latest or a release tag',()=>{
+  const page=read('docs/sdks/go/index.html');
+  const installs=[...page.matchAll(/\bgo get\s+([^\s<]+)/g)].map(m=>m[1]);
+  assert(installs.length>0,'The Go SDK page shows a go get command');
+  for(const target of installs){
+    const [module,version]=target.split('@');
+    assert.equal(module,'github.com/proudauth/proudauth-sdk-go',`go get must name the module path the SDK's go.mod declares: ${target}`);
+    assert.match(version??'',/^(?:latest|v[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?)$/,`go get must use @latest or a @v release tag, never a commit: ${target}`);
+  }
+  assert(!/proudbase/i.test(page),'The Go SDK page must not mention the pre-rename proudbase path');
 });

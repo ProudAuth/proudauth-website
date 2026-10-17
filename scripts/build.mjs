@@ -3,6 +3,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import {publicText} from './publication.mjs';
+import {searchText} from './search-text.mjs';
 
 const require = createRequire(import.meta.url);
 const { marked } = require('../vendor/marked.cjs');
@@ -146,7 +147,7 @@ function render(markdown, source='docs-site/content/getting-started/overview.md'
     return `<div class="table-wrap" tabindex="0"><table><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table></div>`;
   };
   const html = marked.parse(markdown,{renderer,gfm:true});
-  const plain = marked.lexer(markdown).map(t => t.text || '').join(' ').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[`*#|]/g,'').replace(/\s+/g,' ');
+  const plain = searchText(markdown); // includes table cells and list items
   return {html,toc,plain};
 }
 
