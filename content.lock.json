@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "createdAt": "2026-10-18T10:15:59.472Z",
+  "createdAt": "2026-10-18T10:31:23.768Z",
   "state": "commit-pinned-service-and-sdks",
   "source": {
     "description": "Published service release v0.2.0-alpha.5",
@@ -1749,6 +1749,36 @@
       "previousSourceSha256": "9a3146c6af234e835b34b6d7cb4e615819c143053b519b2b5c1e3ea5a934408a"
     },
     {
+      "path": "content/snapshot/docs/history/CHANGELOG-pre-0.2.0.md",
+      "source": "docs/history/CHANGELOG-pre-0.2.0.md",
+      "sourceSha256": "ec62d6605e8d319580d7b8c8957854f782c4c87a5607a2a78d3987fae9d33102",
+      "sha256": "ec62d6605e8d319580d7b8c8957854f782c4c87a5607a2a78d3987fae9d33102",
+      "matchesHead": true,
+      "redacted": false,
+      "initialSourceSha256": "ec62d6605e8d319580d7b8c8957854f782c4c87a5607a2a78d3987fae9d33102",
+      "upstream": {
+        "repository": "https://github.com/proudauth/proudauth",
+        "commit": "91583fab326217fe844aa219c0e94045e3199203",
+        "path": "docs/history/CHANGELOG-pre-0.2.0.md",
+        "commitPinned": true
+      }
+    },
+    {
+      "path": "content/snapshot/docs/history/README.md",
+      "source": "docs/history/README.md",
+      "sourceSha256": "ac14916f8ee73a782469ca6369bf4c63ccd07bc74e229968a21bd1fae32b7e53",
+      "sha256": "ac14916f8ee73a782469ca6369bf4c63ccd07bc74e229968a21bd1fae32b7e53",
+      "matchesHead": true,
+      "redacted": false,
+      "initialSourceSha256": "ac14916f8ee73a782469ca6369bf4c63ccd07bc74e229968a21bd1fae32b7e53",
+      "upstream": {
+        "repository": "https://github.com/proudauth/proudauth",
+        "commit": "91583fab326217fe844aa219c0e94045e3199203",
+        "path": "docs/history/README.md",
+        "commitPinned": true
+      }
+    },
+    {
       "path": "content/snapshot/docs/integrations/backend-for-frontend.md",
       "source": "docs/integrations/backend-for-frontend.md",
       "sourceSha256": "d925207217c6f629728ee7b8f3358546b8be6161dd9bb1d3d478a2b35237b2d6",
@@ -3144,6 +3174,21 @@
         "commitPinned": true
       },
       "previousSourceSha256": "2675947667941750ddb4a5ef64b97f58995f9bd2024ae8571e7c3b91cc70433f"
+    },
+    {
+      "path": "content/snapshot/docs/releases/2026-10-alpha.5-decisions.md",
+      "source": "docs/releases/2026-10-alpha.5-decisions.md",
+      "sourceSha256": "27e192440d3d58a84042558bd106ebf4bda84fa335ff59f141e560553dabd5f2",
+      "sha256": "27e192440d3d58a84042558bd106ebf4bda84fa335ff59f141e560553dabd5f2",
+      "matchesHead": true,
+      "redacted": false,
+      "initialSourceSha256": "27e192440d3d58a84042558bd106ebf4bda84fa335ff59f141e560553dabd5f2",
+      "upstream": {
+        "repository": "https://github.com/proudauth/proudauth",
+        "commit": "91583fab326217fe844aa219c0e94045e3199203",
+        "path": "docs/releases/2026-10-alpha.5-decisions.md",
+        "commitPinned": true
+      }
     },
     {
       "path": "content/snapshot/docs/threat-models/attack-suites.md",

@@ -21,9 +21,10 @@ export const contractOperations=Object.entries(contract.paths||{}).flatMap(([rou
   ['get','put','post','delete','options','head','patch','trace'].filter(method=>item[method]).map(method=>({method,route,tag:item[method].tags?.[0]||'Other'})));
 export const contractTags=new Set(contractOperations.map(op=>op.tag));
 
-// Markdown that scripts/build.mjs publishes as guides: the locked service documents,
-// changelog, schema READMEs and SDK READMEs, plus the website's own pages.
-export const lockedGuides=locked(/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|sdk\/[a-z]+\/README\.md|CHANGELOG\.md|api\/(?:events|hooks)\/README\.md)$/);
+// Markdown that scripts/build.mjs publishes as guides: the locked service documents
+// (including the history and per-release decision records), changelog, schema
+// READMEs and SDK READMEs, plus the website's own pages.
+export const lockedGuides=locked(/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models|history|releases)\/[^/]+\.md|sdk\/[a-z]+\/README\.md|CHANGELOG\.md|api\/(?:events|hooks)\/README\.md)$/);
 export const localGuides=['getting-started','sdks','reference'].flatMap(directory=>
   fs.readdirSync(path.join(root,'src/content',directory)).filter(name=>name.endsWith('.md')).map(name=>`src/content/${directory}/${name}`));
 // Pages generated besides the guides: one per API group, the API overview, schema

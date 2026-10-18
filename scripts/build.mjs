@@ -30,7 +30,8 @@ if (!/^\/[a-z0-9/-]+$/.test(config.docsBasePath) || config.docsBasePath.endsWith
 if (config.docsOrigin !== config.homeOrigin + config.docsBasePath) throw new Error('docsOrigin must equal homeOrigin + docsBasePath');
 const docsPath = route => config.docsBasePath + route;
 const baseHtml = html => html.replace(/(href|src)="\/(?!\/)([^"]*)"/g, (_,attribute,value) => value === config.docsBasePath.slice(1) || value.startsWith(config.docsBasePath.slice(1)+'/') ? `${attribute}="/${value}"` : `${attribute}="${config.docsBasePath}/${value}"`);
-const files = dir => fs.readdirSync(sourcePath(dir), {withFileTypes:true}).filter(x => x.isFile() && x.name.endsWith('.md')).map(x => `${dir}/${x.name}`).sort();
+// A synced folder the release no longer has simply publishes nothing.
+const files = dir => fs.existsSync(sourcePath(dir)) ? fs.readdirSync(sourcePath(dir), {withFileTypes:true}).filter(x => x.isFile() && x.name.endsWith('.md')).map(x => `${dir}/${x.name}`).sort() : [];
 const pages = [];
 const groups = [
   ['Start here', 'getting-started'], ['SDKs', 'sdks'], ['Protocols', 'protocols'],
@@ -53,10 +54,13 @@ for (const file of files('docs-site/content/getting-started')) add(file, `/getti
 add('docs/operations/docker-compose.md', '/getting-started/quickstart/', 'getting-started', 'Docker quickstart');
 for (const file of files('docs-site/content/sdks')) add(file, `/sdks/${path.basename(file,'.md')}/`, 'sdks');
 for (const file of files('docs-site/content/reference')) add(file, `/reference/${path.basename(file,'.md')}/`, 'reference');
-for (const [folder,group] of [['protocols','protocols'],['integrations','integrations'],['operations','operations'],['architecture-decisions','architecture'],['threat-models','security']]) {
+// The history (records kept verbatim) and the per-release owner decisions are
+// reference material next to the changelog, under their own route prefixes.
+for (const [folder,group,prefix] of [['protocols','protocols'],['integrations','integrations'],['operations','operations'],['architecture-decisions','architecture'],['threat-models','security'],['history','reference','reference/history'],['releases','reference','reference/releases']]) {
   for (const file of files(`docs/${folder}`)) {
     if (file === 'docs/operations/docker-compose.md') continue; // published as the quickstart
-    add(file, `/${group}/${path.basename(file,'.md') === 'README' ? '' : path.basename(file,'.md')+'/'}`, group);
+    const name = path.basename(file,'.md');
+    add(file, `/${prefix || group}/${name === 'README' ? '' : name.toLowerCase()+'/'}`, group);
   }
 }
 for (const [lang,title] of [['go','Go SDK reference'],['node','Node.js & TypeScript'],['dart','Dart'],['php','PHP'],['dotnet','C# & ASP.NET Core']]) add(`sdk/${lang}/README.md`,`/sdks/${lang === 'go' ? 'go-reference' : lang}/`,'sdks',title);

@@ -27,7 +27,7 @@ const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
 const lock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'));
 const prefix='content/snapshot/';
 const imported=new Map(lock.files.map(item=>[item.path,item]));
-const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
+const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models|history|releases)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
 const privateInput=/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i;
 // The release tree decides which documents exist: every allowlisted document
 // and contract in it is imported, so a document the release adds or renames
