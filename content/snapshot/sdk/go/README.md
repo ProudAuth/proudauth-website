@@ -1,17 +1,25 @@
+<p align="center">
+  <a href="https://proudauth.com"><img src="https://raw.githubusercontent.com/ProudAuth/.github/main/assets/banner-proudauth-sdk-go.png" alt="ProudAuth SDK for Go" width="100%"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/ProudAuth/proudauth-sdk-go"><img alt="Go" src="https://img.shields.io/badge/Go-SDK-3ee6b0?logo=go&logoColor=3ee6b0&style=for-the-badge&labelColor=06120e"></a>
+  <a href="https://github.com/ProudAuth/proudauth-sdk-go/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/ProudAuth/proudauth-sdk-go/ci.yml?branch=main&label=ci&style=for-the-badge&labelColor=06120e"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0-3ee6b0?style=for-the-badge&labelColor=06120e"></a>
+  <a href="https://proudauth.com/docs/sdks/go-reference/"><img alt="Documentation" src="https://img.shields.io/badge/docs-proudauth.com-3ee6b0?style=for-the-badge&labelColor=06120e"></a>
+</p>
+
 # ProudAuth SDK for Go
 
 First-party backend SDK for ProudAuth: verify access tokens, apply live
 revocation and support-access rules, integrate an OIDC backend-for-frontend,
 and automate the administration API.
 
-**Version 0.2.0, development snapshot.** No release tag exists yet.
-Minimum Go: **1.27.1**.
+**Version 0.2.0** (tag `v0.2.0`, 2026-10-18). Minimum Go: **1.25**.
 Apache-2.0. The only third-party module is `go-jose/v4` 4.1.5.
 
 [Documentation](https://proudauth.com/docs/) ·
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
-
-[![CI](https://github.com/proudauth/proudauth-sdk-go/actions/workflows/ci.yml/badge.svg)](https://github.com/proudauth/proudauth-sdk-go/actions/workflows/ci.yml)
 
 The identity service is maintained separately in
 [`proudauth/proudauth`](https://github.com/proudauth/proudauth).
@@ -29,15 +37,16 @@ python3 scripts/check-contracts.py
 go test -race ./...
 ```
 
-Install the development revision into your application:
+Install the module into your application:
 
 ```sh
-go get github.com/proudauth/proudauth-sdk-go@main
+go get github.com/proudauth/proudauth-sdk-go@v0.2.0
 ```
 
-Go records the resolved immutable revision in your `go.mod` and `go.sum`.
-Use a reviewed release tag when tagged releases become available. For local
-development, a Go workspace can include your application and this module.
+Go records the tag and its checksum in your `go.mod` and `go.sum`; the
+[CHANGELOG](CHANGELOG.md) lists every release. The module requires Go 1.25
+or later and is tested on Go 1.25, 1.26 and 1.27. For local development, a Go
+workspace can include your application and this module.
 
 Imports use `github.com/proudauth/proudauth-sdk-go/verifier`, `/oidcclient`
 and `/admin`. They no longer use the monorepo's `github.com/proudauth/sdk/go`.
@@ -128,6 +137,18 @@ and rejected access-token cases used by the other SDKs, plus support-operation
 classification rules. Keys in test data are test-only. `testdata/manifest.json`
 pins their bytes; `SOURCE-MANIFEST.json` records the source checkout HEAD and
 working-tree input hashes. Standalone check results are recorded in [VALIDATION.md](VALIDATION.md).
+
+## Known limitations
+
+- **Emergency signing-key rotation needs a restart.** The verifier loads the
+  issuer's JWKS once and refreshes it only when a token names an unknown
+  `kid`; it has no key expiry, no `Refresh` or `RejectKey` method, and
+  `BoundedState` does not act on the server's `signing_key.rotated` event.
+  After an emergency rotation (`previous_key_compromised`), a key the server
+  has retired stays trusted by a running verifier until the process restarts.
+  Restart resource servers after an emergency rotation. SDK 0.3.0 adds key
+  expiry that honours the server's `Cache-Control`, explicit refresh and
+  rejection, and `signing_key.rotated` handling.
 
 ## License and security
 
