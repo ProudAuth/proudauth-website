@@ -5,11 +5,13 @@ The Go SDK is a separate public module,
 for Go 1.25 or later. Install it into your application:
 
 ```sh
-go get github.com/proudauth/proudauth-sdk-go@latest
+go get github.com/proudauth/proudauth-sdk-go@v0.2.0
 ```
 
-Go records the resolved revision in your `go.mod` and `go.sum`: the newest
-release tag once one exists, the newest reviewed commit on `main` until then.
+Go records the tag and its checksum in your `go.mod` and `go.sum`. The SDK
+versions independently of the service; its
+[CHANGELOG](https://github.com/proudauth/proudauth-sdk-go/blob/main/CHANGELOG.md)
+lists every release.
 
 | Package | Purpose |
 | --- | --- |
