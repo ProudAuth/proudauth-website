@@ -27,6 +27,11 @@ ProudAuth and keep their original source provenance.
 
 ### Added
 
+- The service's `docs/history/` (the development changelog before 0.2.0, kept
+  verbatim) and `docs/releases/` (the owner decisions recorded per release
+  phase) are synced and published under Reference, at
+  `/docs/reference/history/` and `/docs/reference/releases/`, so the
+  changelog's links to them resolve.
 - Deployment follows the latest ProudAuth release automatically: an hourly
   check (or a dispatch from the ProudAuth release workflow) syncs the docs
   from the newest release tag, then builds, checks and deploys.
