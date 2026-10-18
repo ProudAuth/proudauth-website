@@ -28,8 +28,32 @@ const lock=JSON.parse(fs.readFileSync(path.join(root,'content.lock.json'),'utf8'
 const prefix='content/snapshot/';
 const imported=new Map(lock.files.map(item=>[item.path,item]));
 const approved=/^(?:docs\/(?:protocols|integrations|operations|architecture-decisions|threat-models)\/[^/]+\.md|docs\/integrations\/sdk-repositories\.json|docs\/operations\/bench-results\/[\w./-]+\.(?:json|txt|tsv|yaml)|api\/(?:events|hooks|schemas|plugins|workflows)\/[^/]+\.(?:json|md)|api\/openapi\/proudauth\.yaml|CHANGELOG\.md|LICENSE|NOTICE)$/;
-const serviceFiles=lock.files.filter(item=>item.path.startsWith(prefix)&&!item.path.startsWith(prefix+'sdk/')).map(item=>item.path.slice(prefix.length));
-serviceFiles.push('docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json','docs/protocols/api-conventions.md');
+const privateInput=/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i;
+// The release tree decides which documents exist: every allowlisted document
+// and contract in it is imported, so a document the release adds or renames
+// appears and one it removed leaves the snapshot instead of failing the sync.
+// Benchmark result files stay curated: those already in the lock plus the ones
+// named here, and only while the release still has them.
+const previous=lock.files.filter(item=>item.path.startsWith(prefix)&&!item.path.startsWith(prefix+'sdk/')).map(item=>item.path.slice(prefix.length));
+const isBench=relative=>relative.startsWith('docs/operations/bench-results/');
+const curatedBench=[...previous.filter(isBench),
+  ...['artifact-sha256.json','environment.json','postgres/settings.tsv','proudauth-config.yaml','summary.json']
+    .map(name=>`docs/operations/bench-results/2026-10-18-laptop-alpha5-baselines/${name}`)];
+let serviceFiles;
+if(serviceCommit){
+  const tree=new Set(git(service,'ls-tree','-r','--name-only',serviceCommit).toString('utf8').split('\n').filter(Boolean));
+  serviceFiles=[...tree].filter(relative=>approved.test(relative)&&!isBench(relative)&&!privateInput.test(relative));
+  serviceFiles.push(...curatedBench.filter(relative=>tree.has(relative)));
+  for(const relative of previous){
+    if(tree.has(relative))continue;
+    imported.delete(prefix+relative);
+    fs.rmSync(path.join(root,prefix+relative),{force:true});
+    console.log(`Dropped ${relative}: not in ${release||serviceCommit}`);
+  }
+}else{
+  serviceFiles=[...previous,'docs/operations/docker-compose.md','docs/operations/environment.md','docs/integrations/sdk-repositories.json','docs/protocols/api-conventions.md',
+    ...curatedBench.filter(relative=>fs.existsSync(path.join(service,relative)))];
+}
 for(const relative of new Set(serviceFiles)){
   if(!approved.test(relative)||relative.split('/').includes('..')||/(?:seed|credentials|secrets|support-bundle|initial-attempt)[^/]*\.(?:json|txt|tsv|yaml)$/i.test(relative))throw new Error(`Disallowed source: ${relative}`);
   const bytes=serviceCommit?git(service,'show',`${serviceCommit}:${relative}`):fs.readFileSync(path.join(service,relative));
